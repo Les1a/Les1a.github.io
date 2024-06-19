@@ -12,7 +12,7 @@ title                    : "Kejing Xia's Homepage"
 title_separator          : "-"
 name                     : &name "Kejing Xia"
 description              : &description "Wuhan University"
-url                      : https://les1a.github.io/
+url                      : https://les1a.github.io
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "Les1a/Les1a.github.io"
 
