@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Hello! I am Kejing Xia (夏可敬), a third-year undergraduate student at Wuhan University, currently pursuing a specialized track in Artificial Intelligence within the Communication Engineering program at the [Electronic Information School](http://eis.whu.edu.cn/). Before my time at WHU, I completed three years of study at the [No.1 Middle School Affiliated to Central China Normal University (华中师大一附中)](https://www.hzsdyfz.com.cn/about.html). You can view my [CV here](../assets/3_CV.pdf). (Updated in Jun. 2024)
+Hello! I am Kejing Xia (夏可敬), a third-year undergraduate student at Wuhan University, currently pursuing a specialized track in Artificial Intelligence within the Communication Engineering program at the [Electronic Information School](http://eis.whu.edu.cn/). Before my time at WHU, I completed three years of study at the No.1 Middle School Affiliated to Central China Normal University [(华中师大一附中)](https://www.hzsdyfz.com.cn/about.html). You can view my [CV here](../assets/3_CV.pdf). (Updated in Jun. 2024)
 
 
 
