@@ -30,5 +30,5 @@ News
 Publications
 ------
 
-For more info
+More info
 ------
