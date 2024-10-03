@@ -13,8 +13,9 @@ Hello! I am Kejing Xia (夏可敬), a third-year undergraduate student at Wuhan 
 
 Research Interest
 ======
-1. Mutil-modal Vision, event enhanced 3D reconstruction [[]()] and pattern recognization [[IJCAIW 2024](https://cv-ac.github.io/MiGA2/)]
-2. Efficient LLM, working as a remote intern with [EIC lab](https://eiclab.scs.gatech.edu/)
+1. 3D Vision, event enhanced 3D reconstruction [[BRS-E$^2$NeRF]()]
+2. Neuromorphic Vision [[IJCAIW 2024](https://cv-ac.github.io/MiGA2/)]
+3. Efficient LLM, working as a remote intern in [EIC lab](https://eiclab.scs.gatech.edu/)
 
 News
 ======
