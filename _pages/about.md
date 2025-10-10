@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Hello! I am Kejing Xia (夏可敬), a first-year Ph.D. student in Computer Science at Georgia Tech, where I work in the [EIC Lab](https://eiclab.scs.gatech.edu/) on efficient LLMs. Prior to my Ph.D., I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track) from [Wuhan University] (https://en.whu.edu.cn/), receiving multiple university-level scholarships and merit distinctions. Before that, I studied at the No.1 Middle School Affiliated to Central China Normal University [(华中师大一附中)](https://www.hzsdyfz.com.cn/about.html).
+Hello! I am Kejing Xia (夏可敬), a first-year Ph.D. student in Computer Science at Georgia Tech, where I work in the [EIC Lab](https://eiclab.scs.gatech.edu/) on efficient LLMs. Prior to my Ph.D., I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track) from [Wuhan University](https://en.whu.edu.cn/), receiving multiple university-level scholarships and merit distinctions. Before that, I studied at the No.1 Middle School Affiliated to Central China Normal University [(华中师大一附中)](https://www.hzsdyfz.com.cn/about.html).
 
 You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
 
