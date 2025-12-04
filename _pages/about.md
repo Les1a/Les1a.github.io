@@ -7,7 +7,7 @@ redirect_from:
   - /about.html
 ---
 
-Hello! I am **Kejing Xia (夏可敬)**, a first-year Ph.D. student in Computer Science at [Georgia Tech](https://www.gatech.edu/), where I work in the [GTISC Lab](https://lab.gtisc.gatech.edu/gtisc/) with Prof. [Wenke Lee](https://wenke.gtisc.gatech.edu/). 
+Hello 👋 ! I am **Kejing Xia (夏可敬)**, a first-year Ph.D. student in Computer Science at [Georgia Tech](https://www.gatech.edu/), where I work in the [GTISC Lab](https://lab.gtisc.gatech.edu/gtisc/) with Prof. [Wenke Lee](https://wenke.gtisc.gatech.edu/). 
 
 Prior to my Ph.D., I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track) from [Wuhan University](https://en.whu.edu.cn/). Before that, I studied at the No.1 Middle School Affiliated to Central China Normal University [(华中师大一附中)](https://www.hzsdyfz.com.cn/about.html).
 
@@ -29,7 +29,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
   </li>
 </ul>
 
-## News
+## 📢 News
 <ul class="news-list">
   <li>
     <span class="news-date">2025.09</span>
@@ -61,7 +61,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
   </li>
 </ul>
 
-## Publications
+## 📝 Publications
 
 <div class="publication-list">
 
@@ -118,23 +118,23 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
 
 </div>
 
-## Research Experience
+## 🔬 Research Experience
 * **EIC Lab, Georgia Tech (2024-2025)** - Co-led projects on LongMamba and LAMB, proposing training-free approaches to extend context length in state-space models.
 * **Signal Processing Lab, Wuhan University (2023-2024)** - Co-led BRS-E2NeRF, developing event-enhanced NeRFs to reconstruct sharp images from rolling shutter blur.
 * **Center for Machine Vision and Signal Analysis (CMVS), University of Oulu (2023-2024)** - Led research on event-based human behavior analysis with spatio-temporal transformers, presented at IJCAI 2024 (MiGA Workshop).
 
-## Internship
-* **Bosch Innovation Software Development Co., Ltd (2024-2025)** - Project leader for D2GS, combining diffusion depth enhancement with 3D Gaussian models for LiDAR-free scene reconstruction.
+## 💼 Internship
+* **Bosch Innovation Software Development (2024-2025)** - Project leader for D2GS, combining diffusion depth enhancement with 3D Gaussian models for LiDAR-free scene reconstruction.
 
-## Competition
+## 🏅 Competition
 * **RoboCup China Open (2024)** - Captain, National First Prize.
 * **Student Innovation & Entrepreneurship Project (2023-2024)** - National Prize for All-in-Focus Seeing Through Occlusions with Event and Frame.
 * **China Undergraduate Mathematical Contest in Modeling (2023)** - Hubei Province First Prize.
 * **Huazhong Cup Mathematical Modeling Challenge (2023)** - National First Prize.
 
-## Awards
+## 🏆 Awards
 * Wuhan University First-Class Academic Scholarship (2023-2024).
 * "Luojia" Distinguished Exchange Student Scholarship (2023-2024).
-* Merit Students, Wuhan University (2021-2022, 2023-2024).
-* Outstanding Student (2022-2023).
-* Multiple Merit and Outstanding Academic Scholarships (2021-2023).
+* Wuhan University Merit Students (2021-2022, 2023-2024).
+* Wuhan University Outstanding Student (2022-2023).
+* Wuhan University Merit and Outstanding Academic Scholarships (2021-2023).

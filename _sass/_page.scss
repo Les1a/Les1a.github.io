@@ -20,7 +20,7 @@
   @include breakpoint($large) {
     @include span(10 of 12 last);
     @include prefix(0.5 of 12);
-    @include suffix(2 of 12);
+    @include suffix(1 of 12);
   }
 
   .page__inner-wrap {
@@ -38,7 +38,7 @@
   margin-top: 0;
   line-height: 1;
 
-  & + .page__meta {
+  &+.page__meta {
     margin-top: -0.5em;
   }
 }
@@ -55,8 +55,11 @@
     border-bottom: 1px solid $border-color;
   }
 
-  p, li, dl {
+  p,
+  li,
+  dl {
     font-size: 1em;
+    line-height: 1.75;
   }
 
   /* paragraph indents */
@@ -64,8 +67,8 @@
     margin: 0 0 $indent-var;
 
     /* sibling indentation*/
-    @if $paragraph-indent == true {
-      & + p {
+    @if $paragraph-indent ==true {
+      &+p {
         text-indent: $indent-var;
         margin-top: -($indent-var);
       }
@@ -101,7 +104,7 @@
   }
 
   /* blockquote citations */
-  blockquote + .small {
+  blockquote+.small {
     margin-top: -1.5em;
     padding-left: 1.25rem;
   }
@@ -300,6 +303,7 @@
   transition: $global-transition;
 
   &.disabled {
+
     input,
     button,
     textarea,

@@ -12,14 +12,14 @@ main:
 #   - title: "Research Experience"
 #     url: "#research-experience"
 
-#   - title: "Professional Experience"
-#     url: "#professional-experience"
+  - title: "Internship"
+    url: "/#-internship"
 
-#   - title: "Competition Experience"
-#     url: "#competition-experience"
+  - title: "Competition"
+    url: "/#-competition"
   
-#   - title: "Awards"
-#     url: "#awards"
+  - title: "Awards"
+    url: "/#-awards"
     
     
 
