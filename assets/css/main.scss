@@ -39,3 +39,233 @@
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
+
+/* Custom Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap');
+
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --color-primary: #2c3e50;
+  --color-accent: #3498db;
+  --color-text: #333;
+  --color-text-light: #666;
+  --color-border: #eee;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h1 { font-size: 2.5em; border-bottom: none; }
+h2 { font-size: 1.8em; border-bottom: 2px solid var(--color-border); padding-bottom: 10px; }
+h3 { font-size: 1.4em; }
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: darken(#3498db, 15%);
+    text-decoration: underline;
+  }
+}
+
+/* Profile Sidebar Enhancements */
+.sidebar {
+  font-family: var(--font-sans);
+  
+  .author__name {
+    font-family: var(--font-serif);
+    font-size: 1.5em;
+  }
+  
+  .author__bio {
+    font-size: 0.95em;
+    color: var(--color-text-light);
+  }
+}
+
+/* Publication Cards */
+.publication-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.publication-card {
+  display: flex;
+  gap: 25px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--color-border);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .pub-image {
+    flex: 0 0 220px;
+    width: 220px;
+    height: 140px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+    
+    .placeholder-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: #ccc;
+      font-size: 0.9em;
+    }
+  }
+
+  .pub-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    .pub-title {
+      font-size: 1.15em;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--color-primary);
+      line-height: 1.3;
+    }
+    
+    .pub-authors {
+      font-size: 0.95em;
+      color: var(--color-text);
+      margin-bottom: 6px;
+      
+      strong {
+        font-weight: 600;
+        color: var(--color-primary);
+      }
+    }
+    
+    .pub-venue {
+      font-size: 0.9em;
+      font-style: italic;
+      color: var(--color-text-light);
+      margin-bottom: 12px;
+      
+      .highlight {
+        color: #e74c3c;
+        font-weight: 500;
+      }
+    }
+    
+    .pub-links {
+      display: flex;
+      gap: 15px;
+      
+      a {
+        font-size: 0.85em;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--color-accent);
+        border: 1px solid var(--color-accent);
+        padding: 4px 10px;
+        border-radius: 4px;
+        transition: all 0.2s ease;
+        
+        &:hover {
+          background-color: var(--color-accent);
+          color: white;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+/* News Section */
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    font-size: 0.95em;
+    
+    @media (max-width: 600px) {
+      flex-direction: column;
+      gap: 5px;
+    }
+    
+    .news-date {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      min-width: 80px;
+      color: var(--color-text-light);
+      font-feature-settings: "tnum";
+      font-variant-numeric: tabular-nums;
+    }
+    
+    .news-content {
+      flex: 1;
+      color: var(--color-text);
+    }
+  }
+}
+
+/* Research Interests */
+.research-interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+  
+  li {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    color: var(--color-primary);
+    font-weight: 500;
+    
+    &:hover {
+      background-color: #e9ecef;
+    }
+  }
+}

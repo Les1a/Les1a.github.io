@@ -1,22 +1,25 @@
 # main links links
-# main:
-#   - title: "Publications"
-#     url: /publications/
+main:
+#   - title: "Research Interests"
+#     url: "#research-interests"
 
-#   - title: "Talks"
-#     url: /talks/    
+  - title: "News"
+    url: "/#-news"
 
-#   - title: "Teaching"
-#     url: /teaching/    
+  - title: "Publications"
+    url: "/#-publications"
+
+#   - title: "Research Experience"
+#     url: "#research-experience"
+
+#   - title: "Professional Experience"
+#     url: "#professional-experience"
+
+#   - title: "Competition Experience"
+#     url: "#competition-experience"
+  
+#   - title: "Awards"
+#     url: "#awards"
     
-#   - title: "Portfolio"
-#     url: /portfolio/
-        
-#   - title: "Blog Posts"
-#     url: /year-archive/
     
-#   - title: "CV"
-#     url: /cv/
-    
-#   - title: "Guide"
-#     url: /markdown/
+
