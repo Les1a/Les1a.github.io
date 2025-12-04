@@ -33,7 +33,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
 <ul class="news-list">
   <li>
     <span class="news-date">2025.09</span>
-    <span class="news-content">Our paper <strong>D2GS</strong> is accepted by <strong>NeurIPS 2025</strong>.</span>
+    <span class="news-content">Our paper <strong>D<sup>2</sup>GS</strong> is accepted by <strong>NeurIPS 2025</strong>.</span>
   </li>
   <li>
     <span class="news-date">2025.05</span>
@@ -55,10 +55,6 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
     <span class="news-date">2023.11</span>
     <span class="news-content">I won Province First Prize in <strong>China Undergraduate Mathematical Contest in Modeling</strong>.</span>
   </li>
-  <li>
-    <span class="news-date">2023.05</span>
-    <span class="news-content">I won National First Prize in <strong>Huazhong Cup Mathematical Modeling Challenge</strong> as team leader.</span>
-  </li>
 </ul>
 
 ## 📝 Publications
@@ -69,11 +65,11 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
   <div class="publication-card">
     <div class="pub-image">
       <!-- Replace src with your image path -->
-      <img src="/images/figure-d2gs.png" alt="D2GS" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img src="/images/figure-d2gs.png" alt="D²GS" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="placeholder-text" style="display:none;">Image Placeholder</div>
     </div>
     <div class="pub-content">
-      <div class="pub-title">D2GS: Dense Depth Regularization for LiDAR-free Urban Scene Reconstruction</div>
+      <div class="pub-title">D<sup>2</sup>GS: Dense Depth Regularization for LiDAR-free Urban Scene Reconstruction</div>
       <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, et al.</div> -->
       <div class="pub-venue">NeurIPS 2025</div>
       <div class="pub-links">
@@ -120,11 +116,11 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
 
 ## 🔬 Research Experience
 * **EIC Lab, Georgia Tech (2024-2025)** - Co-led projects on LongMamba and LAMB, proposing training-free approaches to extend context length in state-space models.
-* **Signal Processing Lab, Wuhan University (2023-2024)** - Co-led BRS-E2NeRF, developing event-enhanced NeRFs to reconstruct sharp images from rolling shutter blur.
+* **Signal Processing Lab, Wuhan University (2023-2024)** - Co-led BRS-E<sup>2</sup>NeRF, developing event-enhanced NeRFs to reconstruct sharp images from rolling shutter blur.
 * **Center for Machine Vision and Signal Analysis (CMVS), University of Oulu (2023-2024)** - Led research on event-based human behavior analysis with spatio-temporal transformers, presented at IJCAI 2024 (MiGA Workshop).
 
 ## 💼 Internship
-* **Bosch Innovation Software Development (2024-2025)** - Project leader for D2GS, combining diffusion depth enhancement with 3D Gaussian models for LiDAR-free scene reconstruction.
+* **Bosch Innovation Software Development (2024-2025)** - Project leader for D<sup>2</sup>GS, combining diffusion depth enhancement with 3D Gaussian models for LiDAR-free scene reconstruction.
 
 ## 🏅 Competition
 * **RoboCup China Open (2024)** - Captain, National First Prize.
