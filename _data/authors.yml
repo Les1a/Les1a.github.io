@@ -1,18 +1,9 @@
-# Authors
-
-Name Name:
-  name        : "Name Name"
-  uri         : "http://name.com"
-  email       : "name@name.com"
-  bio         : "This is the first name."
-  avatar      : "bio-photo-2.jpg"
-  twitter     : "name"
-  google_plus : "Name"
-
-Name2 Name2:
-  name        : "Name2 Name2"
-  email       : "name2@name2.com"
-  bio         : "I ordered what?"
-  avatar      : "bio-photo.jpg"
-  twitter     : "name2"
-  google_plus : "Name"
+# 作者列表 (Authors)
+# 此文件用于多作者博客场景，当前站点的作者信息在 _config.yml 的 author: 块中配置
+# 如需添加合作作者，按以下格式添加:
+#
+# Author Name:
+#   name        : "Author Name"
+#   email       : "author@example.com"
+#   bio         : "Short bio"
+#   avatar      : "photo.jpg"

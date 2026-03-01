@@ -1,8 +1,7 @@
-# main links links
+# 导航栏链接 (Main Navigation)
+# 添加新导航项: 复制下面的格式，url 使用 "/#-section-name" 指向首页锚点
+# 隐藏导航项: 在该条目前加 # 注释即可
 main:
-#   - title: "Research Interests"
-#     url: "#research-interests"
-
   - title: "News"
     url: "/#-news"
 
@@ -10,16 +9,13 @@ main:
     url: "/#-publications"
 
   - title: "Research Experience"
-    url: "#-research-experience"
+    url: "/#-research-experience"
 
   - title: "Internship"
     url: "/#-internship"
 
   - title: "Competition"
     url: "/#-competition"
-  
+
   - title: "Awards"
     url: "/#-awards"
-    
-    
-

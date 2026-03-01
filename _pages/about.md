@@ -2,12 +2,15 @@
 permalink: /
 title: ""
 author_profile: true
-redirect_from: 
+redirect_from:
   - /about/
   - /about.html
 ---
 
-Hello 👋 ! I am **Kejing Xia (夏可敬)**, a first-year Ph.D. student in Computer Science at [Georgia Tech](https://www.gatech.edu/), where I work in the [GTISC Lab](https://lab.gtisc.gatech.edu/gtisc/) with Prof. [Wenke Lee](https://wenke.gtisc.gatech.edu/). 
+<!-- ====== 个人简介 (Bio) ======
+     修改: 直接编辑下方文字即可 -->
+
+Hello 👋 ! I am **Kejing Xia (夏可敬)**, a first-year Ph.D. student in Computer Science at [Georgia Tech](https://www.gatech.edu/), where I work in the [GTISC Lab](https://lab.gtisc.gatech.edu/gtisc/) with Prof. [Wenke Lee](https://wenke.gtisc.gatech.edu/).
 
 Prior to my Ph.D., I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track) from [Wuhan University](https://en.whu.edu.cn/). Before that, I studied at the No.1 Middle School Affiliated to Central China Normal University [(华中师大一附中)](https://www.hzsdyfz.com.cn/about.html).
 
@@ -29,6 +32,14 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
   </li>
 </ul>
 
+<!-- ====== 新闻 (News) ======
+     添加新条目: 复制下面的 <li> 模板到列表顶部，修改日期和内容
+     模板:
+       <li>
+         <span class="news-date">YYYY.MM</span>
+         <span class="news-content">内容描述，可用 <strong>加粗</strong> 和 <a href="链接">超链接</a>。</span>
+       </li>
+-->
 ## 📢 News
 <ul class="news-list">
   <li>
@@ -57,6 +68,24 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
   </li>
 </ul>
 
+<!-- ====== 论文 (Publications) ======
+     添加新论文: 复制下面的 publication-card 模板，修改图片、标题、会议和链接
+     模板:
+       <div class="publication-card">
+         <div class="pub-image">
+           <img src="/images/figure-xxx.png" alt="简称" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+           <div class="placeholder-text" style="display:none;">Image Placeholder</div>
+         </div>
+         <div class="pub-content">
+           <div class="pub-title">论文标题</div>
+           <div class="pub-venue">会议名称 年份</div>
+           <div class="pub-links">
+             <a href="论文链接">Paper</a>
+             <a href="代码链接">Code</a>
+           </div>
+         </div>
+       </div>
+-->
 ## 📝 Publications
 
 <div class="publication-list">
@@ -64,7 +93,6 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
   <!-- D2GS -->
   <div class="publication-card">
     <div class="pub-image">
-      <!-- Replace src with your image path -->
       <img src="/images/figure-d2gs.png" alt="D²GS" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="placeholder-text" style="display:none;">Image Placeholder</div>
     </div>
@@ -113,6 +141,9 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
   </div>
 
 </div>
+
+<!-- ====== 以下为经历和奖项 (Experience & Awards) ======
+     格式: Markdown 列表，直接编辑即可 -->
 
 ## 🔬 Research Experience
 * **EIC Lab, Georgia Tech (2024-2025)** - Co-led projects on LongMamba and LAMB, proposing training-free approaches to extend context length in state-space models.
