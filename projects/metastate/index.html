@@ -17,12 +17,12 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Fonts: Libre Caslon Display (headings), Source Serif 4 (body), JetBrains Mono (code) -->
-  <!-- Inter is inherited from the main site; loaded here as fallback for standalone viewing -->
+  <!-- Fonts: Libre Caslon Display (headings), Source Serif 4 (body), Inter (UI) -->
+  <!-- Post-acceptance: add &family=JetBrains+Mono for BibTeX block -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap&subset=latin"
+    href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600&display=swap&subset=latin"
     rel="stylesheet">
 
   <style>
@@ -325,7 +325,7 @@
       font-weight: 700;
     }
 
-    /* ===== Citation ===== */
+    /* ===== Citation (uncomment post-acceptance) =====
     .citation-block {
       position: relative;
       background: #2a2a2a;
@@ -365,6 +365,7 @@
       color: #fff;
       border-color: var(--delta-green);
     }
+    */
 
     /* ===== Footer ===== */
     footer {
@@ -708,7 +709,7 @@
     </div>
   </section>
 
-  <!-- ==================== CITATION ==================== -->
+  <!-- ==================== CITATION (uncomment post-acceptance) ====================
   <section class="fade-up">
     <div class="container">
       <h2>Citation</h2>
@@ -718,6 +719,7 @@
       </div>
     </div>
   </section>
+  -->
 
   <!-- ==================== FOOTER ==================== -->
   <footer>
@@ -734,6 +736,7 @@
     // ===== Anonymous Review Toggle =====
     const ANONYMOUS = true;
 
+    /* ===== BibTeX (uncomment post-acceptance) =====
     const BIBTEX_ANONYMOUS = `@article{anonymous2026metastate,
   title     = {MetaState: Persistent Working Memory for Discrete
                Diffusion Language Models},
@@ -750,13 +753,27 @@
   year      = {2026}
 }`;
 
+    function copyBibtex() {
+      const text = ANONYMOUS ? BIBTEX_ANONYMOUS : BIBTEX_PUBLIC;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy BibTeX';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+    */
+
     function applyAnonymous() {
       const authors = document.getElementById('authors');
       const badge = document.getElementById('review-badge');
       const btnPaper = document.getElementById('btn-paper');
       const btnArxiv = document.getElementById('btn-arxiv');
       const btnCode = document.getElementById('btn-code');
-      const bibtex = document.getElementById('bibtex-content');
+      // const bibtex = document.getElementById('bibtex-content'); // uncomment post-acceptance
       const footerNotice = document.getElementById('footer-notice');
 
       if (ANONYMOUS) {
@@ -768,7 +785,7 @@
         btnArxiv.textContent = 'arXiv (Coming Soon)';
         btnCode.classList.add('btn--disabled');
         btnCode.textContent = 'Code (Coming Soon)';
-        bibtex.textContent = BIBTEX_ANONYMOUS;
+        // bibtex.textContent = BIBTEX_ANONYMOUS; // uncomment post-acceptance
         footerNotice.textContent = 'This paper is currently under anonymous review.';
       } else {
         authors.innerHTML = '<a href="https://les1a.github.io/">Kejing Xia</a>';
@@ -782,23 +799,9 @@
         btnCode.classList.remove('btn--disabled');
         btnCode.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Code';
         // btnCode.href = 'URL_HERE';
-        bibtex.textContent = BIBTEX_PUBLIC;
+        // bibtex.textContent = BIBTEX_PUBLIC; // uncomment post-acceptance
         footerNotice.textContent = '';
       }
-    }
-
-    // ===== Copy BibTeX =====
-    function copyBibtex() {
-      const text = ANONYMOUS ? BIBTEX_ANONYMOUS : BIBTEX_PUBLIC;
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.getElementById('copy-btn');
-        btn.textContent = 'Copied!';
-        btn.classList.add('copied');
-        setTimeout(() => {
-          btn.textContent = 'Copy BibTeX';
-          btn.classList.remove('copied');
-        }, 2000);
-      });
     }
 
     // ===== Scroll-triggered Fade-up =====
