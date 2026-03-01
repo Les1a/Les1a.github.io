@@ -94,6 +94,24 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
 
 <div class="publication-list">
 
+  <!-- MetaState -->
+  <div class="publication-card">
+    <div class="pub-image">
+      <img src="/images/figure-metastate.png" alt="MetaState" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="placeholder-text" style="display:none;">Image Placeholder</div>
+    </div>
+    <div class="pub-content">
+      <div class="pub-title">MetaState: Persistent Working Memory for Discrete Diffusion Language Models</div>
+      <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, et al.</div> -->
+      <div class="pub-venue">Under Review</div>
+      <div class="pub-links">
+        <a href="">Paper</a>
+        <a href="">Code</a>
+        <a href="/projects/metastate/">Project</a>
+      </div>
+    </div>
+  </div>
+
   <!-- D2GS -->
   <div class="publication-card">
     <div class="pub-image">
@@ -140,6 +158,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2504.16053">Paper</a>
         <a href="https://github.com/GATECH-EIC/LongMamba">Code</a>
+        <a href="https://lemonandrabbit.github.io/">Project</a>
       </div>
     </div>
   </div>

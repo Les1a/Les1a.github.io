@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>MetaState: Persistent Working Memory for Discrete Diffusion Language Models</title>
+  <meta name="description"
+    content="MetaState equips frozen discrete diffusion language models with a lightweight recurrent working memory that persists across denoising steps, improving generation quality with negligible overhead.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MetaState: Persistent Working Memory for Discrete Diffusion Language Models">
+  <meta property="og:description"
+    content="A lightweight recurrent augmentation that equips frozen dLLMs with persistent cross-step working memory.">
+  <meta property="og:image" content="assets/og-image.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts: Libre Caslon Display (headings), Source Serif 4 (body), JetBrains Mono (code) -->
+  <!-- Inter is inherited from the main site; loaded here as fallback for standalone viewing -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..900;1,8..60,300..900&family=Inter:wght@400;500;600&family=JetBrains+Mono&display=swap&subset=latin"
+    rel="stylesheet">
+
+  <style>
+    /* ===== Reset & Base ===== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #FAF8F5;
+      --text: #1A1A1A;
+      --text-secondary: #555;
+      --accent: #1B6B6D;
+      --accent-light: #e8f4f4;
+      --delta-green: #4F9F4F;
+      --border: #e0dcd7;
+      --card-bg: #FFFFFF;
+      --font-heading: 'Libre Caslon Display', 'Georgia', serif;
+      --font-body: 'Source Serif 4', 'Georgia', serif;
+      --font-ui: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+      --max-body: 820px;
+      --max-figure: 1000px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===== Layout ===== */
+    .container {
+      max-width: var(--max-body);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .container--wide {
+      max-width: var(--max-figure);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 48px 0;
+    }
+
+    /* ===== Typography ===== */
+    h1 {
+      font-family: var(--font-heading);
+      font-size: 2.4rem;
+      line-height: 1.2;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: var(--text);
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    p {
+      margin-bottom: 1em;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    a:hover {
+      opacity: 0.75;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      text-align: center;
+      padding: 80px 0 40px;
+    }
+
+    .hero h1 {
+      margin-bottom: 20px;
+    }
+
+    .hero-authors {
+      font-family: var(--font-ui);
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: #fff;
+      opacity: 1;
+    }
+
+    .btn--disabled {
+      border-color: var(--border);
+      color: #aaa;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .btn--disabled:hover {
+      background: transparent;
+      color: #aaa;
+    }
+
+    .btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ===== Figures ===== */
+    .figure {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .figure img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+
+    .figure figcaption {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 12px;
+      line-height: 1.5;
+      max-width: var(--max-body);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== Method Cards ===== */
+    .method-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .method-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 20px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .method-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .method-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .method-card p {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 0;
+    }
+
+    /* ===== Results Table ===== */
+    .table-wrapper {
+      overflow-x: auto;
+      margin-top: 24px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-ui);
+      font-size: 0.9rem;
+    }
+
+    thead th {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    thead th:first-child {
+      text-align: left;
+      border-radius: 8px 0 0 0;
+    }
+
+    thead th:last-child {
+      border-radius: 0 8px 0 0;
+    }
+
+    tbody td {
+      padding: 10px 16px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody td:first-child {
+      text-align: left;
+    }
+
+    tbody tr:hover {
+      background: var(--accent-light);
+    }
+
+    .group-header td {
+      font-weight: 600;
+      font-style: italic;
+      padding-top: 18px;
+      background: transparent;
+      border-bottom: none;
+    }
+
+    .group-header:hover {
+      background: transparent;
+    }
+
+    .delta {
+      color: var(--delta-green);
+      font-size: 0.82rem;
+    }
+
+    .delta td {
+      font-size: 0.82rem;
+      color: var(--delta-green);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .bold {
+      font-weight: 700;
+    }
+
+    /* ===== Citation ===== */
+    .citation-block {
+      position: relative;
+      background: #2a2a2a;
+      color: #e0e0e0;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.65;
+      padding: 24px 28px;
+      border-radius: 10px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 6px;
+      border: 1px solid #555;
+      background: #333;
+      color: #ccc;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #444;
+      color: #fff;
+    }
+
+    .copy-btn.copied {
+      background: var(--delta-green);
+      color: #fff;
+      border-color: var(--delta-green);
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 40px 0 60px;
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+    }
+
+    footer a {
+      color: var(--accent);
+    }
+
+    /* ===== Scroll Animations ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.7rem;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      body {
+        font-size: 16px;
+      }
+
+      .hero {
+        padding: 56px 0 32px;
+      }
+
+      .method-cards {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      section {
+        padding: 36px 0;
+      }
+
+      table {
+        font-size: 0.82rem;
+      }
+
+      tbody td,
+      thead th {
+        padding: 8px 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 260px;
+        justify-content: center;
+      }
+
+      .citation-block {
+        font-size: 0.72rem;
+        padding: 16px;
+      }
+    }
+
+    /* ===== Reduced Motion ===== */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      .method-card {
+        transition: none;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <div class="container">
+      <h1>MetaState: Persistent Working Memory<br>for Discrete Diffusion Language Models</h1>
+      <p class="hero-authors" id="authors">Anonymous Authors</p>
+      <div class="badge" id="review-badge">Under Review</div>
+      <div class="hero-buttons">
+        <a class="btn btn--disabled" id="btn-paper" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+            <polyline points="14 2 14 8 20 8" />
+          </svg>
+          Paper (Coming Soon)
+        </a>
+        <a class="btn btn--disabled" id="btn-arxiv" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+            <polyline points="15 3 21 3 21 9" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+          </svg>
+          arXiv (Coming Soon)
+        </a>
+        <a class="btn btn--disabled" id="btn-code" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6" />
+            <polyline points="8 6 2 12 8 18" />
+          </svg>
+          Code (Coming Soon)
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TEASER ==================== -->
+  <section class="fade-up">
+    <div class="container--wide">
+      <figure class="figure">
+        <img src="assets/teaser1.png" alt="Information Island problem in discrete diffusion language models"
+          loading="lazy">
+        <figcaption><strong>The Information Island Problem.</strong> Standard dLLMs discard intermediate representations
+          after each denoising step, forcing redundant recomputation. MetaState introduces a persistent working memory
+          that bridges steps.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ==================== ABSTRACT ==================== -->
+  <section class="fade-up">
+    <div class="container">
+      <h2>Abstract</h2>
+      <p>
+        Discrete diffusion language models (dLLMs) generate text by iteratively denoising a masked sequence. Compared
+        with autoregressive models, this paradigm naturally supports parallel decoding, bidirectional context, and
+        flexible generation patterns. However, standard dLLMs condition each denoising step only on the current
+        hard-masked sequence, while intermediate continuous representations are discarded after sampling and remasking.
+        We refer to this bottleneck as the <strong>Information Island</strong> problem. It leads to redundant
+        recomputation across steps and can degrade cross-step consistency.
+      </p>
+      <p>
+        We address this limitation with <strong>MetaState</strong>, a lightweight recurrent augmentation that equips a
+        frozen dLLM backbone with a persistent, fixed-size working memory that remains independent of sequence length.
+        <strong>MetaState</strong> consists of three trainable modules: a cross-attention <em>Mixer</em> that reads
+        backbone activations into memory slots, a GRU-style <em>Updater</em> that integrates information across
+        denoising steps, and a cross-attention <em>Injector</em> that feeds the updated memory back into backbone
+        activations. We train these modules with <em>K</em>-step unrolling to expose them to multi-step denoising
+        dynamics during fine-tuning.
+      </p>
+      <p>
+        On LLaDA-8B and Dream-7B, <strong>MetaState</strong> introduces negligible trainable parameters while keeping
+        the backbone frozen, and it consistently improves accuracy over frozen baselines. These results demonstrate that
+        persistent cross-step memory is an effective mechanism for bridging denoising steps and improving generation
+        quality in discrete diffusion language models.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== METHOD ==================== -->
+  <section class="fade-up">
+    <div class="container--wide">
+      <h2 style="max-width:var(--max-body);margin-left:auto;margin-right:auto;padding-left:24px;padding-right:24px;">
+        Method</h2>
+      <figure class="figure">
+        <img src="assets/method.png" alt="MetaState framework architecture showing Mixer, Updater, and Injector modules"
+          loading="lazy">
+        <figcaption><strong>MetaState Framework.</strong> Three lightweight modules augment a frozen dLLM backbone with
+          persistent working memory across denoising steps.</figcaption>
+      </figure>
+    </div>
+    <div class="container">
+      <div class="method-cards">
+        <div class="method-card fade-up">
+          <h3>Mixer</h3>
+          <p>Cross-attention module that reads backbone activations into <em>M</em> fixed-size memory slots, compressing
+            sequence-level information into a compact representation.</p>
+        </div>
+        <div class="method-card fade-up">
+          <h3>Updater</h3>
+          <p>GRU-style recurrent module that integrates information across denoising steps, allowing the memory to
+            accumulate and refine knowledge over time.</p>
+        </div>
+        <div class="method-card fade-up">
+          <h3>Injector</h3>
+          <p>Cross-attention module that feeds the updated memory back into backbone activations, enriching each step
+            with persistent cross-step context.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== RESULTS ==================== -->
+  <section class="fade-up">
+    <div class="container--wide">
+      <h2 style="max-width:var(--max-body);margin-left:auto;margin-right:auto;padding-left:24px;padding-right:24px;">
+        Results</h2>
+      <figure class="figure">
+        <img src="assets/teaser2.png" alt="Bar chart comparing MetaState performance across benchmarks" loading="lazy">
+        <figcaption><strong>Performance comparison</strong> across mathematical reasoning and code generation benchmarks
+          (generation length 256, block size 32, dual cache).</figcaption>
+      </figure>
+    </div>
+    <div class="container">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>GSM8K</th>
+              <th>MATH-500</th>
+              <th>HumanEval</th>
+              <th>MBPP</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dream backbone (7B) -->
+            <tr class="group-header">
+              <td colspan="5">Dream backbone (7B)</td>
+            </tr>
+            <tr>
+              <td>Dream-Base</td>
+              <td>73.7</td>
+              <td>37.6</td>
+              <td>54.9</td>
+              <td>52.6</td>
+            </tr>
+            <tr>
+              <td>&nbsp;&nbsp;+ MetaState</td>
+              <td class="bold">75.7</td>
+              <td class="bold">46.0</td>
+              <td class="bold">61.0</td>
+              <td class="bold">53.8</td>
+            </tr>
+            <tr class="delta">
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&Delta; vs. Base</td>
+              <td>+2.0</td>
+              <td>+8.4</td>
+              <td>+6.1</td>
+              <td>+1.2</td>
+            </tr>
+            <tr>
+              <td>Dream-Instruct</td>
+              <td>76.2</td>
+              <td>45.0</td>
+              <td>56.1</td>
+              <td>51.0</td>
+            </tr>
+            <tr>
+              <td>&nbsp;&nbsp;+ MetaState</td>
+              <td class="bold">79.5</td>
+              <td class="bold">46.8</td>
+              <td class="bold">57.3</td>
+              <td class="bold">54.2</td>
+            </tr>
+            <tr class="delta">
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&Delta; vs. Instruct</td>
+              <td>+3.3</td>
+              <td>+1.8</td>
+              <td>+1.2</td>
+              <td>+3.2</td>
+            </tr>
+            <!-- LLaDA backbone (8B) -->
+            <tr class="group-header">
+              <td colspan="5">LLaDA backbone (8B)</td>
+            </tr>
+            <tr>
+              <td>LLaDA-Base</td>
+              <td>67.4</td>
+              <td>28.8</td>
+              <td>33.5</td>
+              <td>25.6</td>
+            </tr>
+            <tr>
+              <td>&nbsp;&nbsp;+ MetaState</td>
+              <td class="bold">76.4</td>
+              <td class="bold">38.4</td>
+              <td class="bold">39.6</td>
+              <td class="bold">29.6</td>
+            </tr>
+            <tr class="delta">
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&Delta; vs. Base</td>
+              <td>+9.0</td>
+              <td>+9.6</td>
+              <td>+6.1</td>
+              <td>+4.0</td>
+            </tr>
+            <tr>
+              <td>LLaDA-Instruct</td>
+              <td>78.5</td>
+              <td>36.8</td>
+              <td>37.2</td>
+              <td>26.0</td>
+            </tr>
+            <tr>
+              <td>&nbsp;&nbsp;+ MetaState</td>
+              <td class="bold">80.0</td>
+              <td class="bold">39.2</td>
+              <td class="bold">39.6</td>
+              <td class="bold">28.6</td>
+            </tr>
+            <tr class="delta">
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&Delta; vs. Instruct</td>
+              <td>+1.5</td>
+              <td>+2.4</td>
+              <td>+2.4</td>
+              <td>+2.6</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p
+        style="font-family:var(--font-ui);font-size:0.82rem;color:var(--text-secondary);margin-top:12px;text-align:center;">
+        <strong>Bold</strong> marks the best result per column within each backbone group. <span
+          style="color:var(--delta-green);">&Delta;</span> denotes improvement over the corresponding baseline.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== CITATION ==================== -->
+  <section class="fade-up">
+    <div class="container">
+      <h2>Citation</h2>
+      <div class="citation-block" id="bibtex-block">
+        <button class="copy-btn" id="copy-btn" onclick="copyBibtex()">Copy BibTeX</button>
+        <span id="bibtex-content"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <p id="footer-notice">This paper is currently under anonymous review.</p>
+      <p style="margin-top:8px;">
+        <a href="https://les1a.github.io/">&larr; Back to main site</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // ===== Anonymous Review Toggle =====
+    const ANONYMOUS = true;
+
+    const BIBTEX_ANONYMOUS = `@article{anonymous2026metastate,
+  title     = {MetaState: Persistent Working Memory for Discrete
+               Diffusion Language Models},
+  author    = {Anonymous},
+  journal   = {Under Review},
+  year      = {2026}
+}`;
+
+    const BIBTEX_PUBLIC = `@article{xia2026metastate,
+  title     = {MetaState: Persistent Working Memory for Discrete
+               Diffusion Language Models},
+  author    = {Xia, Kejing},
+  journal   = {arXiv preprint},
+  year      = {2026}
+}`;
+
+    function applyAnonymous() {
+      const authors = document.getElementById('authors');
+      const badge = document.getElementById('review-badge');
+      const btnPaper = document.getElementById('btn-paper');
+      const btnArxiv = document.getElementById('btn-arxiv');
+      const btnCode = document.getElementById('btn-code');
+      const bibtex = document.getElementById('bibtex-content');
+      const footerNotice = document.getElementById('footer-notice');
+
+      if (ANONYMOUS) {
+        authors.textContent = 'Anonymous Authors';
+        badge.style.display = 'inline-block';
+        btnPaper.classList.add('btn--disabled');
+        btnPaper.textContent = 'Paper (Coming Soon)';
+        btnArxiv.classList.add('btn--disabled');
+        btnArxiv.textContent = 'arXiv (Coming Soon)';
+        btnCode.classList.add('btn--disabled');
+        btnCode.textContent = 'Code (Coming Soon)';
+        bibtex.textContent = BIBTEX_ANONYMOUS;
+        footerNotice.textContent = 'This paper is currently under anonymous review.';
+      } else {
+        authors.innerHTML = '<a href="https://les1a.github.io/">Kejing Xia</a>';
+        badge.style.display = 'none';
+        btnPaper.classList.remove('btn--disabled');
+        btnPaper.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Paper';
+        // btnPaper.href = 'URL_HERE';
+        btnArxiv.classList.remove('btn--disabled');
+        btnArxiv.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> arXiv';
+        // btnArxiv.href = 'URL_HERE';
+        btnCode.classList.remove('btn--disabled');
+        btnCode.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Code';
+        // btnCode.href = 'URL_HERE';
+        bibtex.textContent = BIBTEX_PUBLIC;
+        footerNotice.textContent = '';
+      }
+    }
+
+    // ===== Copy BibTeX =====
+    function copyBibtex() {
+      const text = ANONYMOUS ? BIBTEX_ANONYMOUS : BIBTEX_PUBLIC;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy BibTeX';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // ===== Scroll-triggered Fade-up =====
+    function initScrollAnimations() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+          if (entry.isIntersecting) {
+            // Stagger cards
+            const delay = entry.target.closest('.method-cards') ? index * 120 : 0;
+            setTimeout(() => entry.target.classList.add('visible'), delay);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    }
+
+    // ===== Init =====
+    document.addEventListener('DOMContentLoaded', () => {
+      applyAnonymous();
+      initScrollAnimations();
+    });
+  </script>
+
+</body>
+
+</html>
