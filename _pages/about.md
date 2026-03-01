@@ -14,10 +14,14 @@ Hello 👋 ! I am **Kejing Xia (夏可敬)**, a first-year Ph.D. student in Comp
 
 Prior to my Ph.D., I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track) from [Wuhan University](https://en.whu.edu.cn/). Before that, I studied at the No.1 Middle School Affiliated to Central China Normal University [(华中师大一附中)](https://www.hzsdyfz.com.cn/about.html).
 
-You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
+You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
 
 ## Research Interests
 <ul class="news-list">
+  <li>
+    <span class="news-date">Diffusion LLM :</span>
+    <span class="news-content">Decoding Acceleration, Hybrid-continuous dLLM.</span>
+  </li>
   <li>
     <span class="news-date">LLM Reasoning :</span>
     <span class="news-content">Latent reasoning, LLM alignment.</span>
@@ -28,7 +32,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
   </li>
   <li>
     <span class="news-date">3D Vision :</span>
-    <span class="news-content">Neural Radiance Fields, Event-based vision, 3D Gaussian Splatting.</span>
+    <span class="news-content">3D Gaussian Splatting, Event-based vision, Neural Radiance Fields.</span>
   </li>
 </ul>
 
@@ -146,12 +150,13 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Sept. 2025)
      格式: Markdown 列表，直接编辑即可 -->
 
 ## 🔬 Research Experience
-* **EIC Lab, Georgia Tech (2024-2025)** - Co-led projects on LongMamba and LAMB, proposing training-free approaches to extend context length in state-space models.
-* **Signal Processing Lab, Wuhan University (2023-2024)** - Co-led BRS-E<sup>2</sup>NeRF, developing event-enhanced NeRFs to reconstruct sharp images from rolling shutter blur.
+* **GTISC Lab, Georgia Tech (Jan. 2026 – Present)** - Working on MetaState: Persistent Working Memory for Discrete Diffusion Language Models.
+* **EIC Lab, Georgia Tech (May 2024 – Feb. 2026)** - Led & deeply involved in projects on R<sup>2</sup>-dLLM, Soft Token Interpolation, LongMamba, and LAMB, proposing training-free approaches and novel decoding methods for efficient language models.
+* **Signal Processing Lab, Wuhan University (Oct. 2023 – Apr. 2024)** - Co-led BRS-E<sup>2</sup>NeRF, developing event-enhanced NeRFs to reconstruct sharp images from rolling shutter blur.
 * **Center for Machine Vision and Signal Analysis (CMVS), University of Oulu (2023-2024)** - Led research on event-based human behavior analysis with spatio-temporal transformers, presented at IJCAI 2024 (MiGA Workshop).
 
-## 💼 Internship
-* **Bosch Innovation Software Development (2024-2025)** - Project leader for D<sup>2</sup>GS, combining diffusion depth enhancement with 3D Gaussian models for LiDAR-free scene reconstruction.
+## 💼 Professional Experience
+* **Bosch Research & Innovation Software Development Co., Ltd (Jul. 2024 – May 2025)** - Lead Research Intern for D<sup>2</sup>GS, combining diffusion depth enhancement with 3D Gaussian models for LiDAR-free scene reconstruction.
 
 ## 🏅 Competition
 * **RoboCup China Open (2024)** - Captain, National First Prize.
