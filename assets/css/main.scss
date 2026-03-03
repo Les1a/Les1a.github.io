@@ -45,6 +45,15 @@
    Google Fonts 在 _includes/head.html 中统一加载
    ============================================= */
 
+/* --- Skip-link target: focus-visible styling --- */
+#main:focus:not(:focus-visible) {
+  outline: none;
+}
+#main:focus-visible {
+  outline: 2px solid var(--color-accent, #3498db);
+  outline-offset: -2px;
+}
+
 /* --- 全局 CSS 变量 (Global CSS Variables) ---
    修改颜色主题只需调整此处的变量值 */
 :root {

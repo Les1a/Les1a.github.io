@@ -97,7 +97,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
   <!-- MetaState -->
   <div class="publication-card">
     <div class="pub-image">
-      <img src="/images/figure-metastate.png" alt="MetaState" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img src="/images/figure-metastate.png" alt="MetaState" width="440" height="280" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="placeholder-text" style="display:none;">Image Placeholder</div>
     </div>
     <div class="pub-content">
@@ -115,7 +115,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
   <!-- D2GS -->
   <div class="publication-card">
     <div class="pub-image">
-      <img src="/images/figure-d2gs.png" alt="D²GS" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img src="/images/figure-d2gs.jpg" alt="D²GS" width="880" height="411" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="placeholder-text" style="display:none;">Image Placeholder</div>
     </div>
     <div class="pub-content">
@@ -133,7 +133,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
   <!-- LAMB -->
   <div class="publication-card">
     <div class="pub-image">
-      <img src="/images/figure-lamb.png" alt="LAMB" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img src="/images/figure-lamb.jpg" alt="LAMB" width="880" height="444" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="placeholder-text" style="display:none;">Image Placeholder</div>
     </div>
     <div class="pub-content">
@@ -151,7 +151,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
   <!-- LongMamba -->
   <div class="publication-card">
     <div class="pub-image">
-      <img src="/images/figure-longmamba.png" alt="LongMamba" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <img src="/images/figure-longmamba.jpg" alt="LongMamba" width="880" height="399" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
       <div class="placeholder-text" style="display:none;">Image Placeholder</div>
     </div>
     <div class="pub-content">

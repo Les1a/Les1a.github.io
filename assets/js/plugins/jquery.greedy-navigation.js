@@ -51,6 +51,9 @@ function updateNav() {
   // Keep counter updated
   $btn.attr("count", breaks.length);
 
+  // Sync aria-expanded with hidden-links visibility
+  $btn.attr('aria-expanded', !$hlinks.hasClass('hidden'));
+
   // Recur if the visible list is still overflowing the nav
   if($vlinks.width() > availableSpace) {
     updateNav();
@@ -67,6 +70,8 @@ $(window).resize(function() {
 $btn.on('click', function() {
   $hlinks.toggleClass('hidden');
   $(this).toggleClass('close');
+  var expanded = !$hlinks.hasClass('hidden');
+  $(this).attr('aria-expanded', expanded);
 });
 
 updateNav();
