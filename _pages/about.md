@@ -102,10 +102,10 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
     </div>
     <div class="pub-content">
       <div class="pub-title">MetaState: Persistent Working Memory for Discrete Diffusion Language Models</div>
-      <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, et al.</div> -->
-      <div class="pub-venue">Under Review</div>
+      <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, Mingzhe Li, Lixuan Wei, Zhenbang Du, Xiangchi Yuan, Qirui Jin, Wenke Lee</div> -->
+      <div class="pub-venue">arXiv Preprint</div>
       <div class="pub-links">
-        <a href="">Paper</a>
+        <a href="https://arxiv.org/abs/2603.01331">Paper</a>
         <a href="">Code</a>
         <a href="/projects/metastate/">Project</a>
       </div>
@@ -124,6 +124,8 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
       <div class="pub-venue">NeurIPS 2025</div>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2510.25173">Paper</a>
+        <a href="">Code</a>
+        <a href="">Project</a>
       </div>
     </div>
   </div>
@@ -141,6 +143,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
       <div class="pub-links">
         <a href="https://aclanthology.org/2025.acl-short.96/">Paper</a>
         <a href="https://github.com/GATECH-EIC/LAMB">Code</a>
+        <a href="">Project</a>
       </div>
     </div>
   </div>

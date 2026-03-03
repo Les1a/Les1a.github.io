@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
   <title>MetaState: Persistent Working Memory for Discrete Diffusion Language Models</title>
   <meta name="description"
     content="MetaState equips frozen discrete diffusion language models with a lightweight recurrent working memory that persists across denoising steps, improving generation quality with negligible overhead.">
@@ -325,7 +324,6 @@
       font-weight: 700;
     }
 
-    /* ===== Citation (uncomment post-acceptance) =====
     .citation-block {
       position: relative;
       background: #2a2a2a;
@@ -365,7 +363,6 @@
       color: #fff;
       border-color: var(--delta-green);
     }
-    */
 
     /* ===== Footer ===== */
     footer {
@@ -476,24 +473,34 @@
   <!-- ==================== HERO ==================== -->
   <section class="hero">
     <div class="container">
-      <h1>MetaState: Persistent Working Memory<br>for Discrete Diffusion Language Models</h1>
-      <p class="hero-authors" id="authors">Anonymous Authors</p>
-      <div class="badge" id="review-badge">Under Review</div>
+      <h1><strong>MetaState: Persistent Working Memory<br>for Discrete Diffusion Language Models</strong></h1>
+      <p class="hero-authors" id="authors">
+        <strong><a href="https://les1a.github.io/">Kejing Xia</a></strong><sup>1</sup>,
+        Mingzhe Li<sup>2</sup>,
+        Lixuan Wei<sup>3</sup>,
+        Zhenbang Du<sup>1</sup>,
+        Xiangchi Yuan<sup>1</sup>,
+        Qirui Jin<sup>1</sup>,
+        Wenke Lee<sup>1</sup>
+        <br>
+        <span style="font-size:0.88rem;"><sup>1</sup>Georgia Institute of Technology &nbsp; <sup>2</sup>University of
+          Massachusetts Amherst &nbsp; <sup>3</sup>Harvard University</span>
+      </p>
       <div class="hero-buttons">
-        <a class="btn btn--disabled" id="btn-paper" href="#">
+        <a class="btn" id="btn-paper" href="https://arxiv.org/abs/2603.01331">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
             <polyline points="14 2 14 8 20 8" />
           </svg>
-          Paper (Coming Soon)
+          Paper
         </a>
-        <a class="btn btn--disabled" id="btn-arxiv" href="#">
+        <a class="btn" id="btn-arxiv" href="https://arxiv.org/abs/2603.01331">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
             <polyline points="15 3 21 3 21 9" />
             <line x1="10" y1="14" x2="21" y2="3" />
           </svg>
-          arXiv (Coming Soon)
+          arXiv
         </a>
         <a class="btn btn--disabled" id="btn-code" href="#">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -709,22 +716,18 @@
     </div>
   </section>
 
-  <!-- ==================== CITATION (uncomment post-acceptance) ====================
   <section class="fade-up">
     <div class="container">
       <h2>Citation</h2>
-      <div class="citation-block" id="bibtex-block">
-        <button class="copy-btn" id="copy-btn" onclick="copyBibtex()">Copy BibTeX</button>
-        <span id="bibtex-content"></span>
-      </div>
+      <div class="citation-block" id="bibtex-block"><button class="copy-btn" id="copy-btn" onclick="copyBibtex()">Copy
+          BibTeX</button><span id="bibtex-content"></span></div>
     </div>
   </section>
-  -->
 
   <!-- ==================== FOOTER ==================== -->
   <footer>
     <div class="container">
-      <p id="footer-notice">This paper is currently under anonymous review.</p>
+      <p id="footer-notice"></p>
       <p style="margin-top:8px;">
         <a href="https://les1a.github.io/">&larr; Back to main site</a>
       </p>
@@ -733,75 +736,31 @@
 
   <!-- ==================== JAVASCRIPT ==================== -->
   <script>
-    // ===== Anonymous Review Toggle =====
-    const ANONYMOUS = true;
-
-    /* ===== BibTeX (uncomment post-acceptance) =====
-    const BIBTEX_ANONYMOUS = `@article{anonymous2026metastate,
-  title     = {MetaState: Persistent Working Memory for Discrete
-               Diffusion Language Models},
-  author    = {Anonymous},
-  journal   = {Under Review},
-  year      = {2026}
-}`;
-
-    const BIBTEX_PUBLIC = `@article{xia2026metastate,
-  title     = {MetaState: Persistent Working Memory for Discrete
-               Diffusion Language Models},
-  author    = {Xia, Kejing},
-  journal   = {arXiv preprint},
-  year      = {2026}
-}`;
+    // ===== BibTeX =====
+    const BIBTEX = [
+      '@article{xia2026metastate,',
+      '  title     = {MetaState: Persistent Working Memory for Discrete Diffusion Language Models},',
+      '  author    = {Xia, Kejing and Li, Mingzhe and Wei, Lixuan and Du, Zhenbang and Yuan, Xiangchi and Jin, Qirui and Lee, Wenke},',
+      '  journal   = {arXiv preprint arXiv:2603.01331},',
+      '  year      = {2026}',
+      '}'
+    ].join('\n');
 
     function copyBibtex() {
-      const text = ANONYMOUS ? BIBTEX_ANONYMOUS : BIBTEX_PUBLIC;
-      navigator.clipboard.writeText(text).then(() => {
+      navigator.clipboard.writeText(BIBTEX).then(() => {
         const btn = document.getElementById('copy-btn');
         btn.textContent = 'Copied!';
         btn.classList.add('copied');
         setTimeout(() => {
-          btn.textContent = 'Copy BibTeX';
+          btn.textContent = 'Copy';
           btn.classList.remove('copied');
         }, 2000);
       });
     }
-    */
 
-    function applyAnonymous() {
-      const authors = document.getElementById('authors');
-      const badge = document.getElementById('review-badge');
-      const btnPaper = document.getElementById('btn-paper');
-      const btnArxiv = document.getElementById('btn-arxiv');
-      const btnCode = document.getElementById('btn-code');
-      // const bibtex = document.getElementById('bibtex-content'); // uncomment post-acceptance
-      const footerNotice = document.getElementById('footer-notice');
-
-      if (ANONYMOUS) {
-        authors.textContent = 'Anonymous Authors';
-        badge.style.display = 'inline-block';
-        btnPaper.classList.add('btn--disabled');
-        btnPaper.textContent = 'Paper (Coming Soon)';
-        btnArxiv.classList.add('btn--disabled');
-        btnArxiv.textContent = 'arXiv (Coming Soon)';
-        btnCode.classList.add('btn--disabled');
-        btnCode.textContent = 'Code (Coming Soon)';
-        // bibtex.textContent = BIBTEX_ANONYMOUS; // uncomment post-acceptance
-        footerNotice.textContent = 'This paper is currently under anonymous review.';
-      } else {
-        authors.innerHTML = '<a href="https://les1a.github.io/">Kejing Xia</a>';
-        badge.style.display = 'none';
-        btnPaper.classList.remove('btn--disabled');
-        btnPaper.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Paper';
-        // btnPaper.href = 'URL_HERE';
-        btnArxiv.classList.remove('btn--disabled');
-        btnArxiv.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> arXiv';
-        // btnArxiv.href = 'URL_HERE';
-        btnCode.classList.remove('btn--disabled');
-        btnCode.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Code';
-        // btnCode.href = 'URL_HERE';
-        // bibtex.textContent = BIBTEX_PUBLIC; // uncomment post-acceptance
-        footerNotice.textContent = '';
-      }
+    function initBibtex() {
+      const bibtex = document.getElementById('bibtex-content');
+      if (bibtex) bibtex.textContent = BIBTEX;
     }
 
     // ===== Scroll-triggered Fade-up =====
@@ -822,7 +781,7 @@
 
     // ===== Init =====
     document.addEventListener('DOMContentLoaded', () => {
-      applyAnonymous();
+      initBibtex();
       initScrollAnimations();
     });
   </script>
