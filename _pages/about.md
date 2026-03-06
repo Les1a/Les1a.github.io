@@ -112,6 +112,24 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
     </div>
   </div>
 
+  <!-- EDITOR -->
+  <div class="publication-card">
+    <div class="pub-image">
+      <img src="/images/figure-editor.png" alt="EDITOR" width="880" height="425" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="placeholder-text" style="display:none;">Image Placeholder</div>
+    </div>
+    <div class="pub-content">
+      <div class="pub-title">EDITOR: Effective and Interpretable Prompt Inversion for Text-to-Image Diffusion Models</div>
+      <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, et al.</div> -->
+      <div class="pub-venue">arXiv Preprint</div>
+      <div class="pub-links">
+        <a href="https://arxiv.org/abs/2506.03067v3">Paper</a>
+        <a href="">Code</a>
+        <a href="">Project</a>
+      </div>
+    </div>
+  </div>
+
   <!-- D2GS -->
   <div class="publication-card">
     <div class="pub-image">
