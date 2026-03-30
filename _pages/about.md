@@ -101,8 +101,8 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
       <div class="placeholder-text" style="display:none;">Image Placeholder</div>
     </div>
     <div class="pub-content">
-      <div class="pub-title">MetaState: Persistent Working Memory for Discrete Diffusion Language Models</div>
-      <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, Mingzhe Li, Lixuan Wei, Zhenbang Du, Xiangchi Yuan, Qirui Jin, Wenke Lee</div> -->
+      <div class="pub-title">MetaState: Persistent Working Memory Enhances Reasoning in Discrete Diffusion Language Models</div>
+      <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, Mingzhe Li, Lixuan Wei, Zhenbang Du, Xiangchi Yuan, Dachuan Shi, Qirui Jin, Wenke Lee</div> -->
       <div class="pub-venue">arXiv Preprint</div>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2603.01331">Paper</a>
@@ -190,7 +190,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
      格式: Markdown 列表，直接编辑即可 -->
 
 ## 🔬 Research Experience
-* **GTISC Lab, Georgia Tech (Jan. 2026 – Present)** - Working on MetaState: Persistent Working Memory for Discrete Diffusion Language Models.
+* **GTISC Lab, Georgia Tech (Jan. 2026 – Present)** - Working on MetaState: Persistent Working Memory Enhances Reasoning in Discrete Diffusion Language Models.
 * **EIC Lab, Georgia Tech (May 2024 – Feb. 2026)** - Led & deeply involved in projects on R<sup>2</sup>-dLLM, Soft Token Interpolation, LongMamba, and LAMB, proposing training-free approaches and novel decoding methods for efficient language models.
 * **Signal Processing Lab, Wuhan University (Oct. 2023 – Apr. 2024)** - Co-led BRS-E<sup>2</sup>NeRF, developing event-enhanced NeRFs to reconstruct sharp images from rolling shutter blur.
 * **Center for Machine Vision and Signal Analysis (CMVS), University of Oulu (2023-2024)** - Led research on event-based human behavior analysis with spatio-temporal transformers, presented at IJCAI 2024 (MiGA Workshop).

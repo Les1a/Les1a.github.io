@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MetaState: Persistent Working Memory for Discrete Diffusion Language Models</title>
+  <title>MetaState: Persistent Working Memory Enhances Reasoning in Discrete Diffusion Language Models</title>
   <meta name="description"
-    content="MetaState equips frozen discrete diffusion language models with a lightweight recurrent working memory that persists across denoising steps, improving generation quality with negligible overhead.">
+    content="MetaState equips frozen discrete diffusion language models with a lightweight recurrent working memory that persists across denoising steps, improving reasoning performance with negligible overhead.">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="MetaState: Persistent Working Memory for Discrete Diffusion Language Models">
+  <meta property="og:title" content="MetaState: Persistent Working Memory Enhances Reasoning in Discrete Diffusion Language Models">
   <meta property="og:description"
     content="A lightweight recurrent augmentation that equips frozen dLLMs with persistent cross-step working memory.">
   <meta property="og:image" content="assets/og-image.png">
@@ -474,13 +474,14 @@
   <!-- ==================== HERO ==================== -->
   <section class="hero">
     <div class="container">
-      <h1><strong>MetaState: Persistent Working Memory<br>for Discrete Diffusion Language Models</strong></h1>
+      <h1><strong>MetaState: Persistent Working Memory Enhances<br>Reasoning in Discrete Diffusion Language Models</strong></h1>
       <p class="hero-authors" id="authors">
         <strong><a href="https://les1a.github.io/">Kejing Xia</a></strong><sup>1</sup>,
         Mingzhe Li<sup>2</sup>,
         Lixuan Wei<sup>3</sup>,
         Zhenbang Du<sup>1</sup>,
         Xiangchi Yuan<sup>1</sup>,
+        Dachuan Shi<sup>1</sup>,
         Qirui Jin<sup>1</sup>,
         Wenke Lee<sup>1</sup>
         <br>
@@ -532,27 +533,25 @@
     <div class="container">
       <h2>Abstract</h2>
       <p>
-        Discrete diffusion language models (dLLMs) generate text by iteratively denoising a masked sequence. Compared
-        with autoregressive models, this paradigm naturally supports parallel decoding, bidirectional context, and
-        flexible generation patterns. However, standard dLLMs condition each denoising step only on the current
-        hard-masked sequence, while intermediate continuous representations are discarded after sampling and remasking.
-        We refer to this bottleneck as the <strong>Information Island</strong> problem. It leads to redundant
-        recomputation across steps and can degrade cross-step consistency.
+        Discrete diffusion language models (dLLMs) generate text by iteratively denoising a masked sequence. However,
+        standard dLLMs condition each denoising step solely on the current hard-masked sequence, while intermediate
+        continuous representations are discarded after sampling and remasking. We term this bottleneck the
+        <strong>Information Island</strong> issue: continuous information remains isolated within individual denoising
+        steps and fails to propagate across the trajectory. This bottleneck is especially harmful for reasoning, which
+        requires intermediate reasoning state to be preserved and updated across many denoising steps.
       </p>
       <p>
-        We address this limitation with <strong>MetaState</strong>, a lightweight recurrent augmentation that equips a
-        frozen dLLM backbone with a persistent, fixed-size working memory that remains independent of sequence length.
-        <strong>MetaState</strong> consists of three trainable modules: a cross-attention <em>Mixer</em> that reads
-        backbone activations into memory slots, a GRU-style <em>Updater</em> that integrates information across
-        denoising steps, and a cross-attention <em>Injector</em> that feeds the updated memory back into backbone
-        activations. We train these modules with <em>K</em>-step unrolling to expose them to multi-step denoising
-        dynamics during fine-tuning.
+        To address this limitation, we introduce <strong>MetaState</strong>, a lightweight recurrent augmentation that
+        equips a frozen dLLM backbone with persistent, fixed-size working memory. MetaState comprises three modules
+        with a shared time conditioner: a cross-attention <em>Mixer</em> that reads backbone activations into memory
+        slots, a GRU-style <em>Updater</em> that integrates information across steps, and a cross-attention
+        <em>Injector</em> that writes the updated memory back into the backbone. We train these modules with a
+        dedicated <em>K</em>-step unrolling pipeline to learn multi-step dynamics.
       </p>
       <p>
-        On LLaDA-8B and Dream-7B, <strong>MetaState</strong> introduces negligible trainable parameters while keeping
-        the backbone frozen, and it consistently improves accuracy over frozen baselines. These results demonstrate that
-        persistent cross-step memory is an effective mechanism for bridging denoising steps and improving generation
-        quality in discrete diffusion language models.
+        <strong>MetaState</strong> adds only ~0.6% trainable parameters while keeping the backbone frozen, and
+        consistently improves reasoning performance over frozen baselines on mathematical reasoning and code generation
+        benchmarks, with an average gain of 4.5% across all evaluations.
       </p>
     </div>
   </section>
@@ -627,38 +626,38 @@
             </tr>
             <tr>
               <td>&nbsp;&nbsp;+ MetaState</td>
-              <td class="bold">75.7</td>
-              <td class="bold">46.0</td>
-              <td class="bold">61.0</td>
-              <td class="bold">53.8</td>
+              <td class="bold">76.7</td>
+              <td class="bold">46.4</td>
+              <td class="bold">59.2</td>
+              <td class="bold">53.6</td>
             </tr>
             <tr class="delta">
               <td>&nbsp;&nbsp;&nbsp;&nbsp;&Delta; vs. Base</td>
-              <td>+2.0</td>
-              <td>+8.4</td>
-              <td>+6.1</td>
-              <td>+1.2</td>
+              <td>+3.0</td>
+              <td>+8.8</td>
+              <td>+4.3</td>
+              <td>+1.0</td>
             </tr>
             <tr>
               <td>Dream-Instruct</td>
-              <td>76.2</td>
+              <td>74.8</td>
               <td>45.0</td>
               <td>56.1</td>
               <td>51.0</td>
             </tr>
             <tr>
               <td>&nbsp;&nbsp;+ MetaState</td>
-              <td class="bold">79.5</td>
-              <td class="bold">46.8</td>
-              <td class="bold">57.3</td>
-              <td class="bold">54.2</td>
+              <td class="bold">78.1</td>
+              <td class="bold">46.6</td>
+              <td class="bold">59.8</td>
+              <td class="bold">55.0</td>
             </tr>
             <tr class="delta">
               <td>&nbsp;&nbsp;&nbsp;&nbsp;&Delta; vs. Instruct</td>
               <td>+3.3</td>
-              <td>+1.8</td>
-              <td>+1.2</td>
-              <td>+3.2</td>
+              <td>+1.6</td>
+              <td>+3.7</td>
+              <td>+4.0</td>
             </tr>
             <!-- LLaDA backbone (8B) -->
             <tr class="group-header">
@@ -673,17 +672,17 @@
             </tr>
             <tr>
               <td>&nbsp;&nbsp;+ MetaState</td>
-              <td class="bold">76.4</td>
-              <td class="bold">38.4</td>
+              <td class="bold">77.9</td>
+              <td class="bold">37.0</td>
               <td class="bold">39.6</td>
-              <td class="bold">29.6</td>
+              <td class="bold">33.0</td>
             </tr>
             <tr class="delta">
               <td>&nbsp;&nbsp;&nbsp;&nbsp;&Delta; vs. Base</td>
-              <td>+9.0</td>
-              <td>+9.6</td>
+              <td>+10.5</td>
+              <td>+8.2</td>
               <td>+6.1</td>
-              <td>+4.0</td>
+              <td>+7.4</td>
             </tr>
             <tr>
               <td>LLaDA-Instruct</td>
@@ -694,17 +693,17 @@
             </tr>
             <tr>
               <td>&nbsp;&nbsp;+ MetaState</td>
-              <td class="bold">80.0</td>
-              <td class="bold">39.2</td>
+              <td class="bold">79.5</td>
+              <td class="bold">37.8</td>
               <td class="bold">39.6</td>
-              <td class="bold">28.6</td>
+              <td class="bold">32.2</td>
             </tr>
             <tr class="delta">
               <td>&nbsp;&nbsp;&nbsp;&nbsp;&Delta; vs. Instruct</td>
-              <td>+1.5</td>
+              <td>+1.0</td>
+              <td>+1.0</td>
               <td>+2.4</td>
-              <td>+2.4</td>
-              <td>+2.6</td>
+              <td>+6.2</td>
             </tr>
           </tbody>
         </table>
@@ -740,8 +739,8 @@
     // ===== BibTeX =====
     const BIBTEX = [
       '@article{xia2026metastate,',
-      '  title     = {MetaState: Persistent Working Memory for Discrete Diffusion Language Models},',
-      '  author    = {Xia, Kejing and Li, Mingzhe and Wei, Lixuan and Du, Zhenbang and Yuan, Xiangchi and Jin, Qirui and Lee, Wenke},',
+      '  title     = {MetaState: Persistent Working Memory Enhances Reasoning in Discrete Diffusion Language Models},',
+      '  author    = {Xia, Kejing and Li, Mingzhe and Wei, Lixuan and Du, Zhenbang and Yuan, Xiangchi and Shi, Dachuan and Jin, Qirui and Lee, Wenke},',
       '  journal   = {arXiv preprint arXiv:2603.01331},',
       '  year      = {2026}',
       '}'
