@@ -112,6 +112,22 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
     </div>
   </div>
 
+  <!-- R2-dLLM -->
+  <div class="publication-card">
+    <div class="pub-image">
+      <img src="/images/figure-r2dllm.png" alt="R2-dLLM" width="880" height="428" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="placeholder-text" style="display:none;">Image Placeholder</div>
+    </div>
+    <div class="pub-content">
+      <div class="pub-title">R<sup>2</sup>-dLLM: Accelerating Diffusion Large Language Models via Spatio-Temporal Redundancy Reduction</div>
+      <div class="pub-venue">arXiv Preprint</div>
+      <div class="pub-links">
+        <a href="https://arxiv.org/abs/2604.18995">Paper</a>
+        <a href="https://github.com/GATECH-EIC/R2-dLLM">Code</a>
+      </div>
+    </div>
+  </div>
+
   <!-- EDITOR -->
   <div class="publication-card">
     <div class="pub-image">

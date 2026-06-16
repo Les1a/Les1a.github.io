@@ -144,21 +144,21 @@ a {
     flex: 0 0 220px;
     width: 220px;
     height: 140px;
-    background-color: var(--color-bg-light);
+    background-color: #fff;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     border: 1px solid var(--color-border);
+    box-sizing: border-box;
+    padding: 6px;
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
+      background-color: #fff;
+      display: block;
       transition: transform 0.3s ease;
-
-      &:hover {
-        transform: scale(1.05);
-      }
     }
 
     .placeholder-text {
