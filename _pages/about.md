@@ -143,7 +143,7 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2510.25173">Paper</a>
         <a href="">Code</a>
-        <a href="">Project</a>
+        <a href="/projects/d2gs/">Project</a>
       </div>
     </div>
   </div>

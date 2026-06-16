@@ -1,0 +1,862 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description"
+        content="D2GS: a LiDAR-free urban scene reconstruction framework.">
+  <meta name="keywords" content="LiDAR-free, Dense Depth, Road-aware">
+  <meta property="og:title" content="D2GS: Dense Depth Regularization for LiDAR-free Urban Scene Reconstruction">
+  <meta property="og:description" content="A LiDAR-free urban scene reconstruction framework with dense depth regularization for Gaussian Splatting.">
+  <meta property="og:image" content="./images/teaser.png">
+  <meta property="og:type" content="website">
+  <title>D2GS: Dense Depth Regularization for LiDAR-free Urban Scene Reconstruction</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/icon.png">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="./static/js/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+<style>
+
+/* ===== Global & Body ===== */
+body {
+  background: linear-gradient(180deg, #f8f9ff 0%, #ffffff 40%, #f5f3ff 100%);
+  color: #2d2d3a;
+}
+
+/* ===== Hero / Title Section ===== */
+section.hero:first-of-type {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding-bottom: 3rem;
+}
+
+section.hero:first-of-type .publication-title {
+  color: #fff !important;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+
+section.hero:first-of-type .is-size-5,
+section.hero:first-of-type .author-block,
+section.hero:first-of-type .author-block a,
+section.hero:first-of-type .publication-authors {
+  color: rgba(255,255,255,0.92) !important;
+}
+
+section.hero:first-of-type .author-block a:hover {
+  color: #fff !important;
+  text-decoration: underline;
+}
+
+section.hero:first-of-type .button.is-dark {
+  background: rgba(255,255,255,0.15);
+  border: 1.5px solid rgba(255,255,255,0.5);
+  color: #fff;
+  backdrop-filter: blur(4px);
+  transition: all 0.25s ease;
+}
+
+section.hero:first-of-type .button.is-dark:hover {
+  background: rgba(255,255,255,0.3);
+  border-color: #fff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+section.hero:first-of-type .button.is-light {
+  background: rgba(255,255,255,0.08);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.7);
+}
+
+/* ===== Section Titles ===== */
+.subtitle.has-text-centered,
+.subtitle.section-title {
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: #2d2d3a;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.subtitle.has-text-centered::after,
+.subtitle.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+/* ===== Teaser Section ===== */
+section.hero.teaser {
+  background: #fff;
+  padding-top: 2.5rem;
+}
+
+section.hero.teaser .subtitle {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #444;
+}
+
+section.hero.teaser .subtitle strong {
+  color: #4a3d99;
+}
+
+/* ===== Abstract ===== */
+section.hero.teaser .content.has-text-justified > .content {
+  background: linear-gradient(135deg, rgba(236,234,250,0.7) 0%, rgba(220,230,255,0.5) 100%) !important;
+  border: 1px solid rgba(102,126,234,0.15);
+  box-shadow: 0 4px 20px rgba(102,126,234,0.08);
+}
+
+/* ===== Sections ===== */
+.section {
+  padding: 3rem 1.5rem;
+}
+
+#Methodology {
+  background: #fff;
+}
+
+#Results {
+  background: linear-gradient(180deg, #fafbff 0%, #f5f3ff 100%);
+}
+
+#bibtex {
+  background: #fff;
+}
+
+/* ===== Grid ===== */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 0;
+}
+
+.obj1, .obj2, .obj3, .obj4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* ===== Carousel ===== */
+.results-carousel .item {
+  padding: 8px;
+}
+
+.results-carousel video {
+  width: 100%;
+  max-height: 550px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.carousel-label {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, rgba(102,126,234,0.85), rgba(118,75,162,0.85));
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 999px;
+  white-space: nowrap;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+}
+
+.fullscreen-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.25s ease;
+  z-index: 10;
+}
+.fullscreen-btn:hover {
+  background: rgba(0,0,0,0.75);
+  transform: scale(1.05);
+}
+
+/* ===== Publication Links ===== */
+hr {
+  background-color: lightgray !important;
+}
+
+.publication-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1.2rem;
+}
+
+.publication-links .link-block {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ===== Cards ===== */
+.image-card,
+.paper-figure,
+.result-card,
+.table-card,
+.video-card {
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(102,126,234,0.1), 0 2px 8px rgba(0,0,0,0.04);
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(102,126,234,0.08);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.image-card:hover,
+.result-card:hover,
+.video-card:hover {
+  box-shadow: 0 12px 40px rgba(102,126,234,0.15), 0 4px 12px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+.image-card {
+  padding: 14px;
+}
+
+.image-card img {
+  border-radius: 10px;
+  width: 100%;
+  display: block;
+}
+
+.paper-figure img,
+.table-card img,
+.result-card img,
+.video-card video {
+  width: 100%;
+  display: block;
+}
+
+.result-card,
+.table-card,
+.video-card {
+  padding: 14px;
+  margin-bottom: 20px;
+}
+
+.result-card img,
+.table-card img,
+.video-card video {
+  border-radius: 10px;
+}
+
+/* ===== Subsection Titles ===== */
+.subsection-title {
+  font-size: 1.2rem !important;
+  font-weight: 700;
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.2rem !important;
+  color: #3d3579;
+  position: relative;
+  padding-left: 14px;
+}
+
+.subsection-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 70%;
+  background: linear-gradient(180deg, #667eea, #764ba2);
+  border-radius: 2px;
+}
+
+/* ===== Result Lead ===== */
+.result-lead {
+  background: linear-gradient(135deg, rgba(236,234,250,0.8), rgba(220,230,255,0.6));
+  padding: 18px 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(102,126,234,0.1);
+}
+
+/* ===== Caption ===== */
+.caption {
+  color: #666;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin-top: 12px;
+  font-style: italic;
+}
+
+.result-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(236,234,250,0.95), rgba(220,230,255,0.9));
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #4a3d99;
+}
+
+/* ===== Video Grid ===== */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.video-grid.is-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.video-card h4,
+.result-card h4,
+.table-card h4 {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 8px !important;
+}
+
+/* ===== Comparison Panel ===== */
+.comparison-panel {
+  display: grid;
+  grid-template-columns: 72px repeat(2, minmax(0, 1fr));
+  column-gap: 12px;
+  row-gap: 10px;
+  align-items: center;
+}
+
+.comparison-header,
+.comparison-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.comparison-header {
+  text-align: center;
+  margin-bottom: 0 !important;
+}
+
+.comparison-label {
+  text-align: right;
+}
+
+.comparison-item {
+  padding: 0;
+}
+
+.comparison-item img {
+  width: 100%;
+  display: block;
+  border-radius: 0;
+}
+
+/* ===== BibTeX ===== */
+pre.bibtex {
+  background: linear-gradient(135deg, #2d2b55, #1e1e3f);
+  color: #e0def4;
+  border-radius: 12px;
+  padding: 20px 24px;
+  font-size: 0.88rem;
+  border: 1px solid rgba(102,126,234,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  overflow-x: auto;
+}
+
+/* ===== Related Links ===== */
+#Concurrent\ works ul li {
+  margin-bottom: 8px;
+}
+
+#Concurrent\ works ul li a {
+  color: #5a4fcf;
+  transition: color 0.2s;
+}
+
+#Concurrent\ works ul li a:hover {
+  color: #764ba2;
+}
+
+/* ===== Footer ===== */
+footer.footer {
+  background: linear-gradient(180deg, #f8f9ff, #eef0ff);
+  border-top: 1px solid rgba(102,126,234,0.1);
+}
+
+/* ===== Mobile ===== */
+@media screen and (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: auto auto;
+  }
+
+  .obj1, .obj2, .obj3, .obj4 {
+    grid-column: span 2;
+  }
+
+  .content h4 {
+    font-size: 14px !important;
+    padding: 0;
+    margin: 0 !important;
+  }
+
+  .video-grid,
+  .video-grid.is-three {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-panel {
+    grid-template-columns: 56px repeat(2, minmax(0, 1fr));
+    column-gap: 8px;
+    row-gap: 8px;
+  }
+
+  .comparison-header,
+  .comparison-label {
+    font-size: 0.85rem;
+  }
+
+  section.hero:first-of-type {
+    padding-bottom: 2rem;
+  }
+}
+
+</style>
+
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">D<sup>2</sup>GS: Dense Depth Regularization for LiDAR-free Urban Scene Reconstruction</h1>
+          <div class="is-size-5">
+
+            <span class="author-block">
+            <a href="https://scholar.google.com/citations?user=dH4SpC0AAAAJ&hl=ja&oi=ao">Kejing Xia</a><sup>1*</sup>,
+            </span>
+
+            <span class="author-block">
+            <a href="https://scholar.google.com/citations?user=kSdH42kAAAAJ&hl=en">Jidong Jia</a><sup>2*</sup>,
+            </span>
+
+            <span class="author-block">
+            <a>Ke Jin</a><sup>3</sup>,
+            </span>
+
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=zEhtuI0AAAAJ">Yucai Bai</a><sup>4</sup>,
+            </span>
+
+
+            <span class="author-block">
+            <a>Sun Li</a><sup>4</sup>,
+            </span>
+
+            <span class="author-block">
+            <a href="https://scholar.google.com/citations?hl=ja&user=RwlJNLcAAAAJ">Dacheng Tao</a><sup>5</sup>,
+            </span>
+
+
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=mSnE57oAAAAJ">Youjian Zhang</a><sup>4&dagger;</sup>
+            </span>
+
+          </div>
+          <br>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Wuhan University;</span>
+            <span class="author-block"><sup>2</sup>Shanghai Jiao Tong University;</span>
+            <span class="author-block"><sup>3</sup>TongJi University;</span><br>
+            <span class="author-block"><sup>4</sup>Bosch;</span>
+            <span class="author-block"><sup>5</sup>Nanyang Technological University</span>
+          </div>
+          <br>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block" style="margin-right: 20px;"><sup>*</sup>Equal Contribution</span>
+            <span class="author-block"><sup>&dagger;</sup>Corresponding Author</span>
+          </div>
+
+        <div class="publication-links">
+          <span class="link-block">
+            <a href="https://arxiv.org/abs/2510.25173" target="_blank" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">📄</span><span><strong>Arxiv</strong></span>
+            </a>
+          </span>
+
+          <span class="link-block">
+            <a href="https://openreview.net/forum?id=q3CU6ltlqE" target="_blank" class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">💬</span><span><strong>OpenReview</strong></span>
+            </a>
+          </span>
+          <span class="link-block">
+            <span class="button is-normal is-rounded is-light is-disabled" title="Official code link is not available yet.">
+              <span class="icon">⌘</span><span><strong>Code Coming Soon</strong></span>
+            </span>
+          </span>
+        </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <figure class="image image-card">
+        <img src="./images/teaser.png" alt="Examples of LiDAR acquisition issues and D2GS reconstruction comparison">
+      </figure>
+      <br>
+      <h2 class="subtitle has-text-centered">
+        <strong>TL;DR:</strong>
+        <span class="math-title">D<sup>2</sup>GS</span> reconstructs dynamic urban scenes <strong>without LiDAR</strong> by turning multi-view image depth into <strong>dense, refined geometric supervision</strong> for Gaussian Splatting.
+      </h2>
+    </div>
+  </div>
+
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+        <div class="content has-text-justified">
+          <div class="content has-text-justified" style="background: linear-gradient(135deg, rgba(236,234,250,0.7), rgba(220,230,255,0.5)); padding: 24px 28px; border-radius: 14px; border: 1px solid rgba(102,126,234,0.12); box-shadow: 0 4px 20px rgba(102,126,234,0.06);">
+          <p>
+            <b>Abstract:</b> 
+            Recently, Gaussian Splatting (GS) has shown great potential for urban scene 
+            reconstruction in the field of autonomous driving. However, current urban 
+            scene reconstruction methods often depend on multimodal sensors as inputs, 
+            <em>i.e.</em> LiDAR and images. Though the geometry prior provided by LiDAR 
+            point clouds can largely mitigate ill-posedness in reconstruction, acquiring 
+            such accurate LiDAR data is still challenging in practice: 
+            i) precise spatiotemporal calibration between LiDAR and other sensors is required, 
+            as they may not capture data simultaneously; ii) reprojection errors arise from 
+            spatial misalignment when LiDAR and cameras are mounted at different locations. 
+            To avoid the difficulty of acquiring accurate LiDAR depth, we propose D<sup>2</sup>GS, 
+            a LiDAR-free urban scene reconstruction framework. In this work, we obtain 
+            geometry priors that are as effective as LiDAR while being denser and more accurate. <b>First</b>, 
+            we initialize a dense point cloud by back-projecting multi-view metric depth predictions. 
+            This point cloud is then optimized by a Progressive Pruning strategy to improve 
+            the global consistency. <b>Second</b>, we jointly refine Gaussian geometry and predicted dense 
+            metric depth via a Depth Enhancer. Specifically, we leverage diffusion priors from 
+            a depth foundation model to enhance the depth maps rendered by Gaussians. In turn, 
+            the enhanced depths provide stronger geometric constraints during Gaussian training. <b>Finally</b>, 
+            we improve the accuracy of ground geometry by constraining the shape and normal 
+            attributes of Gaussians within road regions. Extensive experiments on the Waymo 
+            dataset demonstrate that our method consistently outperforms state-of-the-art 
+            methods, producing more accurate geometry even when compared with those using 
+            ground-truth LiDAR data.
+          </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="Methodology">
+  <div class="container is-max-desktop content">
+    <div  class="columns is-centered has-text-centered">
+          <h2 class="subtitle has-text-centered">
+            Methodology
+          </h2>
+  </div>
+  <div class="content has-text-justified">
+    <img src="./images/2.pipe.png" alt="Methodology Illustration">
+    <p><b>Overview:</b> 
+      We first employ a Progressive Pruning strategy to obtain a robust global Gaussian initialization. A Road Node is incorporated into the scene graph structure to regularize the road region using strong geometric priors. During training, Gaussian optimization and depth refinement are performed iteratively, allowing depth to be learned jointly from Gaussian supervision and enhanced by diffusion priors from a pretrained depth foundation model.
+    </p> 
+  </div>
+  </div>
+</section>
+
+
+
+<section class="section" id="Results">
+  <div class="container is-max-desktop content">
+    <div class="columns is-centered has-text-centered" style="margin-bottom: 1.5rem;">
+      <h2 class="subtitle has-text-centered section-title">Results</h2>
+    </div>
+
+    <!-- <div class="result-lead has-text-justified">
+      <p>
+        <b>Summary:</b> The following results are organized from the presentation deck, covering
+        <b>quantitative reconstruction/depth metrics</b>, <b>depth & RGB reconstruction videos</b>,
+        <b>depth-enhancement visualization</b>, <b>novel-view synthesis</b>, and <b>ablation studies</b>.
+      </p>
+    </div> -->
+
+    <!-- <h3 class="title is-4 subsection-title">Quantitative Results</h3>
+    <div class="table-card">
+      <span class="result-pill">Table 1</span>
+      <img src="./images/results/quantitative_main.png" alt="Quantitative comparison of image reconstruction and novel-view synthesis on Waymo NOTR Dynamic32 dataset">
+      <p class="caption">
+        Quantitative comparison of image reconstruction and novel-view synthesis on Waymo NOTR Dynamic32.
+        <b>D<sup>2</sup>GS</b> achieves strong rendering quality while keeping the system LiDAR-free.
+      </p>
+    </div>
+
+    <div class="table-card">
+      <span class="result-pill">Table 2</span>
+      <img src="./images/results/quantitative_more.png" alt="Quantitative comparison of depth estimation methods">
+      <p class="caption">
+        Depth-estimation comparison among LiDAR-free methods and a multi-view depth baseline.
+        The results emphasize the importance of <b>dense, image-aligned depth regularization</b>.
+      </p>
+    </div> -->
+
+    <h3 class="title is-4 subsection-title">Depth / RGB Reconstruction</h3>
+    <div class="result-card">
+      <img src="./images/results/visual_depth_reconstruction.png" alt="Comparison of image reconstruction and depth estimation performance">
+      <p class="caption">
+        Visual comparison for RGB reconstruction and depth estimation. The highlighted regions show that
+        <b>D<sup>2</sup>GS</b> can recover cleaner geometry without relying on LiDAR input.
+      </p>
+    </div>
+
+    <!-- <div class="result-card">
+      <div class="comparison-panel">
+        <div class="comparison-label">OmniRe</div>
+        <div class="comparison-item">
+          <img src="./images/results/visual_omnire_depth.png" alt="OmniRe depth result">
+        </div>
+        <div class="comparison-item">
+          <img src="./images/results/visual_ours_depth.png" alt="D2GS depth result">
+        </div>
+
+        <div class="comparison-label"> Ours </div>
+        <div class="comparison-item">
+          <img src="./images/results/visual_omnire_rgb.png" alt="OmniRe RGB result">
+        </div>
+        <div class="comparison-item">
+          <img src="./images/results/visual_ours_rgb.png" alt="D2GS RGB result">
+        </div>
+      </div>
+    </div> -->
+
+    <h3 class="title is-4 subsection-title">Dynamic Visual Results</h3>
+    <div class="result-card">
+      <div class="video-grid">
+        <div>
+          <h4 style="color:#3d3579;">Scene-025 — Depth</h4>
+          <video controls autoplay muted loop playsinline style="border-radius:0;">
+            <source src="./images/results/visual_scene025_depth.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div>
+          <h4 style="color:#3d3579;">Scene-025 — RGB</h4>
+          <video controls autoplay muted loop playsinline style="border-radius:0;">
+            <source src="./images/results/visual_scene025_rgb.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <div id="results-carousel" class="carousel results-carousel">
+      <!-- <div class="item">
+        <div style="position:relative;">
+          <video autoplay muted loop playsinline poster="./images/results/visual_scene025_rgb_poster.jpg">
+            <source src="./images/results/visual_scene025_rgb.mp4" type="video/mp4">
+          </video>
+          <span class="carousel-label">Scene-025 — RGB</span>
+          <button class="fullscreen-btn" onclick="this.previousElementSibling.previousElementSibling.requestFullscreen()">⛶</button>
+        </div>
+      </div>
+      <div class="item">
+        <div style="position:relative;">
+          <video autoplay muted loop playsinline poster="./images/results/visual_scene025_depth_poster.jpg">
+            <source src="./images/results/visual_scene025_depth.mp4" type="video/mp4">
+          </video>
+          <span class="carousel-label">Scene-025 — Depth</span>
+          <button class="fullscreen-btn" onclick="this.previousElementSibling.previousElementSibling.requestFullscreen()">⛶</button>
+        </div>
+      </div> -->
+      <div class="item">
+        <div style="position:relative;">
+          <video autoplay muted loop playsinline>
+            <source src="./images/results/visual_scene035_depth.mp4" type="video/mp4">
+          </video>
+          <span class="carousel-label">Scene-035 — Depth</span>
+          <button class="fullscreen-btn" onclick="this.previousElementSibling.previousElementSibling.requestFullscreen()">⛶</button>
+        </div>
+      </div>
+      <div class="item">
+        <div style="position:relative;">
+          <video autoplay muted loop playsinline>
+            <source src="./images/results/visual_scene080_depth.mp4" type="video/mp4">
+          </video>
+          <span class="carousel-label">Scene-080 — Depth</span>
+          <button class="fullscreen-btn" onclick="this.previousElementSibling.previousElementSibling.requestFullscreen()">⛶</button>
+        </div>
+      </div>
+      <div class="item">
+        <div style="position:relative;">
+          <video autoplay muted loop playsinline>
+            <source src="./images/results/visual_scene592_depth.mp4" type="video/mp4">
+          </video>
+          <span class="carousel-label">Scene-592 — Depth</span>
+          <button class="fullscreen-btn" onclick="this.previousElementSibling.previousElementSibling.requestFullscreen()">⛶</button>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="title is-4 subsection-title">Depth Enhancement</h3>
+    <div class="video-card">
+      <video controls autoplay muted loop playsinline>
+        <source src="./images/results/depth_enhancement.mp4" type="video/mp4">
+      </video>
+      <p class="caption">
+        Iterative visualization of rendered depths and depth-completion depths. The dense-depth enhancer
+        provides stronger pseudo supervision as Gaussian optimization proceeds.
+      </p>
+    </div>
+
+    <h3 class="title is-4 subsection-title">Novel View Synthesis</h3>
+    <div id="nvs-carousel" class="carousel results-carousel">
+      <div class="item">
+        <div style="position:relative;">
+          <video autoplay muted loop playsinline>
+            <source src="./images/results/nvs_1.mp4" type="video/mp4">
+          </video>
+          <button class="fullscreen-btn" onclick="this.previousElementSibling.requestFullscreen()">⛶</button>
+        </div>
+      </div>
+      <div class="item">
+        <div style="position:relative;">
+          <video autoplay muted loop playsinline>
+            <source src="./images/results/nvs_2.mp4" type="video/mp4">
+          </video>
+          <button class="fullscreen-btn" onclick="this.previousElementSibling.requestFullscreen()">⛶</button>
+        </div>
+      </div>
+    </div>
+    <p class="caption has-text-centered">
+      NVS examples highlight that reconstruction metrics alone are not sufficient; road-lane consistency
+      and view synthesis quality also benefit from reliable depth regularization.
+    </p>
+  </div>
+</section>
+
+<!-- <section class="section" id="Ablation">
+  <div class="container is-max-desktop content">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="subtitle has-text-centered section-title">Ablation Study</h2>
+    </div>
+
+    <div class="table-card">
+      <span class="result-pill">Table 3</span>
+      <img src="./images/results/ablation_table.png" alt="Ablation study of D2GS components and training strategy">
+      <p class="caption">
+        Ablation study of key components and training strategies, including road-node regularization,
+        progressive pruning, depth enhancer losses, and real-time depth update.
+      </p>
+    </div>
+
+    <div class="video-grid">
+      <div class="video-card">
+        <h4>Without Full D<sup>2</sup>GS Components</h4>
+        <video controls autoplay muted loop playsinline poster="./images/results/ablation_without_depth_poster.jpg">
+          <source src="./images/results/ablation_without_depth.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card">
+        <h4>Ours</h4>
+        <video controls autoplay muted loop playsinline poster="./images/results/ablation_with_d2gs_poster.jpg">
+          <source src="./images/results/ablation_with_d2gs.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+    <p class="caption has-text-centered">
+      Incorrect or incomplete depth regularization can introduce floaters and non-smooth surfaces, while
+      the full method yields more coherent road and scene geometry.
+    </p>
+  </div>
+</section> -->
+
+
+
+<section class="section" id="Concurrent works">
+  <div class="container is-max-desktop content">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="subtitle has-text-centered">Related Links</h2>
+    </div>
+    <p>Related methods and resources mentioned around this research direction:</p>
+    <ul>
+      <li><a href="https://arxiv.org/abs/2408.16760" target="_blank"><b>OmniRe</b></a>: dynamic urban scene reconstruction baseline.</li>
+      <li><a href="https://arxiv.org/abs/2410.13862" target="_blank"><b>DepthSplat</b></a>: multi-view depth estimation and feed-forward Gaussian framework.</li>
+      <li><a href="https://arxiv.org/abs/2412.13389" target="_blank"><b>Marigold-DC</b></a>: diffusion-prior depth completion method related to dense depth enhancement.</li>
+      <li><a href="https://waymo.com/open/" target="_blank"><b>Waymo Open Dataset</b></a>: autonomous-driving dataset family used for evaluation.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="bibtex">
+  <div class="container is-max-desktop content">
+    <div class="columns is-centered has-text-centered">
+      <h2 class="subtitle section-title">BibTeX</h2>
+    </div>
+    <pre class="bibtex"><code>@article{xia2025d,
+  title={D $\^{} 2$ GS: Dense Depth Regularization for LiDAR-free Urban Scene Reconstruction},
+  author={Xia, Kejing and Jia, Jidong and Jin, Ke and Bai, Yucai and Sun, Li and Tao, Dacheng and Zhang, Youjian},
+  journal={arXiv preprint arXiv:2510.25173},
+  year={2025}
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <p><a href="/">Back to Kejing Xia's homepage</a></p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This webpage originated from <a href="https://sm0kywu.github.io/Amodal3R/">Amodal3R</a>.
+            We sincerely thank <a href="https://sm0kywu.github.io/CV/CV.html">Tianhao Wu</a> for developing and open-sourcing this template.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
