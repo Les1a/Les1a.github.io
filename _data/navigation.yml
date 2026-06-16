@@ -1,21 +1,24 @@
-# 导航栏链接 (Main Navigation)
-# 添加新导航项: 复制下面的格式，url 使用 "/#-section-name" 指向首页锚点
-# 隐藏导航项: 在该条目前加 # 注释即可
+# Main navigation.
+# Use "/#section-id" to link to explicit heading IDs in _pages/about.md.
+# Comment out an item to hide it from the masthead.
 main:
+  - title: "Research"
+    url: "/#research-interests"
+
   - title: "News"
-    url: "/#-news"
+    url: "/#news"
 
   - title: "Publications"
-    url: "/#-publications"
+    url: "/#publications"
 
   - title: "Research Experience"
-    url: "/#-research-experience"
+    url: "/#research-experience"
 
   - title: "Professional Experience"
-    url: "/#-professional-experience"
+    url: "/#professional-experience"
 
   - title: "Competition"
-    url: "/#-competition"
+    url: "/#competition"
 
   - title: "Awards"
-    url: "/#-awards"
+    url: "/#awards"

@@ -7,60 +7,69 @@ redirect_from:
   - /about.html
 ---
 
-<!-- ====== 个人简介 (Bio) ======
-     修改: 直接编辑下方文字即可 -->
+<section class="home-hero" aria-labelledby="home-title">
+  <p class="home-kicker"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Georgia Tech &middot; GTISC Lab</p>
+  <h1 id="home-title">Kejing Xia <span class="name-native" lang="zh">&#22799;&#21487;&#25964;</span></h1>
+  <p class="home-lede">
+    I am a first-year Ph.D. student in Computer Science at <a href="https://www.gatech.edu/">Georgia Tech</a>,
+    advised by Prof. <a href="https://wenke.gtisc.gatech.edu/">Wenke Lee</a> in the
+    <a href="https://lab.gtisc.gatech.edu/gtisc/">GTISC Lab</a>.
+    My research is centered on LLM post-training and agentic AI, with a particular interest in reasoning, diffusion language models,
+    and systems that make language models more useful in interactive environments.
+  </p>
+  <div class="home-actions" aria-label="Primary links">
+    <a class="home-action primary" href="/assets/3_CV.pdf"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>CV</span></a>
+    <a class="home-action" href="mailto:kxia39@gatech.edu"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span>Email</span></a>
+    <a class="home-action" href="https://scholar.google.com/citations?user=dH4SpC0AAAAJ&hl"><i class="ai ai-google-scholar" aria-hidden="true"></i><span>Google Scholar</span></a>
+    <a class="home-action" href="https://github.com/Les1a"><i class="fab fa-github" aria-hidden="true"></i><span>GitHub</span></a>
+  </div>
+  <ul class="hero-facts">
+    <li><i class="fa-solid fa-user-graduate" aria-hidden="true"></i><span>Ph.D. Student</span><strong>Computer Science</strong></li>
+    <li><i class="fa-solid fa-flask" aria-hidden="true"></i><span>Research Focus</span><strong>LLM Reasoning and Agents</strong></li>
+    <li><i class="fa-solid fa-map-pin" aria-hidden="true"></i><span>Based in</span><strong>Atlanta, GA</strong></li>
+  </ul>
+</section>
 
-Hello 👋 ! I am **Kejing Xia (夏可敬)**, a first-year Ph.D. student in Computer Science at [Georgia Tech](https://www.gatech.edu/), where I work in the [GTISC Lab](https://lab.gtisc.gatech.edu/gtisc/) with Prof. [Wenke Lee](https://wenke.gtisc.gatech.edu/).
+<p class="profile-note">
+  Prior to my Ph.D., I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track)
+  from <a href="https://en.whu.edu.cn/">Wuhan University</a>. Before that, I studied at the
+  <a href="https://www.hzsdyfz.com.cn/about.html">No.1 Middle School Affiliated to Central China Normal University</a>.
+  My CV was last updated in Feb. 2026.
+</p>
 
-Prior to my Ph.D., I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track) from [Wuhan University](https://en.whu.edu.cn/). Before that, I studied at the No.1 Middle School Affiliated to Central China Normal University [(华中师大一附中)](https://www.hzsdyfz.com.cn/about.html).
+<h2 id="research-interests"><span class="section-icon"><i class="fa-solid fa-microscope" aria-hidden="true"></i></span>Research Interests</h2>
+<div class="interest-grid">
+  <article class="interest-card">
+    <div class="interest-head"><span class="interest-icon"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i></span><span class="interest-label">LLM Reasoning and Agents</span></div>
+    <p>Reasoning, computer-use agents, alignment.</p>
+  </article>
+  <article class="interest-card">
+    <div class="interest-head"><span class="interest-icon"><i class="fa-solid fa-wave-square" aria-hidden="true"></i></span><span class="interest-label">Diffusion LLMs</span></div>
+    <p>Decoding acceleration, hybrid-continuous dLLMs.</p>
+  </article>
+  <article class="interest-card">
+    <div class="interest-head"><span class="interest-icon"><i class="fa-solid fa-gauge-high" aria-hidden="true"></i></span><span class="interest-label">Efficient LLMs</span></div>
+    <p>Long-context modeling, training-free optimization.</p>
+  </article>
+</div>
 
-You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
-
-## Research Interests
-<ul class="news-list">
-  <li>
-    <span class="news-date">Diffusion LLM :</span>
-    <span class="news-content">Decoding Acceleration, Hybrid-continuous dLLM.</span>
-  </li>
-  <li>
-    <span class="news-date">LLM Reasoning :</span>
-    <span class="news-content">Latent reasoning, LLM alignment.</span>
-  </li>
-  <li>
-    <span class="news-date">Efficient LLMs :</span>
-    <span class="news-content">Long-context modeling, Training-free optimization.</span>
-  </li>
-  <li>
-    <span class="news-date">3D Vision :</span>
-    <span class="news-content">3D Gaussian Splatting, Event-based vision, Neural Radiance Fields.</span>
-  </li>
-</ul>
-
-<!-- ====== 新闻 (News) ======
-     添加新条目: 复制下面的 <li> 模板到列表顶部，修改日期和内容
-     模板:
-       <li>
-         <span class="news-date">YYYY.MM</span>
-         <span class="news-content">内容描述，可用 <strong>加粗</strong> 和 <a href="链接">超链接</a>。</span>
-       </li>
--->
-## 📢 News
+<h2 id="news"><span class="section-icon"><i class="fa-solid fa-newspaper" aria-hidden="true"></i></span>News</h2>
 <ul class="news-list">
   <li>
     <span class="news-date">2025.09</span>
-    <span class="news-content">Our paper <strong>D<sup>2</sup>GS</strong> is accepted by <strong>NeurIPS 2025</strong>.</span>
+    <span class="news-content">Our paper <strong>D<sup>2</sup>GS</strong> was accepted by <strong>NeurIPS 2025</strong>.</span>
   </li>
   <li>
     <span class="news-date">2025.05</span>
-    <span class="news-content">Our paper <strong>LAMB</strong> is accepted by <strong>ACL 2025</strong>.</span>
+    <span class="news-content">Our paper <strong>LAMB</strong> was accepted by <strong>ACL 2025</strong>.</span>
   </li>
   <li>
     <span class="news-date">2025.02</span>
-    <span class="news-content">Our paper <strong>LongMamba</strong> is accepted by <strong>ICLR 2025</strong>.</span>
+    <span class="news-content">Our paper <strong>LongMamba</strong> was accepted by <strong>ICLR 2025</strong>.</span>
   </li>
   <li>
     <span class="news-date">2024.06</span>
-    <span class="news-content">Our paper <strong>A Spatio-temporal Event Transformer on Versatile Tasks for Human Behavior Analysis</strong> is accepted by <strong>IJCAI-W MiGA 2024</strong>.</span>
+    <span class="news-content">Our paper <strong>A Spatio-temporal Event Transformer on Versatile Tasks for Human Behavior Analysis</strong> was accepted by <strong>IJCAI-W MiGA 2024</strong>.</span>
   </li>
   <li>
     <span class="news-date">2024.05</span>
@@ -68,161 +77,173 @@ You can view my [CV here](../assets/3_CV.pdf). (Updated in Feb. 2026)
   </li>
   <li>
     <span class="news-date">2023.11</span>
-    <span class="news-content">I won Province First Prize in <strong>China Undergraduate Mathematical Contest in Modeling</strong>.</span>
+    <span class="news-content">I won Province First Prize in the <strong>China Undergraduate Mathematical Contest in Modeling</strong>.</span>
   </li>
 </ul>
 
-<!-- ====== 论文 (Publications) ======
-     添加新论文: 复制下面的 publication-card 模板，修改图片、标题、会议和链接
-     模板:
-       <div class="publication-card">
-         <div class="pub-image">
-           <img src="/images/figure-xxx.png" alt="简称" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-           <div class="placeholder-text" style="display:none;">Image Placeholder</div>
-         </div>
-         <div class="pub-content">
-           <div class="pub-title">论文标题</div>
-           <div class="pub-venue">会议名称 年份</div>
-           <div class="pub-links">
-             <a href="论文链接">Paper</a>
-             <a href="代码链接">Code</a>
-           </div>
-         </div>
-       </div>
--->
-## 📝 Publications
-
+<h2 id="publications"><span class="section-icon"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>Publications</h2>
 <div class="publication-list">
 
-  <!-- MetaState -->
-  <div class="publication-card">
+  <article class="publication-card">
     <div class="pub-image">
-      <img src="/images/figure-metastate.png" alt="MetaState" width="440" height="280" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="placeholder-text" style="display:none;">Image Placeholder</div>
+      <img src="/images/figure-metastate.png" alt="MetaState paper teaser" width="440" height="280" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="placeholder-text" style="display:none;">Image unavailable</div>
     </div>
     <div class="pub-content">
       <div class="pub-title">MetaState: Persistent Working Memory Enhances Reasoning in Discrete Diffusion Language Models</div>
-      <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, Mingzhe Li, Lixuan Wei, Zhenbang Du, Xiangchi Yuan, Dachuan Shi, Qirui Jin, Wenke Lee</div> -->
       <div class="pub-venue">arXiv Preprint</div>
+      <p class="pub-summary">Persistent memory for stronger reasoning in discrete diffusion language models.</p>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2603.01331">Paper</a>
         <a href="">Code</a>
         <a href="/projects/metastate/">Project</a>
       </div>
     </div>
-  </div>
+  </article>
 
-  <!-- R2-dLLM -->
-  <div class="publication-card">
+  <article class="publication-card">
     <div class="pub-image">
-      <img src="/images/figure-r2dllm.png" alt="R2-dLLM" width="880" height="428" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="placeholder-text" style="display:none;">Image Placeholder</div>
+      <img src="/images/figure-r2dllm.png" alt="R2-dLLM paper teaser" width="880" height="428" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="placeholder-text" style="display:none;">Image unavailable</div>
     </div>
     <div class="pub-content">
       <div class="pub-title">R<sup>2</sup>-dLLM: Accelerating Diffusion Large Language Models via Spatio-Temporal Redundancy Reduction</div>
       <div class="pub-venue">arXiv Preprint</div>
+      <p class="pub-summary">Spatio-temporal redundancy reduction for faster diffusion LLM decoding.</p>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2604.18995">Paper</a>
         <a href="https://github.com/GATECH-EIC/R2-dLLM">Code</a>
+        <a href="">Project</a>
       </div>
     </div>
-  </div>
+  </article>
 
-  <!-- EDITOR -->
-  <div class="publication-card">
+  <article class="publication-card">
     <div class="pub-image">
-      <img src="/images/figure-editor.png" alt="EDITOR" width="880" height="425" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="placeholder-text" style="display:none;">Image Placeholder</div>
+      <img src="/images/figure-editor.png" alt="EDITOR paper teaser" width="880" height="425" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="placeholder-text" style="display:none;">Image unavailable</div>
     </div>
     <div class="pub-content">
       <div class="pub-title">EDITOR: Effective and Interpretable Prompt Inversion for Text-to-Image Diffusion Models</div>
-      <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, et al.</div> -->
       <div class="pub-venue">arXiv Preprint</div>
+      <p class="pub-summary">Interpretable prompt inversion for text-to-image diffusion models.</p>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2506.03067v3">Paper</a>
         <a href="">Code</a>
         <a href="">Project</a>
       </div>
     </div>
-  </div>
+  </article>
 
-  <!-- D2GS -->
-  <div class="publication-card">
+  <article class="publication-card">
     <div class="pub-image">
-      <img src="/images/figure-d2gs.jpg" alt="D²GS" width="880" height="411" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="placeholder-text" style="display:none;">Image Placeholder</div>
+      <img src="/images/figure-d2gs.jpg" alt="D2GS paper teaser" width="880" height="411" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="placeholder-text" style="display:none;">Image unavailable</div>
     </div>
     <div class="pub-content">
       <div class="pub-title">D<sup>2</sup>GS: Dense Depth Regularization for LiDAR-free Urban Scene Reconstruction</div>
-      <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, et al.</div> -->
       <div class="pub-venue">NeurIPS 2025</div>
+      <p class="pub-summary">Dense depth regularization for urban scene reconstruction without LiDAR supervision.</p>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2510.25173">Paper</a>
         <a href="">Code</a>
         <a href="/projects/d2gs/">Project</a>
       </div>
     </div>
-  </div>
+  </article>
 
-  <!-- LAMB -->
-  <div class="publication-card">
+  <article class="publication-card">
     <div class="pub-image">
-      <img src="/images/figure-lamb.jpg" alt="LAMB" width="880" height="444" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="placeholder-text" style="display:none;">Image Placeholder</div>
+      <img src="/images/figure-lamb.jpg" alt="LAMB paper teaser" width="880" height="444" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="placeholder-text" style="display:none;">Image unavailable</div>
     </div>
     <div class="pub-content">
       <div class="pub-title">LAMB: A Training-Free Method to Enhance the Long-Context Understanding of SSMs via Attention-Guided Token Filtering</div>
-      <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, et al.</div> -->
       <div class="pub-venue">ACL 2025</div>
+      <p class="pub-summary">Attention-guided token filtering for longer-context state space models.</p>
       <div class="pub-links">
         <a href="https://aclanthology.org/2025.acl-short.96/">Paper</a>
         <a href="https://github.com/GATECH-EIC/LAMB">Code</a>
         <a href="">Project</a>
       </div>
     </div>
-  </div>
+  </article>
 
-  <!-- LongMamba -->
-  <div class="publication-card">
+  <article class="publication-card">
     <div class="pub-image">
-      <img src="/images/figure-longmamba.jpg" alt="LongMamba" width="880" height="399" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-      <div class="placeholder-text" style="display:none;">Image Placeholder</div>
+      <img src="/images/figure-longmamba.jpg" alt="LongMamba paper teaser" width="880" height="399" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="placeholder-text" style="display:none;">Image unavailable</div>
     </div>
     <div class="pub-content">
-      <div class="pub-title">LongMamba: Enhancing Mamba’s Long-Context Capabilities via Training-Free Receptive Field Enlargement</div>
-      <!-- <div class="pub-authors"><strong>Kejing Xia</strong>, et al.</div> -->
+      <div class="pub-title">LongMamba: Enhancing Mamba's Long-Context Capabilities via Training-Free Receptive Field Enlargement</div>
       <div class="pub-venue">ICLR 2025</div>
+      <p class="pub-summary">A training-free receptive-field enlargement method for long-context Mamba models.</p>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2504.16053">Paper</a>
         <a href="https://github.com/GATECH-EIC/LongMamba">Code</a>
         <a href="https://lemonandrabbit.github.io/">Project</a>
       </div>
     </div>
-  </div>
+  </article>
 
 </div>
 
-<!-- ====== 以下为经历和奖项 (Experience & Awards) ======
-     格式: Markdown 列表，直接编辑即可 -->
+<h2 id="research-experience"><span class="section-icon"><i class="fa-solid fa-timeline" aria-hidden="true"></i></span>Research Experience</h2>
+<div class="timeline-list">
+  <article class="timeline-item">
+    <div class="timeline-date">Jan. 2026 &ndash; Present</div>
+    <div class="timeline-content">
+      <h3>GTISC Lab, Georgia Tech</h3>
+      <p>Working on MetaState: persistent working memory for reasoning in discrete diffusion language models.</p>
+    </div>
+  </article>
+  <article class="timeline-item">
+    <div class="timeline-date">May 2024 &ndash; Feb. 2026</div>
+    <div class="timeline-content">
+      <h3>EIC Lab, Georgia Tech</h3>
+      <p>Led and contributed to R<sup>2</sup>-dLLM, Soft Token Interpolation, LongMamba, and LAMB, focusing on training-free optimization and efficient decoding.</p>
+    </div>
+  </article>
+  <article class="timeline-item">
+    <div class="timeline-date">Oct. 2023 &ndash; Apr. 2024</div>
+    <div class="timeline-content">
+      <h3>Signal Processing Lab, Wuhan University</h3>
+      <p>Co-led BRS-E<sup>2</sup>NeRF, developing event-enhanced NeRFs for sharp reconstruction under rolling shutter blur.</p>
+    </div>
+  </article>
+  <article class="timeline-item">
+    <div class="timeline-date">2023 &ndash; 2024</div>
+    <div class="timeline-content">
+      <h3>CMVS, University of Oulu</h3>
+      <p>Led research on event-based human behavior analysis with spatio-temporal transformers, presented at IJCAI 2024 MiGA Workshop.</p>
+    </div>
+  </article>
+</div>
 
-## 🔬 Research Experience
-* **GTISC Lab, Georgia Tech (Jan. 2026 – Present)** - Working on MetaState: Persistent Working Memory Enhances Reasoning in Discrete Diffusion Language Models.
-* **EIC Lab, Georgia Tech (May 2024 – Feb. 2026)** - Led & deeply involved in projects on R<sup>2</sup>-dLLM, Soft Token Interpolation, LongMamba, and LAMB, proposing training-free approaches and novel decoding methods for efficient language models.
-* **Signal Processing Lab, Wuhan University (Oct. 2023 – Apr. 2024)** - Co-led BRS-E<sup>2</sup>NeRF, developing event-enhanced NeRFs to reconstruct sharp images from rolling shutter blur.
-* **Center for Machine Vision and Signal Analysis (CMVS), University of Oulu (2023-2024)** - Led research on event-based human behavior analysis with spatio-temporal transformers, presented at IJCAI 2024 (MiGA Workshop).
+<h2 id="professional-experience"><span class="section-icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>Professional Experience</h2>
+<div class="timeline-list compact">
+  <article class="timeline-item">
+    <div class="timeline-date">Jul. 2024 &ndash; May 2025</div>
+    <div class="timeline-content">
+      <h3>Bosch Research &amp; Innovation Software Development Co., Ltd.</h3>
+      <p>Lead Research Intern for D<sup>2</sup>GS, combining diffusion depth enhancement with 3D Gaussian models for LiDAR-free scene reconstruction.</p>
+    </div>
+  </article>
+</div>
 
-## 💼 Professional Experience
-* **Bosch Research & Innovation Software Development Co., Ltd (Jul. 2024 – May 2025)** - Lead Research Intern for D<sup>2</sup>GS, combining diffusion depth enhancement with 3D Gaussian models for LiDAR-free scene reconstruction.
+<h2 id="competition"><span class="section-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>Competition</h2>
+<ul class="achievement-list">
+  <li><strong>RoboCup China Open (2024)</strong><span>Captain, National First Prize.</span></li>
+  <li><strong>Student Innovation &amp; Entrepreneurship Project (2023&ndash;2024)</strong><span>National Prize for All-in-Focus Seeing Through Occlusions with Event and Frame.</span></li>
+  <li><strong>China Undergraduate Mathematical Contest in Modeling (2023)</strong><span>Hubei Province First Prize.</span></li>
+  <li><strong>Huazhong Cup Mathematical Modeling Challenge (2023)</strong><span>National First Prize.</span></li>
+</ul>
 
-## 🏅 Competition
-* **RoboCup China Open (2024)** - Captain, National First Prize.
-* **Student Innovation & Entrepreneurship Project (2023-2024)** - National Prize for All-in-Focus Seeing Through Occlusions with Event and Frame.
-* **China Undergraduate Mathematical Contest in Modeling (2023)** - Hubei Province First Prize.
-* **Huazhong Cup Mathematical Modeling Challenge (2023)** - National First Prize.
-
-## 🏆 Awards
-* Wuhan University First-Class Academic Scholarship (2023-2024).
-* "Luojia" Distinguished Exchange Student Scholarship (2023-2024).
-* Wuhan University Merit Students (2021-2022, 2023-2024).
-* Wuhan University Outstanding Student (2022-2023).
-* Wuhan University Merit and Outstanding Academic Scholarships (2021-2023).
+<h2 id="awards"><span class="section-icon"><i class="fa-solid fa-award" aria-hidden="true"></i></span>Awards</h2>
+<ul class="achievement-list two-column">
+  <li><strong>Wuhan University First-Class Academic Scholarship</strong><span>2023&ndash;2024</span></li>
+  <li><strong>"Luojia" Distinguished Exchange Student Scholarship</strong><span>2023&ndash;2024</span></li>
+  <li><strong>Wuhan University Merit Students</strong><span>2021&ndash;2022, 2023&ndash;2024</span></li>
+  <li><strong>Wuhan University Outstanding Student</strong><span>2022&ndash;2023</span></li>
+  <li><strong>Wuhan University Merit and Outstanding Academic Scholarships</strong><span>2021&ndash;2023</span></li>
+</ul>
