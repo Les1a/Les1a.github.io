@@ -17,6 +17,12 @@ redirect_from:
     My research is centered on LLM post-training and agentic AI, with a particular interest in reasoning, diffusion language models,
     and systems that make language models more useful in interactive environments.
   </p>
+  <p class="profile-note">
+    Prior to my Ph.D., I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track)
+    from <a href="https://en.whu.edu.cn/">Wuhan University</a>. Before that, I studied at the
+    <a href="https://www.hzsdyfz.com.cn/about.html">No.1 Middle School Affiliated to Central China Normal University</a>.
+    My CV was last updated in Feb. 2026.
+  </p>
   <div class="home-actions" aria-label="Primary links">
     <a class="home-action primary" href="/assets/3_CV.pdf"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>CV</span></a>
     <a class="home-action" href="mailto:kxia39@gatech.edu"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span>Email</span></a>
@@ -29,13 +35,6 @@ redirect_from:
     <li><i class="fa-solid fa-map-pin" aria-hidden="true"></i><span>Based in</span><strong>Atlanta, GA</strong></li>
   </ul>
 </section>
-
-<p class="profile-note">
-  Prior to my Ph.D., I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track)
-  from <a href="https://en.whu.edu.cn/">Wuhan University</a>. Before that, I studied at the
-  <a href="https://www.hzsdyfz.com.cn/about.html">No.1 Middle School Affiliated to Central China Normal University</a>.
-  My CV was last updated in Feb. 2026.
-</p>
 
 <h2 id="research-interests"><span class="section-icon"><i class="fa-solid fa-microscope" aria-hidden="true"></i></span>Research Interests</h2>
 <div class="interest-grid">
