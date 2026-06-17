@@ -3,10 +3,10 @@
 # 修改站点标题、描述、URL 等基本信息
 # =============================================
 locale                   : "en-US"
-title                    : "Kejing Xia's Homepage"
+title                    : "Kejing Xia"
 title_separator          : "-"
 name                     : &name "Kejing Xia"
-description              : &description "Georgia Institute of Technology"
+description              : &description "Ph.D. student in Computer Science at Georgia Tech"
 url                      : https://les1a.github.io
 baseurl                  : "" # 子路径，如 "/blog"
 repository               : "Les1a/Les1a.github.io"
@@ -22,7 +22,7 @@ author:
   avatar           : "profile.jpg"
   name             : "Kejing Xia"
   pronouns         : # 例: "she/her"
-  bio              : "Ph.D. student @ Georgia Tech"
+  bio              : "Computer Science Ph.D. student at Georgia Tech"
   location         : "Atlanta, GA, US"
   employer         : "Georgia Institute of Technology"
   uri              :
@@ -30,7 +30,7 @@ author:
 
   # 学术链接 (Academic Links) — 填写后自动显示在侧边栏
   arxiv            :
-  googlescholar    : "https://scholar.google.com/citations?user=dH4SpC0AAAAJ&hl"
+  googlescholar    : "https://scholar.google.com/citations?user=dH4SpC0AAAAJ&hl=en"
   orcid            :
   researchgate     :
 

@@ -8,25 +8,24 @@ redirect_from:
 ---
 
 <section class="home-hero" aria-labelledby="home-title">
-  <p class="home-kicker"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Georgia Tech &middot; GTISC Lab</p>
+  <p class="home-kicker"><i class="fa-solid fa-building-columns" aria-hidden="true"></i> Georgia Institute of Technology &middot; GTISC Lab &middot; Atlanta</p>
   <h1 id="home-title">Kejing Xia <span class="name-native" lang="zh">&#22799;&#21487;&#25964;</span></h1>
   <p class="home-lede">
-    I am a first-year Ph.D. student in Computer Science at <a href="https://www.gatech.edu/">Georgia Tech</a>,
+    I am a first-year Computer Science Ph.D. student at <a href="https://www.gatech.edu/">Georgia Tech</a>,
     advised by Prof. <a href="https://wenke.gtisc.gatech.edu/">Wenke Lee</a> in the
     <a href="https://lab.gtisc.gatech.edu/gtisc/">GTISC Lab</a>.
-    My research is centered on LLM post-training and agentic AI, with a particular interest in reasoning, diffusion language models,
+    My research centers on LLM post-training and agentic AI, with particular interests in reasoning, diffusion language models,
     and systems that make language models more useful in interactive environments.
   </p>
   <p class="profile-note">
-    Prior to my Ph.D., I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track)
-    from <a href="https://en.whu.edu.cn/">Wuhan University</a>. Before that, I studied at the
-    <a href="https://www.hzsdyfz.com.cn/about.html">No.1 Middle School Affiliated to Central China Normal University</a>.
-    My CV was last updated in Feb. 2026.
+    Before joining the Ph.D. program, I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track)
+    from <a href="https://en.whu.edu.cn/">Wuhan University</a>. Earlier, I studied at the
+    <a href="https://www.hzsdyfz.com.cn/about.html">No. 1 Middle School Affiliated to Central China Normal University</a>.
   </p>
   <div class="home-actions" aria-label="Primary links">
     <a class="home-action primary" href="/assets/3_CV.pdf"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>CV</span></a>
     <a class="home-action" href="mailto:kxia39@gatech.edu"><i class="fa-solid fa-envelope" aria-hidden="true"></i><span>Email</span></a>
-    <a class="home-action" href="https://scholar.google.com/citations?user=dH4SpC0AAAAJ&hl"><i class="ai ai-google-scholar" aria-hidden="true"></i><span>Google Scholar</span></a>
+    <a class="home-action" href="https://scholar.google.com/citations?user=dH4SpC0AAAAJ&hl=en"><i class="ai ai-google-scholar" aria-hidden="true"></i><span>Google Scholar</span></a>
     <a class="home-action" href="https://github.com/Les1a"><i class="fab fa-github" aria-hidden="true"></i><span>GitHub</span></a>
   </div>
   <ul class="hero-facts">
@@ -93,9 +92,9 @@ redirect_from:
       <div class="pub-venue">arXiv Preprint</div>
       <p class="pub-summary">Persistent memory for stronger reasoning in discrete diffusion language models.</p>
       <div class="pub-links">
-        <a href="https://arxiv.org/abs/2603.01331">Paper</a>
-        <a href="">Code</a>
-        <a href="/projects/metastate/">Project</a>
+        <a href="https://arxiv.org/abs/2603.01331"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>Paper</span></a>
+        <a href=""><i class="fa-solid fa-code" aria-hidden="true"></i><span>Code</span></a>
+        <a href="/projects/metastate/"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Project</span></a>
       </div>
     </div>
   </article>
@@ -110,9 +109,9 @@ redirect_from:
       <div class="pub-venue">arXiv Preprint</div>
       <p class="pub-summary">Spatio-temporal redundancy reduction for faster diffusion LLM decoding.</p>
       <div class="pub-links">
-        <a href="https://arxiv.org/abs/2604.18995">Paper</a>
-        <a href="https://github.com/GATECH-EIC/R2-dLLM">Code</a>
-        <a href="">Project</a>
+        <a href="https://arxiv.org/abs/2604.18995"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>Paper</span></a>
+        <a href="https://github.com/GATECH-EIC/R2-dLLM"><i class="fa-solid fa-code" aria-hidden="true"></i><span>Code</span></a>
+        <a href=""><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Project</span></a>
       </div>
     </div>
   </article>
@@ -127,9 +126,9 @@ redirect_from:
       <div class="pub-venue">arXiv Preprint</div>
       <p class="pub-summary">Interpretable prompt inversion for text-to-image diffusion models.</p>
       <div class="pub-links">
-        <a href="https://arxiv.org/abs/2506.03067v3">Paper</a>
-        <a href="">Code</a>
-        <a href="">Project</a>
+        <a href="https://arxiv.org/abs/2506.03067v3"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>Paper</span></a>
+        <a href=""><i class="fa-solid fa-code" aria-hidden="true"></i><span>Code</span></a>
+        <a href=""><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Project</span></a>
       </div>
     </div>
   </article>
@@ -144,9 +143,9 @@ redirect_from:
       <div class="pub-venue">NeurIPS 2025</div>
       <p class="pub-summary">Dense depth regularization for urban scene reconstruction without LiDAR supervision.</p>
       <div class="pub-links">
-        <a href="https://arxiv.org/abs/2510.25173">Paper</a>
-        <a href="">Code</a>
-        <a href="/projects/d2gs/">Project</a>
+        <a href="https://arxiv.org/abs/2510.25173"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>Paper</span></a>
+        <a href=""><i class="fa-solid fa-code" aria-hidden="true"></i><span>Code</span></a>
+        <a href="/projects/d2gs/"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Project</span></a>
       </div>
     </div>
   </article>
@@ -161,9 +160,9 @@ redirect_from:
       <div class="pub-venue">ACL 2025</div>
       <p class="pub-summary">Attention-guided token filtering for longer-context state space models.</p>
       <div class="pub-links">
-        <a href="https://aclanthology.org/2025.acl-short.96/">Paper</a>
-        <a href="https://github.com/GATECH-EIC/LAMB">Code</a>
-        <a href="">Project</a>
+        <a href="https://aclanthology.org/2025.acl-short.96/"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>Paper</span></a>
+        <a href="https://github.com/GATECH-EIC/LAMB"><i class="fa-solid fa-code" aria-hidden="true"></i><span>Code</span></a>
+        <a href=""><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Project</span></a>
       </div>
     </div>
   </article>
@@ -178,9 +177,9 @@ redirect_from:
       <div class="pub-venue">ICLR 2025</div>
       <p class="pub-summary">A training-free receptive-field enlargement method for long-context Mamba models.</p>
       <div class="pub-links">
-        <a href="https://arxiv.org/abs/2504.16053">Paper</a>
-        <a href="https://github.com/GATECH-EIC/LongMamba">Code</a>
-        <a href="https://lemonandrabbit.github.io/">Project</a>
+        <a href="https://arxiv.org/abs/2504.16053"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>Paper</span></a>
+        <a href="https://github.com/GATECH-EIC/LongMamba"><i class="fa-solid fa-code" aria-hidden="true"></i><span>Code</span></a>
+        <a href="https://lemonandrabbit.github.io/"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Project</span></a>
       </div>
     </div>
   </article>
@@ -193,7 +192,7 @@ redirect_from:
     <div class="timeline-date">Jan. 2026 &ndash; Present</div>
     <div class="timeline-content">
       <h3>GTISC Lab, Georgia Tech</h3>
-      <p>Working on MetaState: persistent working memory for reasoning in discrete diffusion language models.</p>
+      <p>I work on MetaState: persistent working memory for reasoning in discrete diffusion language models.</p>
     </div>
   </article>
   <article class="timeline-item">
@@ -232,7 +231,7 @@ redirect_from:
 
 <h2 id="competition"><span class="section-icon"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>Competition</h2>
 <ul class="achievement-list">
-  <li><strong>RoboCup China Open (2024)</strong><span>Captain, National First Prize.</span></li>
+  <li><strong>RoboCup China Open (2024)</strong><span>Captain, National Second Prize.</span></li>
   <li><strong>Student Innovation &amp; Entrepreneurship Project (2023&ndash;2024)</strong><span>National Prize for All-in-Focus Seeing Through Occlusions with Event and Frame.</span></li>
   <li><strong>China Undergraduate Mathematical Contest in Modeling (2023)</strong><span>Hubei Province First Prize.</span></li>
   <li><strong>Huazhong Cup Mathematical Modeling Challenge (2023)</strong><span>National First Prize.</span></li>

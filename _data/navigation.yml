@@ -2,7 +2,7 @@
 # Use "/#section-id" to link to explicit heading IDs in _pages/about.md.
 # Comment out an item to hide it from the masthead.
 main:
-  - title: "Research"
+  - title: "Interests"
     url: "/#research-interests"
 
   - title: "News"
@@ -11,10 +11,10 @@ main:
   - title: "Publications"
     url: "/#publications"
 
-  - title: "Research"
+  - title: "Research Experience"
     url: "/#research-experience"
 
-  - title: "Professional"
+  - title: "Professional Experience"
     url: "/#professional-experience"
 
   - title: "Competition"
