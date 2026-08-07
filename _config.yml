@@ -6,7 +6,7 @@ locale                   : "en-US"
 title                    : "Kejing Xia"
 title_separator          : "-"
 name                     : &name "Kejing Xia"
-description              : &description "Ph.D. student in Computer Science at Georgia Tech"
+description              : &description "Computer Science Ph.D. student at Georgia Tech researching LLM reasoning, agentic AI, and diffusion language models"
 url                      : https://les1a.github.io
 baseurl                  : "" # 子路径，如 "/blog"
 repository               : "Les1a/Les1a.github.io"

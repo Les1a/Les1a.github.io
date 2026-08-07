@@ -89,11 +89,11 @@ redirect_from:
     </div>
     <div class="pub-content">
       <div class="pub-title">MetaState: Persistent Working Memory Enhances Reasoning in Discrete Diffusion Language Models</div>
-      <div class="pub-venue">arXiv Preprint</div>
+      <div class="pub-venue">COLM 2026</div>
       <p class="pub-summary">Persistent memory for stronger reasoning in discrete diffusion language models.</p>
       <div class="pub-links">
         <a href="https://arxiv.org/abs/2603.01331"><i class="fa-solid fa-file-lines" aria-hidden="true"></i><span>Paper</span></a>
-        <a href=""><i class="fa-solid fa-code" aria-hidden="true"></i><span>Code</span></a>
+        <a href="https://github.com/Les1a/MetaState"><i class="fa-solid fa-code" aria-hidden="true"></i><span>Code</span></a>
         <a href="/projects/metastate/"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i><span>Project</span></a>
       </div>
     </div>
@@ -220,6 +220,13 @@ redirect_from:
 
 <h2 id="professional-experience"><span class="section-icon"><i class="fa-solid fa-briefcase" aria-hidden="true"></i></span>Professional Experience</h2>
 <div class="timeline-list compact">
+  <article class="timeline-item">
+    <div class="timeline-date">May 2026 &ndash; Aug. 2026</div>
+    <div class="timeline-content">
+      <h3>Zoom Communications, Inc., AI Incubation</h3>
+      <p>Native Action Merging for Efficient Computer-Use Agents. Proposed an execution-batching framework that merges consecutive GUI actions when intermediate observations are unnecessary, reducing redundant visual processing and model deliberation.</p>
+    </div>
+  </article>
   <article class="timeline-item">
     <div class="timeline-date">Jul. 2024 &ndash; May 2025</div>
     <div class="timeline-content">
