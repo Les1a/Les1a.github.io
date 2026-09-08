@@ -1,24 +1,9 @@
-# Main navigation.
-# Use "/#section-id" to link to explicit heading IDs in _pages/about.md.
-# Comment out an item to hide it from the masthead.
 main:
-  - title: "Interests"
-    url: "/#research-interests"
-
-  - title: "News"
-    url: "/#news"
-
-  - title: "Publications"
-    url: "/#publications"
-
-  - title: "Research Experience"
-    url: "/#research-experience"
-
-  - title: "Professional Experience"
-    url: "/#professional-experience"
-
-  - title: "Competition"
-    url: "/#competition"
-
-  - title: "Awards"
-    url: "/#awards"
+  - title: Research
+    url: /#research
+  - title: Publications
+    url: /#publications
+  - title: Experience
+    url: /#experience
+  - title: CV
+    url: /assets/3_CV.pdf

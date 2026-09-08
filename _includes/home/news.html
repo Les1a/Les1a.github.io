@@ -1,0 +1,5 @@
+<ul class="news-list">
+{% for item in include.items %}
+  <li><time datetime="{{ item.date }}">{{ item.date | replace: '-', '.' }}</time><div>{% if item.publication %}{% assign work = site.data.publications | where: 'id', item.publication | first %}{{ item.before | escape }} <a href="#{{ work.id }}">{{ work.short_title | escape }}</a> {{ item.after | escape }}{% else %}{{ item.text | escape }}{% endif %}</div></li>
+{% endfor %}
+</ul>

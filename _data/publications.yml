@@ -1,0 +1,270 @@
+# Same-year order is editorial, not a publication date. Sources: docs/FACTS.md
+# Missing resource URLs intentionally render as clickable empty links, per owner preference.
+- id: brs-e2nerf
+  listed: false
+  short_title: BRS-E²NeRF
+  title: 'BRS-E²NeRF: Event Enhanced Neural Radiance Fields from Blurry Rolling Shutter Images'
+  authors:
+  - name: Huijiao Wang
+  - name: Kejing Xia
+  - name: Yangguang Wang
+  - name: Chi Zhang
+  - name: Mingyuan Lin
+  - name: Lei Yu
+  year: 2026
+  order: 3
+  venue: Pattern Recognition
+  status: Published
+  summary: To reconstruct sharp scenes from blurry rolling-shutter images, BRS-E²NeRF combines event-enhanced re-blurring with a double-cycle optimization scheme, jointly correcting motion blur and rolling-shutter distortion for novel-view synthesis.
+  paper_url: https://www.sciencedirect.com/science/article/abs/pii/S0031320326016109
+  code_url: ''
+  project_url: ''
+  bibtex: |
+    @article{wang2026brse2nerf,
+      title = {{BRS-E2NeRF}: Event Enhanced Neural Radiance Fields from Blurry Rolling Shutter Images},
+      author = {Huijiao Wang and Kejing Xia and Yangguang Wang and Chi Zhang and Mingyuan Lin and Lei Yu},
+      journal = {Pattern Recognition},
+      volume = {180},
+      pages = {114646},
+      year = {2026},
+      issn = {0031-3203},
+      doi = {10.1016/j.patcog.2026.114646},
+      url = {https://doi.org/10.1016/j.patcog.2026.114646}
+    }
+- id: metastate
+  short_title: MetaState
+  title: 'MetaState: Persistent Working Memory Enhances Reasoning in Discrete Diffusion Language Models'
+  authors:
+  - name: Kejing Xia
+  - name: Mingzhe Li
+  - name: Lixuan Wei
+  - name: Zhenbang Du
+  - name: Xiangchi Yuan
+  - name: Dachuan Shi
+  - name: Qirui Jin
+  - name: Wenke Lee
+  year: 2026
+  order: 1
+  venue: COLM
+  status: Published
+  summary: To preserve information between denoising steps, MetaState trains recurrent working-memory modules around a frozen diffusion language model, improving mathematical reasoning and code generation.
+  image:
+    path: /images/figure-metastate.png
+    width: 440
+    height: 280
+    alt: 'MetaState: persistent working memory across diffusion steps'
+  paper_url: https://arxiv.org/abs/2603.01331
+  code_url: https://github.com/Les1a/MetaState
+  project_url: /projects/metastate/
+  bibtex: |
+    @misc{metastate2026,
+      title = {MetaState: Persistent Working Memory Enhances Reasoning in Discrete Diffusion Language Models},
+      author = {Kejing Xia and Mingzhe Li and Lixuan Wei and Zhenbang Du and Xiangchi Yuan and Dachuan Shi and Qirui Jin and Wenke Lee},
+      year = {2026},
+      eprint = {2603.01331},
+      archivePrefix = {arXiv},
+      primaryClass = {cs.CL},
+      url = {https://arxiv.org/abs/2603.01331}
+    }
+- id: r2-dllm
+  short_title: R²-dLLM
+  title: 'R²-dLLM: Accelerating Diffusion Large Language Models via Spatio-Temporal Redundancy Reduction'
+  authors:
+  - name: Zhenbang Du
+  - name: Kejing Xia
+  - name: Xinrui Zhong
+  - name: Yonggan Fu
+  - name: Nicolai Oswald
+  - name: Binfei Ji
+  - name: Brucek Khailany
+  - name: Pavlo Molchanov
+  - name: Yingyan (Celine) Lin
+  year: 2026
+  order: 2
+  venue: arXiv
+  status: Preprint
+  summary: To reduce redundant diffusion steps, R²-dLLM combines training-free spatial and temporal decoding rules with redundancy-aware supervised fine-tuning, improving the trade-off between computation and generation quality.
+  image:
+    path: /images/figure-r2dllm.png
+    width: 880
+    height: 428
+    alt: 'R²-dLLM: decoding redundancy and efficiency comparisons'
+  paper_url: https://arxiv.org/abs/2604.18995
+  code_url: https://github.com/GATECH-EIC/R2-dLLM
+  bibtex: |
+    @misc{r2dllm2026,
+      title = {{R$^2$-dLLM}: Accelerating Diffusion Large Language Models via Spatio-Temporal Redundancy Reduction},
+      author = {Zhenbang Du and Kejing Xia and Xinrui Zhong and Yonggan Fu and Nicolai Oswald and Binfei Ji and Brucek Khailany and Pavlo Molchanov and Yingyan (Celine) Lin},
+      year = {2026},
+      eprint = {2604.18995},
+      archivePrefix = {arXiv},
+      primaryClass = {cs.CL},
+      url = {https://arxiv.org/abs/2604.18995}
+    }
+- id: longmamba
+  short_title: LongMamba
+  title: 'LongMamba: Enhancing Mamba''s Long-Context Capabilities via Training-Free Receptive Field Enlargement'
+  authors:
+  - name: Zhifan Ye
+    equal: true
+  - name: Kejing Xia
+    equal: true
+  - name: Yonggan Fu
+  - name: Xin Dong
+  - name: Jihoon Hong
+  - name: Xiangchi Yuan
+  - name: Shizhe Diao
+  - name: Jan Kautz
+  - name: Pavlo Molchanov
+  - name: Yingyan (Celine) Lin
+  author_note: '* Equal contribution.'
+  year: 2025
+  order: 3
+  venue: ICLR
+  status: Published
+  summary: To counter memory decay at long context lengths, LongMamba identifies global state channels and filters unimportant tokens, enlarging receptive fields without additional training.
+  image:
+    path: /images/figure-longmamba.jpg
+    width: 880
+    height: 399
+    alt: 'LongMamba: token filtering enlarges global-channel receptive fields'
+  paper_url: https://proceedings.iclr.cc/paper_files/paper/2025/hash/ab5d50d269e52f8eed497062311ff173-Abstract-Conference.html
+  code_url: https://github.com/GATECH-EIC/LongMamba
+  project_url: https://lemonandrabbit.github.io/
+  bibtex: |
+    @inproceedings{ICLR2025_ab5d50d2,
+     author = {Ye, Zhifan and Xia, Kejing and Fu, Yonggan and Dong, Xin and Hong, Jihoon and Yuan, Xiangchi and Diao, Shizhe and Kautz, Jan and Molchanov, Pavlo and Lin, Yingyan Celine},
+     booktitle = {International Conference on Learning Representations},
+     editor = {Y. Yue and A. Garg and N. Peng and F. Sha and R. Yu},
+     pages = {68486--68504},
+     title = {LongMamba: Enhancing Mamba\textquotesingle s Long-Context Capabilities via Training-Free Receptive Field Enlargement},
+     url = {https://proceedings.iclr.cc/paper_files/paper/2025/file/ab5d50d269e52f8eed497062311ff173-Paper-Conference.pdf},
+     volume = {2025},
+     year = {2025}
+    }
+- id: lamb
+  short_title: LAMB
+  title: 'LAMB: A Training-Free Method to Enhance the Long-Context Understanding of SSMs via Attention-Guided Token Filtering'
+  authors:
+  - name: Zhifan Ye
+  - name: Zheng Wang
+  - name: Kejing Xia
+  - name: Jihoon Hong
+  - name: Leshu Li
+  - name: Lexington Whalen
+  - name: Cheng Wan
+  - name: Yonggan Fu
+  - name: Yingyan Celine Lin
+  - name: Souvik Kundu
+  year: 2025
+  order: 4
+  venue: ACL · Main conference
+  status: Published
+  summary: By examining attention patterns in state space models, LAMB guides token filtering to preserve critical information, strengthening long-context understanding in pure and hybrid models without training.
+  image:
+    path: /images/figure-lamb.jpg
+    width: 880
+    height: 444
+    alt: 'LAMB: attention-guided token filtering for state space models'
+  paper_url: https://aclanthology.org/2025.acl-short.96/
+  code_url: https://github.com/GATECH-EIC/LAMB
+  bibtex: |
+    @inproceedings{ye-etal-2025-lamb,
+        title = "{LAMB}: A Training-Free Method to Enhance the Long-Context Understanding of {SSM}s via Attention-Guided Token Filtering",
+        author = "Ye, Zhifan  and
+          Wang, Zheng  and
+          Xia, Kejing  and
+          Hong, Jihoon  and
+          Li, Leshu  and
+          Whalen, Lexington  and
+          Wan, Cheng  and
+          Fu, Yonggan  and
+          Lin, Yingyan Celine  and
+          Kundu, Souvik",
+        editor = "Che, Wanxiang  and
+          Nabende, Joyce  and
+          Shutova, Ekaterina  and
+          Pilehvar, Mohammad Taher",
+        booktitle = "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 2: Short Papers)",
+        month = jul,
+        year = "2025",
+        address = "Vienna, Austria",
+        publisher = "Association for Computational Linguistics",
+        url = "https://aclanthology.org/2025.acl-short.96/",
+        doi = "10.18653/v1/2025.acl-short.96",
+        pages = "1200--1209",
+        ISBN = "979-8-89176-252-7"
+    }
+- id: d2gs
+  short_title: D²GS
+  title: 'D²GS: Dense Depth Regularization for LiDAR-free Urban Scene Reconstruction'
+  authors:
+  - name: Kejing Xia
+    equal: true
+  - name: Jidong Jia
+    equal: true
+  - name: Ke Jin
+  - name: Yucai Bai
+  - name: Li Sun
+  - name: Dacheng Tao
+  - name: Youjian Zhang
+    corresponding: true
+  author_note: '* Equal contribution. † Corresponding author.'
+  year: 2025
+  order: 1
+  venue: NeurIPS
+  status: Published
+  summary: To reconstruct urban scenes without LiDAR, D²GS jointly refines dense depth and Gaussian geometry using diffusion priors, with progressive point pruning and road-specific geometric constraints.
+  image:
+    path: /images/figure-d2gs.jpg
+    width: 880
+    height: 411
+    alt: 'D²GS: dense depth and urban scene reconstruction comparisons'
+  paper_url: https://proceedings.neurips.cc/paper_files/paper/2025/hash/524ff06d5375d76e93d8490e654a81bf-Abstract-Conference.html
+  project_url: /projects/d2gs/
+  bibtex: |
+    @inproceedings{NEURIPS2025_524ff06d,
+     author = {Xia, Kejing and Jia, Jidong and Jin, Ke and BAI, Yucai and Sun, Li and Tao, Dacheng and Zhang, Youjian},
+     booktitle = {Advances in Neural Information Processing Systems},
+     doi = {10.52202/085713-1905},
+     editor = {D. Belgrave and C. Zhang and H. Lin and R. Pascanu and P. Koniusz and M. Ghassemi and N. Chen},
+     pages = {56899--56927},
+     publisher = {Curran Associates, Inc.},
+     title = {D\^{}2GS: Dense Depth Regularization for LiDAR-free Urban Scene Reconstruction},
+     url = {https://proceedings.neurips.cc/paper_files/paper/2025/file/524ff06d5375d76e93d8490e654a81bf-Paper-Conference.pdf},
+     volume = {38, Main Conference},
+     year = {2025}
+    }
+- id: editor
+  short_title: EDITOR
+  title: 'EDITOR: Effective and Interpretable Prompt Inversion for Text-to-Image Diffusion Models'
+  authors:
+  - name: Mingzhe Li
+  - name: Kejing Xia
+  - name: Gehao Zhang
+  - name: Zhenting Wang
+  - name: Guanhong Tao
+  - name: Siqi Pan
+  - name: Juan Zhai
+  - name: Shiqing Ma
+  year: 2025
+  order: 2
+  venue: arXiv
+  status: Preprint
+  summary: To recover interpretable prompts from generated images, EDITOR combines caption-based initialization, latent-space optimization, and embedding-to-text conversion, balancing visual reconstruction with readable textual descriptions.
+  image:
+    path: /images/figure-editor.png
+    width: 880
+    height: 425
+    alt: 'EDITOR: interpretable prompt inversion for text-to-image generation'
+  paper_url: https://arxiv.org/abs/2506.03067v3
+  bibtex: |
+    @misc{editor2025,
+      title = {EDITOR: Effective and Interpretable Prompt Inversion for Text-to-Image Diffusion Models},
+      author = {Mingzhe Li and Kejing Xia and Gehao Zhang and Zhenting Wang and Guanhong Tao and Siqi Pan and Juan Zhai and Shiqing Ma},
+      year = {2025},
+      eprint = {2506.03067},
+      archivePrefix = {arXiv},
+      primaryClass = {cs.CV},
+      url = {https://arxiv.org/abs/2506.03067}
+    }

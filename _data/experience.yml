@@ -1,0 +1,41 @@
+research:
+- id: gtisc
+  institution: GTISC Lab, Georgia Tech
+  role: Ph.D. student
+  dates: Jan. 2026 – Present
+  description: Developed persistent working-memory augmentation for reasoning across diffusion steps.
+  works:
+  - metastate
+- id: eic
+  institution: EIC Lab, Georgia Tech
+  role: Undergraduate to Ph.D. student
+  dates: May 2024 – Feb. 2026
+  description: Studied efficient diffusion decoding and long-context memory retention in state space models, including redundancy-aware decoding, soft token interpolation, and token filtering.
+  works:
+  - r2-dllm
+  - longmamba
+  - lamb
+- id: wuhan-research
+  institution: Signal Processing Lab, Wuhan University
+  role: Undergraduate student
+  dates: Oct. 2023 – Apr. 2024
+  description: Developed an event-and-RGB pipeline for BRS-E²NeRF, jointly addressing rolling-shutter distortion and motion blur for sharp 3D reconstruction and novel-view synthesis.
+  works:
+  - brs-e2nerf
+- id: oulu
+  institution: CMVS, University of Oulu
+  dates: 2023 – 2024
+  description: Research on event-based human behavior analysis using spatio-temporal transformers, presented at the IJCAI 2024 MiGA Workshop.
+industry:
+- id: zoom
+  institution: Zoom Communications, Inc. · AI Incubation
+  role: Research Intern
+  dates: May 2026 – Aug. 2026
+  description: 'Native Action Merging for Efficient Computer-Use Agents: an execution-batching framework that merges consecutive GUI actions when intermediate observations are unnecessary, reducing repeated visual processing and model deliberation.'
+- id: bosch
+  institution: Bosch Research & Innovation Software Development Co., Ltd.
+  role: Research Intern
+  dates: Jul. 2024 – May 2025
+  description: Co-optimized diffusion-based depth generation and 3D Gaussian Splatting for LiDAR-free urban reconstruction. Worked on road-specific geometric constraints and benchmarking on Waymo.
+  works:
+  - d2gs

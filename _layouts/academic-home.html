@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>{% include home/head.html %}</head>
+  <body class="academic-home">
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="home-header">
+      <nav class="home-container home-nav" aria-label="Main navigation">
+        <a class="home-brand" href="{{ '/#about' | relative_url }}">{{ site.name }}</a>
+        <ul>{% for link in site.data.navigation.main %}<li><a href="{{ link.url | relative_url }}">{{ link.title }}</a></li>{% endfor %}</ul>
+      </nav>
+    </header>
+    <main id="main" class="home-container" tabindex="-1">{{ content }}</main>
+    <footer class="home-footer">
+      <div class="home-container footer-inner">
+        <div><a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a><span class="footer-separator" aria-hidden="true">/</span><a href="https://github.com/{{ site.author.github }}">GitHub</a><span class="footer-separator" aria-hidden="true">/</span><a href="https://www.linkedin.com/in/{{ site.author.linkedin }}/">LinkedIn</a></div>
+        <p>Updated <time datetime="{{ site.data.home.updated }}">{{ site.data.home.updated | date: '%B, %Y' }}</time></p>
+        <p class="footer-credit">&copy; {{ site.time | date: '%Y' }} {{ site.name }}. Built with <a href="https://jekyllrb.com/">Jekyll</a> &amp; <a href="https://github.com/academicpages/academicpages.github.io">AcademicPages</a>.</p>
+      </div>
+    </footer>
+    <script src="{{ '/assets/js/academic-home.js' | relative_url }}" defer></script>
+  </body>
+</html>

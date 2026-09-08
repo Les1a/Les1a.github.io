@@ -1,0 +1,12 @@
+<div class="experience-list">
+{% for item in include.items %}
+  <article id="{{ item.id }}" class="experience-item">
+    <div class="experience-heading">
+      <div><h4>{{ item.institution | escape }}</h4>{% if item.role %}<p class="experience-role">{{ item.role | escape }}</p>{% endif %}</div>
+      <p class="experience-date">{{ item.dates | escape }}</p>
+    </div>
+    <p>{{ item.description | escape }}</p>
+    {% if item.works %}<div class="experience-works">{% for id in item.works %}{% assign work = site.data.publications | where: 'id', id | first %}<a href="{% if work.listed == false %}{{ work.paper_url | escape }}{% else %}#{{ work.id }}{% endif %}">{{ work.short_title | escape }}</a>{% endfor %}</div>{% endif %}
+  </article>
+{% endfor %}
+</div>

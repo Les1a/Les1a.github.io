@@ -1,0 +1,35 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ page.title | escape }}</title>
+<meta name="description" content="{{ page.description | escape }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="{{ site.name | escape }}">
+<meta property="og:title" content="{{ page.title | escape }}">
+<meta property="og:description" content="{{ page.description | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ '/images/profile.jpg' | absolute_url }}">
+<meta property="og:image:width" content="800">
+<meta property="og:image:height" content="1067">
+<meta property="og:image:alt" content="Kejing Xia">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#fcfcfa">
+<link rel="icon" href="{{ '/images/favicon.ico' | relative_url }}" sizes="any">
+<link rel="preload" href="{{ '/assets/fonts/inter-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ '/assets/fonts/source-serif-4-latin.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{{ '/assets/css/academic-home.css' | relative_url }}">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ site.name | jsonify }},
+  "alternateName": "夏可敬",
+  "url": {{ '/' | absolute_url | jsonify }},
+  "image": {{ '/images/profile.jpg' | absolute_url | jsonify }},
+  "jobTitle": "Computer Science Ph.D. student",
+  "affiliation": {"@type": "CollegeOrUniversity", "name": "Georgia Institute of Technology"},
+  "email": {{ site.author.email | prepend: 'mailto:' | jsonify }},
+  "sameAs": [{{ site.author.googlescholar | jsonify }}, {{ site.author.github | prepend: 'https://github.com/' | jsonify }}, {{ site.author.linkedin | prepend: 'https://www.linkedin.com/in/' | append: '/' | jsonify }}]
+}
+</script>

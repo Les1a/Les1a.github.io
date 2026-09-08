@@ -1,0 +1,5 @@
+<ul class="honors-list">
+{% for item in include.items %}
+  <li><div><strong>{{ item.title | escape }}</strong>{% if item.detail %}<span>{{ item.detail | escape }}</span>{% endif %}</div><span class="honor-date">{{ item.dates | escape }}</span></li>
+{% endfor %}
+</ul>

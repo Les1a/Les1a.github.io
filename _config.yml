@@ -99,6 +99,10 @@ exclude:
   - package.json
   - tmp
   - vendor
+  - docs
+  - tests
+  - README.md
+  - CONTRIBUTING.md
 keep_files:
   - .git
   - .svn

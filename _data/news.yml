@@ -1,0 +1,33 @@
+- date: '2026-07'
+  publication: metastate
+  before: ''
+  after: was accepted at COLM 2026.
+- date: 2026-04
+  publication: r2-dllm
+  before: Our preprint
+  after: is available on arXiv, studying spatio-temporal redundancy in diffusion decoding.
+- date: 2026-03
+  publication: metastate
+  before: Our preprint
+  after: is available on arXiv, introducing persistent working memory for diffusion language models.
+- date: 2025-09
+  publication: d2gs
+  before: ''
+  after: was accepted at NeurIPS 2025.
+- date: 2025-05
+  publication: lamb
+  before: ''
+  after: was accepted at ACL 2025.
+- date: 2025-02
+  publication: longmamba
+  before: ''
+  after: was accepted at ICLR 2025.
+- date: 2024-06
+  archived: true
+  text: Our paper “A Spatio-temporal Event Transformer on Versatile Tasks for Human Behavior Analysis” was accepted at the IJCAI 2024 MiGA Workshop.
+- date: 2024-05
+  archived: true
+  text: Our RoboCup China Open team won National Second Prize, placing fifth (top 9%). I served as team leader.
+- date: 2023-11
+  archived: true
+  text: I received Hubei Province First Prize in the China Undergraduate Mathematical Contest in Modeling.

@@ -1,0 +1,28 @@
+{% assign pub = include.publication %}
+<article id="{{ pub.id }}" class="publication{% unless pub.image %} publication-text-only{% endunless %}" aria-labelledby="{{ pub.id }}-title">
+  {% if pub.image %}
+  <a class="publication-image" href="{{ pub.paper_url }}" tabindex="-1" aria-hidden="true">
+    <img src="{{ pub.image.path | relative_url }}" alt="{{ pub.image.alt | escape }}" width="{{ pub.image.width }}" height="{{ pub.image.height }}" loading="lazy" decoding="async">
+  </a>
+  {% endif %}
+  <div class="publication-content">
+    <h3 id="{{ pub.id }}-title"><a href="{{ pub.paper_url }}">{{ pub.title | escape }}</a></h3>
+    <p class="publication-meta"><span>{{ pub.venue | escape }} · {{ pub.year }}</span></p>
+    <p class="publication-summary">{{ pub.summary | escape }}</p>
+    <div class="publication-resources">
+      <a href="{{ pub.paper_url }}">{% include home/icon.html name='paper' %}Paper<span class="sr-only">: {{ pub.short_title }}</span></a>
+      <a href="{{ pub.code_url }}">{% include home/icon.html name='code' %}Code<span class="sr-only">: {{ pub.short_title }}</span></a>
+      <a href="{% if pub.project_url and pub.project_url != '' %}{% if pub.project_url contains '://' %}{{ pub.project_url }}{% else %}{{ pub.project_url | relative_url }}{% endif %}{% endif %}">{% include home/icon.html name='project' %}Project<span class="sr-only">: {{ pub.short_title }}</span></a>
+      {% if pub.bibtex %}
+      <details class="citation">
+        <summary>BibTeX<span class="sr-only">: {{ pub.short_title }}</span></summary>
+        <div class="citation-body">
+          <pre><code>{{ pub.bibtex | escape }}</code></pre>
+          <button class="copy-citation" type="button" hidden aria-label="Copy BibTeX for {{ pub.short_title }}">Copy BibTeX</button>
+          <span class="copy-status" role="status"></span>
+        </div>
+      </details>
+      {% endif %}
+    </div>
+  </div>
+</article>
