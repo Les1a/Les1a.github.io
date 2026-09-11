@@ -221,6 +221,7 @@
     height: 411
     alt: 'D²GS: dense depth and urban scene reconstruction comparisons'
   paper_url: https://proceedings.neurips.cc/paper_files/paper/2025/hash/524ff06d5375d76e93d8490e654a81bf-Abstract-Conference.html
+  code_url: https://github.com/Les1a/D2GS
   project_url: /projects/d2gs/
   bibtex: |
     @inproceedings{NEURIPS2025_524ff06d,
