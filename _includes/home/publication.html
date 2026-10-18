@@ -6,9 +6,10 @@
   </a>
   {% endif %}
   <div class="publication-content">
-    <h3 id="{{ pub.id }}-title"><a href="{{ pub.paper_url }}">{{ pub.title | escape }}</a></h3>
-    <p class="publication-meta"><span>{{ pub.venue | escape }} · {{ pub.year }}</span></p>
+    <h3 id="{{ pub.id }}-title">{% if pub.paper_url and pub.paper_url != '' %}<a href="{{ pub.paper_url }}">{{ pub.title | escape }}</a>{% else %}{{ pub.title | escape }}{% endif %}</h3>
+    <p class="publication-meta{% if pub.status != 'Published' %} is-preprint{% endif %}"><span class="publication-venue">{{ pub.venue | escape }}</span> · <span class="publication-meta-year">{{ pub.year }}</span></p>
     <p class="publication-summary">{{ pub.summary | escape }}</p>
+    {% unless pub.status == 'Under review' %}
     <div class="publication-resources">
       <a href="{{ pub.paper_url }}">{% include home/icon.html name='paper' %}Paper<span class="sr-only">: {{ pub.short_title }}</span></a>
       <a href="{{ pub.code_url }}">{% include home/icon.html name='code' %}Code<span class="sr-only">: {{ pub.short_title }}</span></a>
@@ -24,5 +25,6 @@
       </details>
       {% endif %}
     </div>
+    {% endunless %}
   </div>
 </article>

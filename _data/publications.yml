@@ -101,6 +101,71 @@
       primaryClass = {cs.CL},
       url = {https://arxiv.org/abs/2604.18995}
     }
+- id: sourcelearn
+  short_title: SourceLearn
+  title: 'From Knowledge Access to Source Learning: Developing Source-Specific Competence'
+  authors:
+  - name: Lucheng Fu
+  - name: Kejing Xia
+  - name: Yiyang Wang
+  - name: Yiqiao Jin
+  - name: Jinjin He
+  - name: Xiyuan Yang
+  - name: Haoxin Liu
+  - name: Ye Yu
+  - name: Haibo Jin
+  - name: Yijia Xiao
+  - name: Wenke Lee
+  - name: B. Aditya Prakash
+  - name: Haohan Wang
+  year: 2026
+  order: 3
+  venue: arXiv
+  status: Preprint
+  summary: To turn repeated use of a persistent source into lasting understanding, SourceLearn builds a source model through self-directed study and task-guided refinement, beating Hybrid RAG and memory baselines in most settings.
+  image:
+    path: /images/figure-sourcelearn.jpg
+    width: 880
+    height: 526
+    alt: 'SourceLearn: self-directed and task-guided learning of a persistent source model'
+  paper_url: https://arxiv.org/abs/2610.02150
+  code_url: https://github.com/luchengfu6/SourceLearn
+  project_url: https://sourcelearn.github.io/
+  bibtex: |
+    @misc{sourcelearn2026,
+      title = {From Knowledge Access to Source Learning: Developing Source-Specific Competence},
+      author = {Lucheng Fu and Kejing Xia and Yiyang Wang and Yiqiao Jin and Jinjin He and Xiyuan Yang and Haoxin Liu and Ye Yu and Haibo Jin and Yijia Xiao and Wenke Lee and B. Aditya Prakash and Haohan Wang},
+      year = {2026},
+      eprint = {2610.02150},
+      archivePrefix = {arXiv},
+      primaryClass = {cs.CL},
+      url = {https://arxiv.org/abs/2610.02150}
+    }
+- id: lookagain-cua
+  # Under review with no public version yet: shown in the Under Review section, without resource links.
+  # Authors, BibTeX and links are added (and status changed) once a public record exists.
+  short_title: LookAgain-CUA
+  title: 'When to Look Again: Learning Observation Boundaries for Efficient Computer-Use Agents'
+  year: 2026
+  order: 1
+  venue: ACL ARR
+  status: Under review
+  summary: To avoid re-reading the screen after every GUI action, LookAgain-CUA learns observation boundaries from multi-action supervision and cost-aware RL, improving both task success and efficiency on OSWorld.
+  paper_url: ''
+  code_url: ''
+  project_url: ''
+- id: rot
+  # Under review with no public version yet: shown in the Under Review section, without resource links.
+  short_title: RoT
+  title: 'Rhythm of Thought: Progress-Aware Latent Reasoning via Reinforcement Learning'
+  year: 2026
+  order: 2
+  venue: ACL ARR
+  status: Under review
+  summary: To make latent reasoning aware of its own progress, RoT, an RL-trained framework, predicts a Gaussian over reasoning progress at each decoding step and turns it into an uncertainty-calibrated phase signal that modulates decoder layers.
+  paper_url: ''
+  code_url: ''
+  project_url: ''
 - id: longmamba
   short_title: LongMamba
   title: 'LongMamba: Enhancing Mamba''s Long-Context Capabilities via Training-Free Receptive Field Enlargement'

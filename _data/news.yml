@@ -1,3 +1,7 @@
+- date: '2026-10'
+  publication: sourcelearn
+  before: Our preprint
+  after: is available on arXiv, studying how LLM agents build reusable competence over a persistent source.
 - date: '2026-07'
   publication: metastate
   before: ''

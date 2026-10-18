@@ -39,13 +39,17 @@ bundle exec jekyll serve --host 127.0.0.1 --port 4000
 
 新闻可用 `publication: metastate` 这样的 ID，配合 `before` / `after`；论文短名和跳转自动从论文数据取得。普通旧新闻使用 `text`。新闻日期写带引号的 `YYYY-MM`，首次 arXiv 发布月不等于会议录用月。当前从 2026.07 MetaState 录用新闻显示到 2025.02 LongMamba；更早三条加 `archived: true`。今后新新闻默认显示，不会自动挤掉 LongMamba。需收起某条时再显式加归档字段。
 
-经历的 `works` 接受论文 ID 列表。只在经历中关联、无需在 Publications 展示的工作，可在论文数据中设置 `listed: false`；经历链接将直接指向该论文的 `paper_url`。BRS-E²NeRF 当前采用这一设置，已核实的书目信息仍集中保留在数据文件中。没有可核实职务时省略 `role`，不从实验室或公司名称推断访问、雇佣或实习身份。更新结束日期时核实实际状态，不能只根据当前日历推算。
+经历的 `works` 接受论文 ID 列表。尚无公开版本的投稿（如 ACL ARR 审稿中的论文）同样记录在 `publications.yml`，设 `status: Under review`，`venue` 写投稿去向（如 `ACL ARR`），`order` 决定其在审稿列表中的顺序。这类论文不进入 Publications，而是显示在其下方单独的 Under Review 区块：标题不加链接，不显示 Paper / Code / Project 和 BibTeX，作者和 BibTeX 暂不填写。公开后补齐地址、作者与 BibTeX，并把 `status` 改为 `Preprint` 或 `Published`，论文会自动移回 Publications。经历中的 `works` 可以引用这些论文 ID，方块会跳到 Under Review 中的条目。只在经历中关联、无需在 Publications 展示的工作，可在论文数据中设置 `listed: false`；经历链接将直接指向该论文的 `paper_url`。BRS-E²NeRF 当前采用这一设置，已核实的书目信息仍集中保留在数据文件中。没有可核实职务时省略 `role`，不从实验室或公司名称推断访问、雇佣或实习身份。更新结束日期时核实实际状态，不能只根据当前日历推算。
 
 ## 页面结构与验证
 
 首页使用 `_layouts/academic-home.html`、`_includes/home/`、`assets/css/academic-home.css` 和很小的 `assets/js/academic-home.js`。首页 CSS 限定在 `.academic-home`。原 AcademicPages 样式保存在 `academic-legacy.css`，供 404 等旧布局使用。两个项目页保留独立资源。线性图标集中在 `_includes/home/icon.html`，使用内联 SVG，无需外部图标库。
 
-Inter 与 Source Serif 4 的 Latin WOFF2 字体随站点托管，字体加载失败时有系统回退。许可证位于 `assets/fonts/*-OFL.txt`。中文姓名使用系统中文衬线字体。
+视觉系统取自 masked diffusion 解码：虚线灰框是未揭开的 token，浅蓝框是已揭开的 token。论文、经历中的作品链接用浅蓝 token 样式；会议名前的小方块实线表示已发表，虚线表示预印本或审稿中（取自 `status`）。配色变量集中在 `academic-home.css` 顶部，深色模式跟随系统设置。桌面端左栏为吸附的 section 标题，中栏为正文，右栏统一放头像、论文配图和日期。
+
+首屏姓名的解码动画只用 CSS 实现：`_pages/about.md` 中 H1 的每个 `.tok` 是一个 token，`--s` 是它被揭开的步数（不按从左到右的顺序）。H1 必须写在一行内，文本内容保持 `Kejing Xia 夏可敬`。系统开启“减少动态效果”或打印时直接显示最终文字。
+
+Literata（标题与正文）和 Hanken Grotesk（导航、日期与元信息）的 Latin WOFF2 子集随站点托管；中文姓名使用 Noto Serif SC 仅含“夏可敬”三字的子集 `noto-serif-sc-name.woff2`，若修改中文名需重新生成该子集，否则自动回退到系统中文衬线字体。字体加载失败时均有系统回退。许可证位于 `assets/fonts/*-OFL.txt`。
 
 人工检查 1440 / 1024 / 768 / 390 / 360 px，重点检查首屏学校信息、长标题、图片和展开的 BibTeX，以及键盘、直接 hash、返回和刷新。已有可重复的浏览器验证脚本：
 

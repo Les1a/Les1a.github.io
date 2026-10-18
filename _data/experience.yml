@@ -3,9 +3,11 @@ research:
   institution: GTISC Lab, Georgia Tech
   role: Ph.D. student
   dates: Jan. 2026 – Present
-  description: Developed persistent working-memory augmentation for reasoning across diffusion steps.
+  description: Developed persistent working-memory augmentation (MetaState) for reasoning across diffusion steps. Proposed an RL-trained latent reasoning framework (RoT) that modulates decoder layers with an uncertainty-aware estimate of reasoning progress. Contributed to a source-learning framework (SourceLearn) that builds reusable, source-specific competence for LLM agents.
   works:
   - metastate
+  - rot
+  - sourcelearn
 - id: eic
   institution: EIC Lab, Georgia Tech
   role: Undergraduate to Ph.D. student
@@ -31,7 +33,9 @@ industry:
   institution: Zoom Communications, Inc. · AI Incubation
   role: Research Intern
   dates: May 2026 – Aug. 2026
-  description: 'Native Action Merging for Efficient Computer-Use Agents: an execution-batching framework that merges consecutive GUI actions when intermediate observations are unnecessary, reducing repeated visual processing and model deliberation.'
+  description: Trained computer-use agents to learn observation boundaries and execute several GUI actions per model call, using multi-action supervision and cost-aware RL to improve both task success and efficiency on OSWorld.
+  works:
+  - lookagain-cua
 - id: bosch
   institution: Bosch Research & Innovation Software Development Co., Ltd.
   role: Research Intern

@@ -22,4 +22,21 @@
     img.addEventListener('error', removeFigure, { once: true });
     if (img.complete && !img.naturalWidth) removeFigure();
   });
+
+  /* Header: show the rule once the page scrolls and reveal the name once the hero title has
+     scrolled away. Without JavaScript the header keeps its rule and name. */
+  const header = document.querySelector('.home-header');
+  if (!header || !('IntersectionObserver' in window)) return;
+  header.classList.add('is-enhanced');
+  const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 4);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  const title = document.getElementById('home-title');
+  if (!title) {
+    header.classList.add('is-past-hero');
+    return;
+  }
+  new IntersectionObserver(([entry]) => {
+    header.classList.toggle('is-past-hero', !entry.isIntersecting);
+  }, { rootMargin: `-${header.offsetHeight}px 0px 0px 0px` }).observe(title);
 })();

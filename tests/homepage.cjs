@@ -8,6 +8,8 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const publications = JSON.parse(execFileSync('ruby', ['-rjson', '-ryaml', '-e', 'puts JSON.generate(YAML.load_file("_data/publications.yml"))'], { encoding: 'utf8' })).filter(pub => pub.listed !== false);
 const paperCount = publications.length;
+const news = JSON.parse(execFileSync('ruby', ['-rjson', '-ryaml', '-e', 'puts JSON.generate(YAML.load_file("_data/news.yml"))'], { encoding: 'utf8' }));
+const recentNewsData = news.filter(item => item.archived !== true);
 for (const id of ['metastate','r2-dllm','longmamba','lamb','d2gs','editor']) assert.ok(publications.some(p => p.id === id), 'Preserve original work: ' + id);
 const base = process.env.HOMEPAGE_URL || 'http://127.0.0.1:4000';
 const out = path.resolve('tmp/homepage-review');
@@ -78,8 +80,8 @@ async function anchorVisible(page, id) {
     check('all papers without author rows ' + width, audit.papers === paperCount && audit.authorRows === 0);
     check('empty links limited to requested publication resources ' + width, audit.unexpectedEmptyLinks === 0);
     check('images ' + width, audit.images.length === 1 + publications.filter(p => p.image).length && audit.images.every(i => i.naturalWidth > 0 && i.width > 60));
-    check('both local fonts loaded ' + width, audit.fonts.some(f => f.family === 'Inter') && audit.fonts.some(f => f.family === '"Source Serif 4"' || f.family === 'Source Serif 4'));
-    check('portrait ratio ' + width, Math.abs(audit.images[0].width / audit.images[0].height - 800 / 1067) < .01);
+    check('both local fonts loaded ' + width, audit.fonts.some(f => f.family === 'Literata' || f.family === '"Literata"') && audit.fonts.some(f => f.family === '"Hanken Grotesk"' || f.family === 'Hanken Grotesk'));
+    check('portrait ratio ' + width, Math.abs(audit.images[0].width / audit.images[0].height - audit.images[0].naturalWidth / audit.images[0].naturalHeight) < .01);
     if (width === 1440) check('first paper title visible within desktop first screen', firstPaperTop < height, firstPaperTop);
     const screenshotName = width === 1440 ? 'desktop' : width === 390 ? 'mobile' : 'viewport-' + width;
     await page.screenshot({ path: path.join(out, screenshotName + '-top.png') });
@@ -147,7 +149,8 @@ async function anchorVisible(page, id) {
   check('2025 editorial order', revisionAudit.papers2025.join(',') === 'd2gs,editor,longmamba,lamb', revisionAudit.papers2025);
   check('no Selected labels', revisionAudit.selectedLabels === 0);
   check('institutional eyebrow', revisionAudit.eyebrow === 'Georgia Institute of Technology · GTISC Lab · Atlanta');
-  check('recent news through LongMamba', revisionAudit.recentNews.length === 6 && revisionAudit.recentNews[0].includes('2026.07') && revisionAudit.recentNews[0].includes('was accepted at COLM 2026') && revisionAudit.recentNews[5].includes('LongMamba') && revisionAudit.archivedNews === 3, revisionAudit.recentNews);
+  // Recent news follows _data/news.yml: newest first, through LongMamba; archived items stay folded.
+  check('recent news through LongMamba', revisionAudit.recentNews.length === recentNewsData.length && revisionAudit.recentNews[0].includes(String(recentNewsData[0].date).replace('-', '.')) && revisionAudit.recentNews.some(t => t.includes('2026.07') && t.includes('was accepted at COLM 2026')) && revisionAudit.recentNews[revisionAudit.recentNews.length - 1].includes('LongMamba') && revisionAudit.archivedNews === news.length - recentNewsData.length, revisionAudit.recentNews);
   check('EDITOR removed from GTISC', !revisionAudit.gtisc.includes('EDITOR') && !revisionAudit.gtisc.includes('prompt inversion'));
   check('industry roles', revisionAudit.industryRoles.every(role => role === 'Research Intern'));
   check('BRS linked directly from Wuhan', revisionAudit.wuhanLink === 'https://www.sciencedirect.com/science/article/abs/pii/S0031320326016109');
@@ -164,11 +167,18 @@ async function anchorVisible(page, id) {
   check('single metadata set', metadata.titleCount === 1 && metadata.descriptionCount === 1 && metadata.canonicalCount === 1 && metadata.ogTitleCount === 1 && metadata.person['@type'] === 'Person');
   report.metadata = metadata;
   for (const pub of publications) {
+    if (pub.status === 'Under review') {
+      // Submissions without a public version sit in their own section, with no resource links.
+      check('under review placement ' + pub.id, await page.locator('#under-review #' + pub.id).count() === 1 && await page.locator('#' + pub.id + ' .publication-resources').count() === 0);
+      check('venue and year without status ' + pub.id, (await page.locator('#' + pub.id + ' .publication-meta').textContent()).trim() === pub.venue + ' · ' + pub.year);
+      continue;
+    }
     for (const [label, field] of [['Paper','paper_url'],['Code','code_url'],['Project','project_url']]) {
       const resource = page.locator('#' + pub.id + ' .publication-resources').getByRole('link', { name: label + ' : ' + pub.short_title, exact: true });
       check('resource entry ' + pub.id + ' / ' + label, await resource.count() === 1 && await resource.getAttribute('href') === (pub[field] || ''));
     }
-    check('citation retains author information ' + pub.id, /author\s*=/i.test(await page.locator('#' + pub.id + ' code').textContent()));
+    // Papers under review have no public record yet, so they carry no BibTeX.
+    if (pub.bibtex) check('citation retains author information ' + pub.id, /author\s*=/i.test(await page.locator('#' + pub.id + ' code').textContent()));
     check('venue and year without status ' + pub.id, (await page.locator('#' + pub.id + ' .publication-meta').textContent()).trim() === pub.venue + ' · ' + pub.year);
   }
   const resources = await page.evaluate(() => [...new Set([
@@ -238,7 +248,9 @@ async function anchorVisible(page, id) {
     return c[0]*.2126+c[1]*.7152+c[2]*.0722;
   };
   report.contrast = {};
-  for (const [name,fg,bg] of [['body','172b3a','fcfcfa'],['secondary','5e6874','fcfcfa'],['link','174b70','fcfcfa'],['gold','80652d','fcfcfa'],['primary','ffffff','174b70']]) {
+  // Light and dark (prefers-color-scheme) tokens from academic-home.css, including text on the pale "token" fill.
+  for (const [name,fg,bg] of [['body','142034','ffffff'],['secondary','4a576b','ffffff'],['tertiary','5f6c80','ffffff'],['link','1f46b5','ffffff'],['accent','8a5600','ffffff'],['token link','1f46b5','e1e9fb'],['code','142034','f3f5f9'],
+    ['dark body','e8edf4','0e1520'],['dark secondary','a9b4c3','0e1520'],['dark tertiary','8f9bad','0e1520'],['dark link','a8c0ff','0e1520'],['dark token link','a8c0ff','1f2f52']]) {
     const a=luminance(fg),b=luminance(bg),ratio=(Math.max(a,b)+.05)/(Math.min(a,b)+.05);
     report.contrast[name]=Number(ratio.toFixed(2)); check('contrast '+name,ratio>=4.5);
   }
