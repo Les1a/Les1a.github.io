@@ -1,18 +1,19 @@
-# Same-year order is editorial, not a publication date. Sources: docs/FACTS.md
-# Missing resource URLs intentionally render as clickable empty links, per owner preference.
 - id: brs-e2nerf
   listed: false
   short_title: BRS-E²NeRF
   title: 'BRS-E²NeRF: Event Enhanced Neural Radiance Fields from Blurry Rolling Shutter Images'
   authors:
   - name: Huijiao Wang
+    equal: true
   - name: Kejing Xia
+    equal: true
   - name: Yangguang Wang
   - name: Chi Zhang
   - name: Mingyuan Lin
   - name: Lei Yu
   year: 2026
   order: 3
+  author_note: '* Equal contribution.'
   venue: Pattern Recognition
   status: Published
   summary: To reconstruct sharp scenes from blurry rolling-shutter images, BRS-E²NeRF combines event-enhanced re-blurring with a double-cycle optimization scheme, jointly correcting motion blur and rolling-shutter distortion for novel-view synthesis.
@@ -142,8 +143,6 @@
       url = {https://arxiv.org/abs/2610.02150}
     }
 - id: lookagain-cua
-  # Under review with no public version yet: shown in the Under Review section, without resource links.
-  # Authors, BibTeX and links are added (and status changed) once a public record exists.
   short_title: LookAgain-CUA
   title: 'When to Look Again: Learning Observation Boundaries for Efficient Computer-Use Agents'
   year: 2026
@@ -155,14 +154,45 @@
   code_url: ''
   project_url: ''
 - id: rot
-  # Under review with no public version yet: shown in the Under Review section, without resource links.
   short_title: RoT
   title: 'Rhythm of Thought: Progress-Aware Latent Reasoning via Reinforcement Learning'
+  authors:
+  - name: Kejing Xia
+  - name: Lixuan Wei
+  - name: Mingzhe Li
+  - name: Dachuan Shi
+  - name: Xiangchi Yuan
+  - name: Zhenbang Du
+  - name: Qirui Jin
+  - name: Wenke Lee
   year: 2026
   order: 2
   venue: ACL ARR
   status: Under review
   summary: To make latent reasoning aware of its own progress, RoT, an RL-trained framework, predicts a Gaussian over reasoning progress at each decoding step and turns it into an uncertainty-calibrated phase signal that modulates decoder layers.
+  paper_url: ''
+  code_url: ''
+  project_url: ''
+- id: gevol
+  short_title: GEvol
+  title: 'GEvol: Graph-Guided Benchmark Evolution for Terminal Agents'
+  authors:
+  - name: Zhenbang Du
+  - name: Kejing Xia
+  - name: Junyu Zhang
+  - name: Shenglong Yao
+  - name: Zhiyi Shi
+  - name: Zhiwei Zheng
+  - name: Jun Luo
+  - name: Xiangchi Yuan
+  - name: Dachuan Shi
+  - name: Qirui Jin
+  - name: Wenke Lee
+  year: 2026
+  order: 3
+  venue: ACL ARR
+  status: Under review
+  summary: To keep terminal-agent benchmarks challenging, GEvol models task dependencies as graphs to guide executable edits, preserving original goals and verifiers. Joint validation and independent execution feedback help construct harder tasks on Terminal-Bench 1.0 and 2.1.
   paper_url: ''
   code_url: ''
   project_url: ''
@@ -223,7 +253,7 @@
   - name: Souvik Kundu
   year: 2025
   order: 4
-  venue: ACL Main
+  venue: ACL (Short Papers)
   status: Published
   summary: By examining attention patterns in state space models, LAMB guides token filtering to preserve critical information, strengthening long-context understanding in pure and hybrid models without training.
   image:

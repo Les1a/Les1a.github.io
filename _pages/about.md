@@ -33,7 +33,7 @@ redirect_from:
   <h2 id="research-heading">Research</h2>
   <div class="research-grid">
     <article>
-      <h3>Ex- and Implicit Reasoning</h3>
+      <h3>Explicit and Implicit Reasoning</h3>
       <p>I study how language models reason, spanning explicit reasoning steps, implicit representations, and the use of memory.</p>
       <div class="research-links"><a href="#metastate">MetaState <span aria-hidden="true">↗</span></a><a href="https://github.com/Les1a/SoftTokenForMaskedDLM">Soft Token <span aria-hidden="true">↗</span></a><a href="#rot">RoT <span aria-hidden="true">↗</span></a></div>
     </article>
@@ -45,7 +45,7 @@ redirect_from:
     <article>
       <h3>Language Model Agents</h3>
       <p>I study language model agents that reason, act, and interact with their environments, aiming to make them more capable and reliable across tasks.</p>
-      <div class="research-links"><a href="#sourcelearn">SourceLearn <span aria-hidden="true">↗</span></a><a href="#lookagain-cua">LookAgain-CUA <span aria-hidden="true">↗</span></a></div>
+      <div class="research-links"><a href="#sourcelearn">SourceLearn <span aria-hidden="true">↗</span></a><a href="#lookagain-cua">LookAgain-CUA <span aria-hidden="true">↗</span></a><a href="#gevol">GEvol <span aria-hidden="true">↗</span></a></div>
     </article>
   </div>
 </section>
@@ -91,7 +91,7 @@ redirect_from:
   <h2 id="education-heading">Education</h2>
   <div class="education-list">
     {% for item in site.data.home.education %}
-    <article><div class="experience-heading"><h3>{{ item.institution | escape }}</h3><p class="experience-date">{{ item.dates | escape }}</p></div><p>{{ item.degree | escape }}</p></article>
+    <article><div class="experience-heading"><h3>{{ item.institution | escape }}</h3><p class="experience-date">{{ item.dates | escape }}</p></div><p>{{ item.degree | escape }}</p>{% if item.note %}<p>{{ item.note | escape }}</p>{% endif %}</article>
     {% endfor %}
   </div>
   <details class="earlier-details"><summary>Earlier background</summary><p>I studied at the <a href="https://www.hzsdyfz.com.cn/about.html">No. 1 Middle School Affiliated to Central China Normal University</a>.</p></details>

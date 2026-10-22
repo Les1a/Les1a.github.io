@@ -1,6 +1,4 @@
-/* Run against bundle exec jekyll serve. Requires Playwright + an installed Edge.
- * Output is excluded from the public Jekyll build. No production dependencies.
- */
+/* Run against a local Jekyll server. Reports are written to tmp/. */
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -32,7 +30,7 @@ async function anchorVisible(page, id) {
   }), id);
 }
 (async () => {
-  const browser = await chromium.launch({ headless: true, channel: process.env.BROWSER_CHANNEL || 'msedge' });
+  const browser = await chromium.launch({ headless: true, ...(process.env.BROWSER_CHANNEL ? { channel: process.env.BROWSER_CHANNEL } : {}) });
   report.browser = browser.version();
   const context = await browser.newContext({ permissions: ['clipboard-read', 'clipboard-write'] });
   await context.addInitScript(() => {
@@ -78,7 +76,7 @@ async function anchorVisible(page, id) {
     check('viewport ' + width, !audit.overflow && !audit.overflowElements.length, audit.overflowElements);
     check('one H1 ' + width, audit.h1.length === 1 && audit.h1[0].trim() === 'Kejing Xia 夏可敬');
     check('all papers without author rows ' + width, audit.papers === paperCount && audit.authorRows === 0);
-    check('empty links limited to requested publication resources ' + width, audit.unexpectedEmptyLinks === 0);
+    check('empty links limited to configured publication resources ' + width, audit.unexpectedEmptyLinks === 0);
     check('images ' + width, audit.images.length === 1 + publications.filter(p => p.image).length && audit.images.every(i => i.naturalWidth > 0 && i.width > 60));
     check('both local fonts loaded ' + width, audit.fonts.some(f => f.family === 'Literata' || f.family === '"Literata"') && audit.fonts.some(f => f.family === '"Hanken Grotesk"' || f.family === 'Hanken Grotesk'));
     check('portrait ratio ' + width, Math.abs(audit.images[0].width / audit.images[0].height - audit.images[0].naturalWidth / audit.images[0].naturalHeight) < .01);
@@ -135,7 +133,7 @@ async function anchorVisible(page, id) {
     await page.keyboard.press('Enter');
     check('keyboard earlier content', await detail.getAttribute('open') !== null);
   }
-  const revisionAudit = await page.evaluate(() => ({
+  const contentAudit = await page.evaluate(() => ({
     papers2025: [...[...document.querySelectorAll('.publication-year-group')].find(g => g.querySelector('.publication-year').textContent.trim() === '2025').querySelectorAll('.publication')].map(e => e.id),
     selectedLabels: document.querySelectorAll('.selected-label').length,
     eyebrow: document.querySelector('.eyebrow').textContent.trim(),
@@ -146,17 +144,17 @@ async function anchorVisible(page, id) {
     wuhanLink: document.querySelector('#wuhan-research .experience-works a').getAttribute('href'),
     visibleIcons: document.querySelectorAll('svg.home-icon[aria-hidden="true"][focusable="false"]').length
   }));
-  check('2025 editorial order', revisionAudit.papers2025.join(',') === 'd2gs,editor,longmamba,lamb', revisionAudit.papers2025);
-  check('no Selected labels', revisionAudit.selectedLabels === 0);
-  check('institutional eyebrow', revisionAudit.eyebrow === 'Georgia Institute of Technology · GTISC Lab · Atlanta');
-  // Recent news follows _data/news.yml: newest first, through LongMamba; archived items stay folded.
-  check('recent news through LongMamba', revisionAudit.recentNews.length === recentNewsData.length && revisionAudit.recentNews[0].includes(String(recentNewsData[0].date).replace('-', '.')) && revisionAudit.recentNews.some(t => t.includes('2026.07') && t.includes('was accepted at COLM 2026')) && revisionAudit.recentNews[revisionAudit.recentNews.length - 1].includes('LongMamba') && revisionAudit.archivedNews === news.length - recentNewsData.length, revisionAudit.recentNews);
-  check('EDITOR removed from GTISC', !revisionAudit.gtisc.includes('EDITOR') && !revisionAudit.gtisc.includes('prompt inversion'));
-  check('industry roles', revisionAudit.industryRoles.every(role => role === 'Research Intern'));
-  check('BRS linked directly from Wuhan', revisionAudit.wuhanLink === 'https://www.sciencedirect.com/science/article/abs/pii/S0031320326016109');
+  check('2025 editorial order', contentAudit.papers2025.join(',') === 'd2gs,editor,longmamba,lamb', contentAudit.papers2025);
+  check('no Selected labels', contentAudit.selectedLabels === 0);
+  check('institutional eyebrow', contentAudit.eyebrow === 'Georgia Institute of Technology · GTISC Lab · Atlanta');
+  // News is rendered from the data file, with archived items in a disclosure.
+  check('recent news through LongMamba', contentAudit.recentNews.length === recentNewsData.length && contentAudit.recentNews[0].includes(String(recentNewsData[0].date).replace('-', '.')) && contentAudit.recentNews.some(t => t.includes('2026.07') && t.includes('was accepted at COLM 2026')) && contentAudit.recentNews[contentAudit.recentNews.length - 1].includes('LongMamba') && contentAudit.archivedNews === news.length - recentNewsData.length, contentAudit.recentNews);
+  check('EDITOR removed from GTISC', !contentAudit.gtisc.includes('EDITOR') && !contentAudit.gtisc.includes('prompt inversion'));
+  check('industry roles', contentAudit.industryRoles.every(role => role === 'Research Intern'));
+  check('BRS linked directly from Wuhan', contentAudit.wuhanLink === 'https://www.sciencedirect.com/science/article/abs/pii/S0031320326016109');
   check('BRS omitted from publication list', await page.locator('.publication#brs-e2nerf').count() === 0);
-  check('decorative icons hidden from assistive technology', revisionAudit.visibleIcons > 0);
-  report.revisions = revisionAudit;
+  check('decorative icons hidden from assistive technology', contentAudit.visibleIcons > 0);
+  report.content = contentAudit;
   const metadata = await page.evaluate(() => ({
     titleCount: document.querySelectorAll('title').length,
     descriptionCount: document.querySelectorAll('meta[name="description"]').length,
@@ -177,7 +175,7 @@ async function anchorVisible(page, id) {
       const resource = page.locator('#' + pub.id + ' .publication-resources').getByRole('link', { name: label + ' : ' + pub.short_title, exact: true });
       check('resource entry ' + pub.id + ' / ' + label, await resource.count() === 1 && await resource.getAttribute('href') === (pub[field] || ''));
     }
-    // Papers under review have no public record yet, so they carry no BibTeX.
+    // BibTeX entries retain the full author list.
     if (pub.bibtex) check('citation retains author information ' + pub.id, /author\s*=/i.test(await page.locator('#' + pub.id + ' code').textContent()));
     check('venue and year without status ' + pub.id, (await page.locator('#' + pub.id + ' .publication-meta').textContent()).trim() === pub.venue + ' · ' + pub.year);
   }
@@ -238,6 +236,17 @@ async function anchorVisible(page, id) {
       check('project isolated ' + project, !audit.homeStyles);
       check('project loads ' + project, response.status() === 200);
       check('project overflow ' + project + width, !audit.overflow);
+      if (width === 1440) {
+        const localResources = await page.evaluate(() => [...new Set(
+          [...document.querySelectorAll('img[src], source[src], script[src], link[rel="stylesheet"], link[rel="icon"]')]
+            .map(element => element.src || element.href)
+            .filter(url => new URL(url).origin === location.origin)
+        )]);
+        for (const url of localResources) {
+          const resource = await context.request.head(url);
+          check('project resource ' + url, resource.ok(), resource.status());
+        }
+      }
       await page.screenshot({path:path.join(out,project.split('/').filter(Boolean).join('-')+'-'+width+'.png')});
       report.projects.push({project,width,status:response.status(),...audit});
     }

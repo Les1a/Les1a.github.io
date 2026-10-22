@@ -11,7 +11,7 @@ research:
 - id: eic
   institution: EIC Lab, Georgia Tech
   role: Undergraduate to Ph.D. student
-  dates: May 2024 – Feb. 2026
+  dates: May 2024 – Dec. 2025
   description: Studied efficient diffusion decoding and long-context memory retention in state space models, including redundancy-aware decoding, soft token interpolation, and token filtering.
   works:
   - r2-dllm
@@ -24,10 +24,6 @@ research:
   description: Developed an event-and-RGB pipeline for BRS-E²NeRF, jointly addressing rolling-shutter distortion and motion blur for sharp 3D reconstruction and novel-view synthesis.
   works:
   - brs-e2nerf
-- id: oulu
-  institution: CMVS, University of Oulu
-  dates: 2023 – 2024
-  description: Research on event-based human behavior analysis using spatio-temporal transformers, presented at the IJCAI 2024 MiGA Workshop.
 industry:
 - id: zoom
   institution: Zoom Communications, Inc. · AI Incubation

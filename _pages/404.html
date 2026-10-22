@@ -1,0 +1,26 @@
+---
+layout: null
+title: Page Not Found
+permalink: /404.html
+sitemap: false
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <meta name="color-scheme" content="light dark">
+    <title>Page Not Found | {{ site.name | escape }}</title>
+    <link rel="icon" href="{{ '/images/favicon.ico' | relative_url }}" sizes="any">
+    <link rel="stylesheet" href="{{ '/assets/css/not-found.css' | relative_url }}">
+  </head>
+  <body>
+    <main>
+      <p class="error-code">404</p>
+      <h1>Page not found</h1>
+      <p>The page you are looking for does not exist or has moved.</p>
+      <a href="{{ '/' | relative_url }}">Back to {{ site.name | escape }}'s homepage</a>
+    </main>
+  </body>
+</html>

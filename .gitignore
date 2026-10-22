@@ -1,11 +1,25 @@
-# Ignore the contents of the _site directory
+# Jekyll output and local dependencies
 _site/
-
-# Ignore the Gemfile that is generated
-Gemfile.lock
-
-# Ingore files created by npm
-node_modules
-package-lock.json
-tmp/
 .jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+.bundle/
+vendor/bundle/
+node_modules/
+
+# Temporary files and test reports
+tmp/
+coverage/
+playwright-report/
+test-results/
+*.log
+
+# Local settings and editor files
+.DS_Store
+Thumbs.db
+.env
+.env.*
+!.env.example
+*.swp
+*.swo
+*~

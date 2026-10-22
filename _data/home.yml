@@ -1,4 +1,3 @@
-updated: '2026-08-01'
 education:
 - institution: Georgia Institute of Technology
   dates: Aug. 2025 – Present
@@ -6,6 +5,7 @@ education:
 - institution: Wuhan University
   dates: Sept. 2021 – Jun. 2025
   degree: B.Eng. in Communication Engineering (Artificial Intelligence Track)
+  note: First-Class Academic Scholarship (2023–2024)
 honors:
 - title: Wuhan University First-Class Academic Scholarship
   dates: 2023–2024
@@ -22,7 +22,7 @@ earlier_honors:
   detail: Hubei Province First Prize
   dates: '2023'
 - title: Student Innovation & Entrepreneurship Project
-  detail: National Prize · All-in-Focus Seeing Through Occlusions with Event and Frame
+  detail: National-level project approval · All-in-Focus Seeing Through Occlusions with Event and Frame
   dates: 2023–2024
 - title: Wuhan University Merit Student
   dates: 2021–2022, 2023–2024
