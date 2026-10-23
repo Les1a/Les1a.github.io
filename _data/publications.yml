@@ -48,7 +48,7 @@
   order: 1
   venue: COLM
   status: Published
-  summary: To preserve information between denoising steps, MetaState trains recurrent working-memory modules around a frozen diffusion language model, improving mathematical reasoning and code generation.
+  summary: Standard discrete diffusion models discard continuous representations between denoising steps. MetaState learns a recurrent pathway around a frozen backbone to carry this information forward, improving mathematical reasoning and code generation.
   image:
     path: /images/figure-metastate.png
     width: 440
@@ -84,7 +84,7 @@
   order: 2
   venue: arXiv
   status: Preprint
-  summary: To reduce redundant diffusion steps, R²-dLLM combines training-free spatial and temporal decoding rules with redundancy-aware supervised fine-tuning, improving the trade-off between computation and generation quality.
+  summary: R²-dLLM identifies spatial prediction patterns and cross-step stability in diffusion trajectories, using them to guide training-free decoding and redundancy-aware supervised fine-tuning. It reduces decoding steps while maintaining competitive generation quality.
   image:
     path: /images/figure-r2dllm.png
     width: 880
@@ -123,7 +123,7 @@
   order: 3
   venue: arXiv
   status: Preprint
-  summary: To turn repeated use of a persistent source into lasting understanding, SourceLearn builds a source model through self-directed study and task-guided refinement, beating Hybrid RAG and memory baselines in most settings.
+  summary: SourceLearn turns repeated use of a knowledge source into reusable understanding. Self-directed study and task feedback reveal gaps in an external source model. Updates are reconstructed from the authoritative source.
   image:
     path: /images/figure-sourcelearn.jpg
     width: 880
@@ -149,7 +149,7 @@
   order: 1
   venue: ACL ARR
   status: Under review
-  summary: To avoid re-reading the screen after every GUI action, LookAgain-CUA learns observation boundaries from multi-action supervision and cost-aware RL, improving both task success and efficiency on OSWorld.
+  summary: LookAgain-CUA turns evidence dependencies in GUI demonstrations into supervision for when to observe again, then refines the policy with cost-aware RL. It reduces model calls and estimated inference cost on OSWorld at comparable task success.
   paper_url: ''
   code_url: ''
   project_url: ''
@@ -169,7 +169,7 @@
   order: 2
   venue: ACL ARR
   status: Under review
-  summary: To make latent reasoning aware of its own progress, RoT, an RL-trained framework, predicts a Gaussian over reasoning progress at each decoding step and turns it into an uncertainty-calibrated phase signal that modulates decoder layers.
+  summary: RoT uses relative position within reasoning traces as intermediate supervision. An online predictor estimates this progress from hidden states and conditions decoder computation, with the resulting framework trained through reinforcement learning.
   paper_url: ''
   code_url: ''
   project_url: ''
@@ -192,7 +192,7 @@
   order: 3
   venue: ACL ARR
   status: Under review
-  summary: To keep terminal-agent benchmarks challenging, GEvol models task dependencies as graphs to guide executable edits, preserving original goals and verifiers. Joint validation and independent execution feedback help construct harder tasks on Terminal-Bench 1.0 and 2.1.
+  summary: GEvol uses task-dependency graphs to compose executable benchmark edits while preserving original goals and verifiers. Joint validation and independent execution feedback guide the construction of more challenging terminal-agent tasks.
   paper_url: ''
   code_url: ''
   project_url: ''
@@ -217,7 +217,7 @@
   order: 3
   venue: ICLR
   status: Published
-  summary: To counter memory decay at long context lengths, LongMamba identifies global state channels and filters unimportant tokens, enlarging receptive fields without additional training.
+  summary: LongMamba traces long-context failure to cumulative state decay in Mamba's global channels. Targeted token filtering changes which updates accumulate in these channels, enlarging their receptive fields without additional training.
   image:
     path: /images/figure-longmamba.jpg
     width: 880
@@ -309,7 +309,7 @@
   order: 1
   venue: NeurIPS
   status: Published
-  summary: To reconstruct urban scenes without LiDAR, D²GS jointly refines dense depth and Gaussian geometry using diffusion priors, with progressive point pruning and road-specific geometric constraints.
+  summary: D²GS turns predicted depth into dense geometric supervision for LiDAR-free urban reconstruction. Diffusion priors refine depth rendered from Gaussians, which in turn constrains geometry, alongside progressive pruning and road-specific constraints.
   image:
     path: /images/figure-d2gs.jpg
     width: 880
@@ -347,7 +347,7 @@
   order: 2
   venue: arXiv
   status: Preprint
-  summary: To recover interpretable prompts from generated images, EDITOR combines caption-based initialization, latent-space optimization, and embedding-to-text conversion, balancing visual reconstruction with readable textual descriptions.
+  summary: EDITOR starts from an image caption, optimizes contextual text embeddings with image-reconstruction feedback, and converts them into readable prompts. This improves visual reconstruction while retaining interpretable text.
   image:
     path: /images/figure-editor.png
     width: 880

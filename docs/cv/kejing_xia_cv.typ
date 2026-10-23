@@ -33,6 +33,21 @@
 #let dot = box(baseline: -0.26em, circle(radius: 1.75pt, fill: black, stroke: none))
 #let me = strong[K. Xia]
 #let venue(v) = underline(offset: 1.6pt, stroke: 0.45pt, v)
+#let pubtag(label) = box(text(size: 9pt, weight: "bold")[[#label]])
+
+#let organization-mark(key) = {
+  let marks = (
+    gatech: ("gatech.png", "Georgia Tech"),
+    zoom: ("zoom.png", "Zoom"),
+    bosch: ("bosch.svg", "Bosch"),
+    whu: ("whu.png", "Wuhan University"),
+  )
+  let (file, name) = marks.at(key)
+  let width = if key == "gatech" { 30pt } else { 13pt }
+  let height = if key == "gatech" { 12pt } else { 11pt }
+  box(width: width, height: 7pt, place(center + horizon,
+    image("organizations/" + file, width: width, height: height, fit: "contain", alt: name + " logo")))
+}
 
 #let row(l, r) = grid(columns: (1fr, auto), column-gutter: 1em, l, align(right, r))
 
@@ -49,8 +64,10 @@
   #for n in notes { sub(n) }
 ]
 
-#let exp(org, role: none, dates: none, people: none, focus: none, items: ()) = block(above: 0.55em, below: 0.7em, inset: (left: 0.55em), breakable: false)[
-  #row([#dot#h(0.35em)#strong(org)#if role != none [ | #role]], emph(dates))
+#let exp(org, logo: none, role: none, dates: none, people: none, focus: none, items: ()) = block(above: 0.55em, below: 0.7em, inset: (left: 0.55em), breakable: false)[
+  #grid(columns: (1fr, auto), column-gutter: 6pt,
+    align(left + horizon, [#strong(org)#if logo != none [#h(4pt)#organization-mark(logo)]#if role != none [ | #role]]),
+    align(right + horizon, emph(dates)))
   #if people != none [#people \ ]
   #if focus != none [#text(weight: "bold", style: "italic")[Research Focus]: #emph(focus)]
   #for it in items { v(0.12em); sub(it) }
@@ -88,71 +105,71 @@
 
 // ---------- research interests ----------
 #section[Research Interests]
-My research centers on LLM post-training and agentic AI, with particular interests in reasoning, efficient language models, and systems that make language models more useful in interactive environments.
+My research focuses on *understanding and improving reasoning in language models*. I study useful structure in model computation, reasoning trajectories, and interaction data, and use these insights to guide model design, post-training, and inference algorithms.
 #v(0.1em)
-#sub[Explicit and Implicit Reasoning (Latent Reasoning, Persistent Working Memory, RL Post-Training)]
-#sub[Efficient Language Models (Diffusion LLM Decoding, Long-Context State Space Models)]
-#sub[Language Model Agents (Computer-Use Agents, Source Learning Agents)]
+#sub[*Reasoning and Inference Mechanisms*: MetaState and RoT study how information flow and process signals can guide reasoning. LongMamba and R²-dLLM use model dynamics to improve long-context inference and diffusion decoding.]
+#sub[*Learning from Interaction and Task Structure*: LookAgain-CUA learns when agents need new observations, while SourceLearn uses task feedback to refine reusable source understanding. GEvol uses task dependencies to evolve executable benchmark tasks.]
 
 // ---------- experience ----------
 #section[Experience]
-#exp([Georgia Institute of Technology, GTISC Lab], role: [Ph.D. Student], dates: [Jan. 2026 – Present],
+#exp([Georgia Institute of Technology, GTISC Lab], logo: "gatech", role: [Ph.D. Student], dates: [Jan. 2026 – Present],
   people: [Advisor: Prof. #xlink("https://wenke.gtisc.gatech.edu/")[Wenke Lee]],
   focus: [Reasoning, Agents, and LLM Post-Training],
   items: (
-    [*MetaState*: Added a lightweight recurrent working memory around a frozen dLLM to carry continuous information across denoising steps, where standard discrete diffusion models pass only discrete tokens.],
-    [*Rhythm of Thought*: Made latent reasoning aware of its own progress: at each decoding step the model predicts a Gaussian over reasoning progress and turns it into an uncertainty-calibrated phase signal that modulates decoder layers, trained with RL.],
-    [*SourceLearn*: Contributed to a framework that moves LLM agents from accessing a persistent source at query time to learning it, building a reusable source model through self-directed study and task-guided refinement.],
+    [*MetaState* #pubtag[COLM'26] equips a frozen dLLM with lightweight recurrent working memory, allowing continuous information to persist across denoising steps rather than passing only discrete tokens.],
+    [*Rhythm of Thought* #pubtag[Preprint] is an RL-trained latent reasoning framework that predicts a Gaussian over trace-relative progress. The resulting Gaussian phase signal modulates decoder layers at each reasoning step.],
+    [*SourceLearn* #pubtag[Preprint] turns repeated access to a persistent source into reusable source understanding through self-directed study and task-guided refinement of an external source model.],
   ))
-#exp([Zoom Communications, Inc., AI Incubation], role: [Research Intern], dates: [May 2026 – Aug. 2026],
+#exp([Zoom Communications, Inc., AI Incubation], logo: "zoom", role: [Research Intern], dates: [May 2026 – Aug. 2026],
   people: [Mentor: Dr. #xlink("https://scholar.google.com/citations?user=zj8MzB4AAAAJ")[Renqian Luo]],
   focus: [Efficient Computer-Use Agents],
   items: (
-    [*LookAgain-CUA*: Instead of re-reading the screen after every GUI action, trained agents to learn observation boundaries and execute several actions per model call. We built BoundaryTrace to turn trajectories into multi-action supervision, then trained with self-refined SFT and cost-aware RL.],
+    [*LookAgain-CUA* #pubtag[Preprint] learns when multiple GUI actions can be decided from a single observation. BoundaryTrace provides multi-action supervision for self-refined SFT, and cost-aware RL refines the policy.],
   ))
-#exp([Georgia Institute of Technology, EIC Lab], role: [Undergraduate to Ph.D. Student], dates: [May 2024 – Dec. 2025],
+#exp([Georgia Institute of Technology, EIC Lab], logo: "gatech", role: [Undergraduate to Ph.D. Student], dates: [May 2024 – Dec. 2025],
   people: [Advisor & Mentors: Prof. #xlink("https://eiclab.scs.gatech.edu")[Yingyan (Celine) Lin] , #xlink("https://www.yongganfu.com")[Yonggan Fu] , #xlink("https://scholar.google.com/citations?user=zlPfnWEAAAAJ&hl=en")[Zhifan Ye]],
   focus: [Efficient Diffusion Decoding and Long-Context Modeling],
   items: (
-    [*LongMamba*: Found that Mamba's hidden channels split into local and global ones, traced long-context failure to state decay in the global ones, and enlarged their receptive fields with training-free token filtering.],
-    [Also contributed to R²-dLLM (redundancy-aware dLLM decoding), training-free soft token interpolation for masked diffusion LLMs, and LAMB (attention-guided token filtering for SSMs).],
+    [*LongMamba* #pubtag[ICLR'25] identifies local and global channels in Mamba, traces long-context failure to state decay in global channels, and enlarges their receptive fields through training-free token filtering.],
+    [Related work includes R²-dLLM #pubtag[Preprint] for redundancy-aware diffusion decoding, training-free soft token interpolation for masked dLLMs, and LAMB #pubtag[ACL'25] for attention-guided token filtering in SSMs.],
   ))
-#exp([Bosch Research & Innovation Software Development Co., Ltd.], role: [Research Intern], dates: [July 2024 – May 2025],
+#exp([Bosch Research & Innovation Software Development], logo: "bosch", role: [Research Intern], dates: [July 2024 – May 2025],
   people: [Mentor: Dr. #xlink("https://yjzhang96.github.io/")[Youjian Zhang]],
-  focus: [LiDAR-free Urban Scene Reconstruction],
+  focus: [Geometric Prior Enhanced Urban Scene Reconstruction],
   items: (
-    [*D²GS*: To reconstruct urban scenes without LiDAR, co-optimized diffusion-generated dense depth and 3D Gaussian Splatting in an iterative loop, with progressive pruning and road-specific geometric constraints.],
+    [*D²GS* #pubtag[NeurIPS'25] reconstructs urban scenes without LiDAR by iteratively co-optimizing diffusion-generated dense depth and 3D Gaussian Splatting, with progressive pruning and road-specific geometric constraints.],
   ))
-#exp([Wuhan University, Signal Processing Lab], role: [Undergraduate Researcher], dates: [Oct. 2023 – Apr. 2024],
+#exp([Wuhan University, Signal Processing Lab], logo: "whu", role: [Undergraduate Researcher], dates: [Oct. 2023 – Apr. 2024],
   people: [Advisor: Prof. #xlink("https://scholar.google.com.hk/citations?user=Klc_GHUAAAAJ&hl=en")[Lei Yu]],
-  focus: [3D Vision, Event-based Vision],
+  focus: [3D Vision and Event-based Vision],
   items: (
-    [*BRS-E²NeRF*: Combined events with RGB through event-enhanced re-blurring and double-cycle optimization to jointly correct motion blur and rolling-shutter distortion for 3D reconstruction.],
+    [*BRS-E²NeRF* #pubtag[PR'26] combines events and RGB images through event-enhanced re-blurring and double-cycle optimization to jointly correct motion blur and rolling-shutter distortion for 3D reconstruction.],
   ))
 
 // ---------- publications ----------
+#pagebreak()
 #section([Publications], note: [\* equal contribution])
 #pub(1)[#me, Z. Du, S. Yao, L. Fu, H. Shen, X. Ma, L. Wei, M. Li, X. Yuan, D. Shi, Q. Jin, B. A. Prakash, W. Lee, and R. Luo. When to Look Again: Learning Observation Boundaries for Efficient Computer-Use Agents. #venue[Submitted to ACL ARR 2026].]
-#pub(2)[#me, L. Wei, M. Li, D. Shi, X. Yuan, Z. Du, Q. Jin, and W. Lee. Rhythm of Thought: Progress-Aware Latent Reasoning via Reinforcement Learning. #venue[Submitted to ACL ARR 2026].]
-#pub(3)[Z. Du, #me, J. Zhang, S. Yao, Z. Shi, Z. Zheng, J. Luo, X. Yuan, D. Shi, Q. Jin, and W. Lee. GEvol: Graph-Guided Benchmark Evolution for Terminal Agents. #venue[Submitted to ACL ARR 2026].]
+#pub(2)[Z. Du, #me, J. Zhang, S. Yao, Z. Shi, Z. Zheng, J. Luo, X. Yuan, D. Shi, Q. Jin, and W. Lee. GEvol: Graph-Guided Benchmark Evolution for Terminal Agents. #venue[Submitted to ACL ARR 2026].]
+#pub(3)[#me, L. Wei, M. Li, D. Shi, X. Yuan, Z. Du, Q. Jin, and W. Lee. Rhythm of Thought: Progress-Aware Latent Reasoning via Reinforcement Learning. #venue[Submitted to ACL ARR 2026].]
 #pub(4)[#me, M. Li, L. Wei, Z. Du, X. Yuan, D. Shi, Q. Jin, and W. Lee. MetaState: Persistent Working Memory Enhances Reasoning in Discrete Diffusion Language Models. #venue[COLM 2026]. #res("https://arxiv.org/abs/2603.01331")[Paper] #res("https://github.com/Les1a/MetaState")[Code] #res("https://les1a.github.io/projects/metastate/")[Website]]
-#pub(5)[#strong[K. Xia\*], J. Jia\*, K. Jin, Y. Bai, L. Sun, D. Tao, and Y. Zhang. D²GS: Dense Depth Regularization for LiDAR-free Urban Scene Reconstruction. #venue[NeurIPS 2025]. #res("https://proceedings.neurips.cc/paper_files/paper/2025/hash/524ff06d5375d76e93d8490e654a81bf-Abstract-Conference.html")[Paper] #res("https://github.com/Les1a/D2GS")[Code] #res("https://les1a.github.io/projects/d2gs/")[Website]]
-#pub(6)[Z. Ye\*, #strong[K. Xia\*], Y. Fu, X. Dong, J. Hong, X. Yuan, S. Diao, J. Kautz, P. Molchanov, and Y. Lin. LongMamba: Enhancing Mamba's Long-Context Capabilities via Training-Free Receptive Field Enlargement. #venue[ICLR 2025]. #res("https://proceedings.iclr.cc/paper_files/paper/2025/hash/ab5d50d269e52f8eed497062311ff173-Abstract-Conference.html")[Paper] #res("https://github.com/GATECH-EIC/LongMamba")[Code] #res("https://lemonandrabbit.github.io/")[Website]]
-#pub(7)[H. Wang\*, #strong[K. Xia\*], Y. Wang, C. Zhang, M. Lin, and L. Yu. BRS-E²NeRF: Event Enhanced Neural Radiance Fields from Blurry Rolling Shutter Images. #venue[Pattern Recognition], 2026. #res("https://www.sciencedirect.com/science/article/abs/pii/S0031320326016109")[Paper]]
-#pub(8)[Q. Jin, L. Tung, K. Li, Q. Shi, Y. She, H. Jia, H. Zhao, #me, Z. Du, et al. ChainSWE: Benchmarking Coding Agents on Multi-Bug Software Maintenance. #venue[EMNLP Main 2026]. #res("https://arxiv.org/abs/2607.02606")[Paper] #res("https://huggingface.co/datasets/C-lister/ChainSWE")[Benchmark]]
-#pub(9)[Z. Ye, Z. Wang, #me, J. Hong, L. Li, L. Whalen, C. Wan, Y. Fu, Y. Lin, and S. Kundu. LAMB: A Training-Free Method to Enhance the Long-Context Understanding of SSMs via Attention-Guided Token Filtering. #venue[ACL Main 2025]. #res("https://aclanthology.org/2025.acl-short.96/")[Paper] #res("https://github.com/GATECH-EIC/LAMB")[Code]]
+#pub(5)[Z. Du, #me, X. Zhong, Y. Fu, N. Oswald, B. Ji, B. Khailany, P. Molchanov, and Y. Lin. R²-dLLM: Accelerating Diffusion Large Language Models via Spatio-Temporal Redundancy Reduction. #venue[Preprint, 2026]. #res("https://arxiv.org/abs/2604.18995")[Paper] #res("https://github.com/GATECH-EIC/R2-dLLM")[Code]]
+#pub(6)[L. Fu, #me, Y. Wang, Y. Jin, J. He, X. Yang, H. Liu, Y. Yu, H. Jin, Y. Xiao, W. Lee, B. A. Prakash, and H. Wang. From Knowledge Access to Source Learning: Developing Source-Specific Competence. #venue[Preprint, 2026]. #res("https://arxiv.org/abs/2610.02150")[Paper] #res("https://github.com/luchengfu6/SourceLearn")[Code] #res("https://sourcelearn.github.io/")[Website]]
+#pub(7)[Q. Jin, L. Tung, K. Li, Q. Shi, Y. She, H. Jia, H. Zhao, #me, Z. Du, et al. ChainSWE: Benchmarking Coding Agents on Multi-Bug Software Maintenance. #venue[EMNLP Main 2026]. #res("https://arxiv.org/abs/2607.02606")[Paper] #res("https://huggingface.co/datasets/C-lister/ChainSWE")[Benchmark]]
+#pub(8)[Z. Du\*, J. Luo\*, Z. Zheng, X. Yuan, #me, D. Shi, Q. Jin, Q. He, S. Zou, Y. Liang, and W. Lee. PACT: Privileged Trace Co-Training for Multi-Turn Tool-Use Agents. #venue[Preprint, 2026]. #res("https://arxiv.org/abs/2606.16215")[Paper] #res("https://zhenbangdu.github.io/pact-project-page/")[Website]]
+#pub(9)[D. Shi, H. Zhu, X. Yuan, W. Zhao, #me, W. Xiao, and W. Lee. CopT: Contrastive On-Policy Thinking with Continuous Spaces for General and Agentic Reasoning. #venue[Preprint, 2026]. #res("https://arxiv.org/abs/2605.20075")[Paper]]
 #pub(10)[X. Yuan, X. Diao, Z. Liu, C. Zhang, D. Shi, #me, Z. Du, S. Yao, S. Vosoughi, and W. Lee. Priority-Preserving Advantage Aggregation for Multi-Reward Policy Optimization. #venue[Preprint, 2026].]
-#pub(11)[Z. Du, #me, X. Zhong, Y. Fu, N. Oswald, B. Ji, B. Khailany, P. Molchanov, and Y. Lin. R²-dLLM: Accelerating Diffusion Large Language Models via Spatio-Temporal Redundancy Reduction. #venue[Preprint, 2026]. #res("https://arxiv.org/abs/2604.18995")[Paper] #res("https://github.com/GATECH-EIC/R2-dLLM")[Code]]
-#pub(12)[L. Fu, #me, Y. Wang, Y. Jin, J. He, X. Yang, H. Liu, Y. Yu, H. Jin, Y. Xiao, W. Lee, B. A. Prakash, and H. Wang. From Knowledge Access to Source Learning: Developing Source-Specific Competence. #venue[Preprint, 2026]. #res("https://arxiv.org/abs/2610.02150")[Paper] #res("https://github.com/luchengfu6/SourceLearn")[Code] #res("https://sourcelearn.github.io/")[Website]]
-#pub(13)[M. Li, #me, G. Zhang, Z. Wang, G. Tao, S. Pan, J. Zhai, and S. Ma. EDITOR: Effective and Interpretable Prompt Inversion for Text-to-Image Diffusion Models. #venue[Preprint, 2025]. #res("https://arxiv.org/abs/2506.03067v3")[Paper]]
-#pub(14)[Z. Du\*, J. Luo\*, Z. Zheng, X. Yuan, #me, D. Shi, Q. Jin, Q. He, S. Zou, Y. Liang, and W. Lee. PACT: Privileged Trace Co-Training for Multi-Turn Tool-Use Agents. #venue[Preprint, 2026]. #res("https://arxiv.org/abs/2606.16215")[Paper] #res("https://zhenbangdu.github.io/pact-project-page/")[Website]]
-#pub(15)[D. Shi, H. Zhu, X. Yuan, W. Zhao, #me, W. Xiao, and W. Lee. CopT: Contrastive On-Policy Thinking with Continuous Spaces for General and Agentic Reasoning. #venue[Preprint, 2026]. #res("https://arxiv.org/abs/2605.20075")[Paper]]
-#pub(16)[Y. Peng, M. Li, #me, R. Zhang, and A. Houmansadr. Membership Inference Attacks on Vision-Language-Action Models. #venue[Preprint, 2026]. #res("https://arxiv.org/abs/2605.07088")[Paper]]
+#pub(11)[Y. Peng, M. Li, #me, R. Zhang, and A. Houmansadr. Membership Inference Attacks on Vision-Language-Action Models. #venue[Preprint, 2026]. #res("https://arxiv.org/abs/2605.07088")[Paper]]
+#pub(12)[#strong[K. Xia\*], J. Jia\*, K. Jin, Y. Bai, L. Sun, D. Tao, and Y. Zhang. D²GS: Dense Depth Regularization for LiDAR-free Urban Scene Reconstruction. #venue[NeurIPS 2025]. #res("https://proceedings.neurips.cc/paper_files/paper/2025/hash/524ff06d5375d76e93d8490e654a81bf-Abstract-Conference.html")[Paper] #res("https://github.com/Les1a/D2GS")[Code] #res("https://les1a.github.io/projects/d2gs/")[Website]]
+#pub(13)[Z. Ye\*, #strong[K. Xia\*], Y. Fu, X. Dong, J. Hong, X. Yuan, S. Diao, J. Kautz, P. Molchanov, and Y. Lin. LongMamba: Enhancing Mamba's Long-Context Capabilities via Training-Free Receptive Field Enlargement. #venue[ICLR 2025]. #res("https://proceedings.iclr.cc/paper_files/paper/2025/hash/ab5d50d269e52f8eed497062311ff173-Abstract-Conference.html")[Paper] #res("https://github.com/GATECH-EIC/LongMamba")[Code] #res("https://lemonandrabbit.github.io/")[Website]]
+#pub(14)[M. Li, #me, G. Zhang, Z. Wang, G. Tao, S. Pan, J. Zhai, and S. Ma. EDITOR: Effective and Interpretable Prompt Inversion for Text-to-Image Diffusion Models. #venue[Preprint, 2025]. #res("https://arxiv.org/abs/2506.03067v3")[Paper]]
+#pub(15)[Z. Ye, Z. Wang, #me, J. Hong, L. Li, L. Whalen, C. Wan, Y. Fu, Y. Lin, and S. Kundu. LAMB: A Training-Free Method to Enhance the Long-Context Understanding of SSMs via Attention-Guided Token Filtering. #venue[ACL Main 2025]. #res("https://aclanthology.org/2025.acl-short.96/")[Paper] #res("https://github.com/GATECH-EIC/LAMB")[Code]]
+#pub(16)[H. Wang\*, #strong[K. Xia\*], Y. Wang, C. Zhang, M. Lin, and L. Yu. BRS-E²NeRF: Event Enhanced Neural Radiance Fields from Blurry Rolling Shutter Images. #venue[Pattern Recognition], 2026. #res("https://www.sciencedirect.com/science/article/abs/pii/S0031320326016109")[Paper]]
 #pub(17)[#strong[K. Xia\*], L. Wei\*, and L. Yu. A Spatio-temporal Event Transformer on Versatile Tasks for Human Behavior Analysis. #venue[MiGA Workshop at IJCAI 2024]. #res("https://ceur-ws.org/Vol-3848/paper_4.pdf")[Paper]]
 
 // ---------- honors ----------
 #section[Honors and Awards]
-#award([Top Reviewer], [NeurIPS 2027 Main Conference], [2026])
+#award([Top Reviewer], [NeurIPS 2026 Main Conference], [2026])
 #award([National Second Prize (Team Captain, Fifth Place)], [RoboCup China Open], [2024])
 #award([First-Class Academic Scholarship], [Wuhan University], [2023 – 2024])
 #award([“Luojia” Distinguished Exchange Student Scholarship], [Wuhan University], [2023 – 2024])

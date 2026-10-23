@@ -1,7 +1,7 @@
 locale: en-US
 title: Kejing Xia
 name: Kejing Xia
-description: Computer Science Ph.D. student at Georgia Tech researching LLM reasoning, agentic AI, and diffusion language models
+description: Computer Science Ph.D. student at Georgia Tech researching learning and inference for language model reasoning, including model design, post-training, and efficient inference
 url: https://les1a.github.io
 baseurl: ""
 repository: Les1a/Les1a.github.io

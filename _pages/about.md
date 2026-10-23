@@ -1,8 +1,8 @@
 ---
 layout: academic-home
 permalink: /
-title: "Kejing Xia | Language Models, Reasoning & Memory"
-description: "Kejing Xia (夏可敬) is a Computer Science Ph.D. student at Georgia Tech, advised by Wenke Lee. Research on LLM post-training, reasoning, diffusion language models, and agentic AI."
+title: "Kejing Xia | Language Model Reasoning, Learning & Inference"
+description: "Kejing Xia (夏可敬), CS Ph.D. student at Georgia Tech. Research on learning and inference for language model reasoning, including model design, post-training, and efficient inference."
 author_profile: false
 redirect_from:
   - /about/
@@ -16,7 +16,7 @@ redirect_from:
     <p class="eyebrow">{% include home/icon.html name='university' %}<span><span class="eyebrow-part">Georgia Institute of Technology ·</span> <span class="eyebrow-part">GTISC Lab ·</span> <span class="eyebrow-part">Atlanta</span></span></p>
   </div>
   <div class="hero-bio">
-    <p>I am a Computer Science Ph.D. student at <a href="https://www.gatech.edu/">Georgia Tech</a>, advised by Prof. <a href="https://wenke.gtisc.gatech.edu/">Wenke Lee</a> in the <a href="https://lab.gtisc.gatech.edu/gtisc/">GTISC Lab</a>. My research centers on LLM post-training and agentic AI, with particular interests in reasoning, efficient language models, and systems that make language models more useful in interactive environments.</p>
+    <p>I am a Computer Science Ph.D. student at <a href="https://www.gatech.edu/">Georgia Tech</a>, advised by Prof. <a href="https://wenke.gtisc.gatech.edu/">Wenke Lee</a> in the <a href="https://lab.gtisc.gatech.edu/gtisc/">GTISC Lab</a>. My research focuses on <strong>understanding and improving reasoning in language models</strong>. I study useful structure in model computation, reasoning trajectories, and interaction data, and use these insights to guide model design, post-training, and inference algorithms.</p>
     <p class="education-note">Before joining the Ph.D. program, I earned my B.Eng. in Communication Engineering (Artificial Intelligence Track) from <a href="https://en.whu.edu.cn/">Wuhan University</a>.</p>
   </div>
   <div class="home-actions" aria-label="Contact and profiles">
@@ -33,19 +33,14 @@ redirect_from:
   <h2 id="research-heading">Research</h2>
   <div class="research-grid">
     <article>
-      <h3>Explicit and Implicit Reasoning</h3>
-      <p>I study how language models reason, spanning explicit reasoning steps, implicit representations, and the use of memory.</p>
-      <div class="research-links"><a href="#metastate">MetaState <span aria-hidden="true">↗</span></a><a href="https://github.com/Les1a/SoftTokenForMaskedDLM">Soft Token <span aria-hidden="true">↗</span></a><a href="#rot">RoT <span aria-hidden="true">↗</span></a></div>
+      <h3>Reasoning and Inference Mechanisms</h3>
+      <p>I study how intermediate representations and generation dynamics affect model computation, from information flow across diffusion steps and state decay in long contexts to progress-conditioned reasoning and redundancy-aware decoding.</p>
+      <div class="research-links"><a href="#metastate">MetaState <span aria-hidden="true">↗</span></a><a href="#longmamba">LongMamba <span aria-hidden="true">↗</span></a><a href="#rot">RoT <span aria-hidden="true">↗</span></a><a href="#r2-dllm">R²-dLLM <span aria-hidden="true">↗</span></a></div>
     </article>
     <article>
-      <h3>Efficient Language Models</h3>
-      <p>I explore efficient and scalable language models, balancing computational cost, model capabilities, and the ability to handle long contexts.</p>
-      <div class="research-links"><a href="#r2-dllm">R²-dLLM <span aria-hidden="true">↗</span></a><a href="#longmamba">LongMamba <span aria-hidden="true">↗</span></a><a href="#lamb">LAMB <span aria-hidden="true">↗</span></a></div>
-    </article>
-    <article>
-      <h3>Language Model Agents</h3>
-      <p>I study language model agents that reason, act, and interact with their environments, aiming to make them more capable and reliable across tasks.</p>
-      <div class="research-links"><a href="#sourcelearn">SourceLearn <span aria-hidden="true">↗</span></a><a href="#lookagain-cua">LookAgain-CUA <span aria-hidden="true">↗</span></a><a href="#gevol">GEvol <span aria-hidden="true">↗</span></a></div>
+      <h3>Learning from Interaction and Task Structure</h3>
+      <p>I study how interaction data and task structure can guide learning and evaluation: evidence dependencies supervise observation decisions, task feedback refines reusable source understanding, and task dependencies guide executable benchmark construction.</p>
+      <div class="research-links"><a href="#lookagain-cua">LookAgain-CUA <span aria-hidden="true">↗</span></a><a href="#sourcelearn">SourceLearn <span aria-hidden="true">↗</span></a><a href="#gevol">GEvol <span aria-hidden="true">↗</span></a></div>
     </article>
   </div>
 </section>

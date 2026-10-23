@@ -3,7 +3,7 @@ research:
   institution: GTISC Lab, Georgia Tech
   role: Ph.D. student
   dates: Jan. 2026 – Present
-  description: Developed persistent working-memory augmentation (MetaState) for reasoning across diffusion steps. Proposed an RL-trained latent reasoning framework (RoT) that modulates decoder layers with an uncertainty-aware estimate of reasoning progress. Contributed to a source-learning framework (SourceLearn) that builds reusable, source-specific competence for LLM agents.
+  description: MetaState adds persistent working-memory augmentation for reasoning across diffusion steps. RoT is an RL-trained latent reasoning framework that modulates decoder layers with an uncertainty-aware estimate of trace-relative reasoning progress. SourceLearn builds reusable, source-specific competence for LLM agents through an external source model.
   works:
   - metastate
   - rot
@@ -12,16 +12,16 @@ research:
   institution: EIC Lab, Georgia Tech
   role: Undergraduate to Ph.D. student
   dates: May 2024 – Dec. 2025
-  description: Studied efficient diffusion decoding and long-context memory retention in state space models, including redundancy-aware decoding, soft token interpolation, and token filtering.
+  description: Projects study efficient diffusion decoding and long-context memory retention in state space models, including redundancy-aware decoding, soft token interpolation, and token filtering.
   works:
-  - r2-dllm
   - longmamba
+  - r2-dllm
   - lamb
 - id: wuhan-research
   institution: Signal Processing Lab, Wuhan University
   role: Undergraduate student
   dates: Oct. 2023 – Apr. 2024
-  description: Developed an event-and-RGB pipeline for BRS-E²NeRF, jointly addressing rolling-shutter distortion and motion blur for sharp 3D reconstruction and novel-view synthesis.
+  description: BRS-E²NeRF uses an event-and-RGB pipeline to jointly address rolling-shutter distortion and motion blur for sharp 3D reconstruction and novel-view synthesis.
   works:
   - brs-e2nerf
 industry:
@@ -29,13 +29,13 @@ industry:
   institution: Zoom Communications, Inc. · AI Incubation
   role: Research Intern
   dates: May 2026 – Aug. 2026
-  description: Trained computer-use agents to learn observation boundaries and execute several GUI actions per model call, using multi-action supervision and cost-aware RL to improve both task success and efficiency on OSWorld.
+  description: LookAgain-CUA learns observation boundaries and executes several GUI actions per model call, using multi-action supervision and cost-aware RL. On OSWorld, it reduces model calls and estimated inference cost at comparable task success.
   works:
   - lookagain-cua
 - id: bosch
-  institution: Bosch Research & Innovation Software Development Co., Ltd.
+  institution: Bosch Research & Innovation Software Development
   role: Research Intern
   dates: Jul. 2024 – May 2025
-  description: Co-optimized diffusion-based depth generation and 3D Gaussian Splatting for LiDAR-free urban reconstruction. Worked on road-specific geometric constraints and benchmarking on Waymo.
+  description: D²GS co-optimizes diffusion-based depth generation and 3D Gaussian Splatting for LiDAR-free urban reconstruction, with road-specific geometric constraints and benchmarking on Waymo.
   works:
   - d2gs

@@ -32,10 +32,11 @@ JEKYLL_ENV=production bundle exec jekyll build
 | Research project pages | `projects/` |
 | Published CV | `assets/3_CV.pdf` |
 | Editable CV source | `docs/cv/kejing_xia_cv.typ` |
+| CV institution marks and attribution | `docs/cv/organizations/` |
 
 Publication IDs are used by research, news and experience links. Entries are grouped by year and ordered by `order`. Entries with `status: Under review` appear in a separate section. `listed: false` keeps a record available to experience links while omitting it from the publication list.
 
-Edit the Typst CV source and regenerate its PDF with the command at the top of the source file. The CV uses Latin Modern Roman and the Font Awesome fonts in `assets/webfonts/`.
+Edit the Typst CV source and regenerate its PDF with the command at the top of the source file. The CV uses Latin Modern Roman and the Font Awesome fonts in `assets/webfonts/`. Keep the PDF in sync with the source. The `docs/` directory is excluded from the generated website.
 
 ## Browser checks
 

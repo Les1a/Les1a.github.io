@@ -7,10 +7,13 @@ education:
   degree: B.Eng. in Communication Engineering (Artificial Intelligence Track)
   note: First-Class Academic Scholarship (2023–2024)
 honors:
+- title: Top Reviewer
+  detail: NeurIPS 2026 Main Conference
+  dates: '2026'
 - title: Wuhan University First-Class Academic Scholarship
   dates: 2023–2024
 - title: RoboCup China Open
-  detail: National Second Prize · Team captain · Fifth place (top 9%)
+  detail: National Second Prize · Team captain · Fifth place
   dates: '2024'
 - title: Huazhong Cup Mathematical Modeling Challenge
   detail: National First Prize
