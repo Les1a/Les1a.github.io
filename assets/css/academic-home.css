@@ -159,7 +159,7 @@
 .academic-home .hero-title { grid-column: label / rail; grid-row: 1; min-width: 0; }
 .academic-home .hero-name {
   position: relative; z-index: 0;
-  font: 500 clamp(44px, 6.2vw, 90px)/1 var(--serif);
+  font: 500 clamp(40px, 5vw, 72px)/1 var(--serif);
   letter-spacing: -.028em;
   color: var(--ink);
   margin-left: -.04em; /* optical alignment of the K stem with the column edge */
@@ -460,8 +460,8 @@
   .academic-home .home-hero { grid-template-columns: minmax(0, 1fr) 100px; grid-template-rows: auto auto auto; column-gap: 16px; padding-top: 28px; }
   .academic-home .hero-title { grid-column: 1; grid-row: 1; align-self: center; }
   .academic-home .hero-portrait { grid-column: 2; grid-row: 1; width: 100px; margin: 0; border-radius: 5px; }
-  .academic-home .hero-name { font-size: 42px; line-height: 1.05; }
-  .academic-home .name-native { display: block; margin: 8px 0 0; font-size: 21px; }
+  .academic-home .hero-name { font-size: 36px; line-height: 1.05; }
+  .academic-home .name-native { display: block; margin: 8px 0 0; font-size: 19px; }
   .academic-home .eyebrow { align-items: flex-start; gap: 8px; margin-top: 12px; font-size: 13.5px; line-height: 1.45; }
   .academic-home .eyebrow .home-icon { width: 17px; height: 17px; margin-top: 1px; }
   .academic-home .hero-bio { grid-column: 1 / -1; grid-row: 2; margin-top: 22px; }
@@ -488,7 +488,7 @@
   .academic-home { --edge: 18px; }
   .academic-home .home-hero { grid-template-columns: minmax(0, 1fr) 88px; column-gap: 14px; }
   .academic-home .hero-portrait { width: 88px; }
-  .academic-home .hero-name { font-size: 39px; }
+  .academic-home .hero-name { font-size: 34px; }
   .academic-home .home-nav li a { font-size: 13.5px; }
 }
 @media print {
