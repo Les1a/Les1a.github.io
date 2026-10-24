@@ -34,7 +34,7 @@ redirect_from:
   <div class="research-grid">
     <article>
       <h3>Reasoning and Inference Mechanisms</h3>
-      <p>I study how intermediate representations and generation dynamics affect model computation, from information flow across diffusion steps and state decay in long contexts to progress-conditioned reasoning and redundancy-aware decoding.</p>
+      <p>I study how intermediate representations and generation dynamics can guide better reasoning and inference, including information flow across diffusion steps, progress-conditioned computation, long-context modeling, and efficient decoding.</p>
       <div class="research-links"><a href="#metastate">MetaState <span aria-hidden="true">↗</span></a><a href="#longmamba">LongMamba <span aria-hidden="true">↗</span></a><a href="#rot">RoT <span aria-hidden="true">↗</span></a><a href="#r2-dllm">R²-dLLM <span aria-hidden="true">↗</span></a></div>
     </article>
     <article>
@@ -47,21 +47,11 @@ redirect_from:
 
 <section id="publications" class="home-section" aria-labelledby="publications-heading">
   <div class="section-heading"><h2 id="publications-heading">Publications</h2><p>Selected publications</p></div>
-  {% assign listed_publications = site.data.publications | where_exp: 'pub', 'pub.listed != false' | where_exp: 'pub', 'pub.status != "Under review"' %}
-  {% assign year_groups = listed_publications | group_by: 'year' | sort: 'name' | reverse %}
-  {% for group in year_groups %}
-  <div class="publication-year-group">
-    <p class="publication-year">{{ group.name }}</p>
-    {% assign ordered_papers = group.items | sort: 'order' %}
-    {% for publication in ordered_papers %}{% include home/publication.html publication=publication %}{% endfor %}
+  <span id="under-review" class="anchor-alias" aria-hidden="true"></span>
+  {% assign listed_publications = site.data.publications | where_exp: 'pub', 'pub.listed != false' | sort: 'order' %}
+  <div class="publication-list">
+    {% for publication in listed_publications %}{% include home/publication.html publication=publication %}{% endfor %}
   </div>
-  {% endfor %}
-</section>
-
-<section id="under-review" class="home-section" aria-labelledby="under-review-heading">
-  <h2 id="under-review-heading">Under Review</h2>
-  {% assign under_review = site.data.publications | where: 'status', 'Under review' | sort: 'order' %}
-  <div class="publication-year-group">{% for publication in under_review %}{% include home/publication.html publication=publication %}{% endfor %}</div>
 </section>
 
 <section id="news" class="home-section" aria-labelledby="news-heading">
@@ -76,10 +66,10 @@ redirect_from:
 
 <section id="experience" class="home-section" aria-labelledby="experience-heading">
   <h2 id="experience-heading">Experience</h2>
-  <h3 id="research-experience" class="subsection-heading">Research Experience</h3>
-  {% include home/experience.html items=site.data.experience.research %}
   <h3 id="professional-experience" class="subsection-heading">Industry Research</h3>
   {% include home/experience.html items=site.data.experience.industry %}
+  <h3 id="research-experience" class="subsection-heading">Research Experience</h3>
+  {% include home/experience.html items=site.data.experience.research %}
 </section>
 
 <section id="education" class="home-section" aria-labelledby="education-heading">

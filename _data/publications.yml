@@ -45,10 +45,10 @@
   - name: Qirui Jin
   - name: Wenke Lee
   year: 2026
-  order: 1
+  order: 4
   venue: COLM
   status: Published
-  summary: Standard discrete diffusion models discard continuous representations between denoising steps. MetaState learns a recurrent pathway around a frozen backbone to carry this information forward, improving mathematical reasoning and code generation.
+  summary: Standard discrete diffusion models do not explicitly carry continuous representations between denoising steps. MetaState learns a recurrent pathway around a frozen backbone to carry this information forward, improving mathematical reasoning and code generation with approximately 0.6% trainable parameters.
   image:
     path: /images/figure-metastate.png
     width: 440
@@ -81,7 +81,7 @@
   - name: Pavlo Molchanov
   - name: Yingyan (Celine) Lin
   year: 2026
-  order: 2
+  order: 6
   venue: arXiv
   status: Preprint
   summary: R²-dLLM identifies spatial prediction patterns and cross-step stability in diffusion trajectories, using them to guide training-free decoding and redundancy-aware supervised fine-tuning. It reduces decoding steps while maintaining competitive generation quality.
@@ -120,7 +120,7 @@
   - name: B. Aditya Prakash
   - name: Haohan Wang
   year: 2026
-  order: 3
+  order: 5
   venue: arXiv
   status: Preprint
   summary: SourceLearn turns repeated use of a knowledge source into reusable understanding. Self-directed study and task feedback reveal gaps in an external source model. Updates are reconstructed from the authoritative source.
@@ -214,10 +214,10 @@
   - name: Yingyan (Celine) Lin
   author_note: '* Equal contribution.'
   year: 2025
-  order: 3
+  order: 9
   venue: ICLR
   status: Published
-  summary: LongMamba traces long-context failure to cumulative state decay in Mamba's global channels. Targeted token filtering changes which updates accumulate in these channels, enlarging their receptive fields without additional training.
+  summary: LongMamba traces a bottleneck in long-context extrapolation to cumulative state decay in Mamba's global channels. Selective state updates change which information accumulates in these channels, enlarging their receptive fields without additional training.
   image:
     path: /images/figure-longmamba.jpg
     width: 880
@@ -238,6 +238,7 @@
      year = {2025}
     }
 - id: lamb
+  listed: false
   short_title: LAMB
   title: 'LAMB: A Training-Free Method to Enhance the Long-Context Understanding of SSMs via Attention-Guided Token Filtering'
   authors:
@@ -253,7 +254,7 @@
   - name: Souvik Kundu
   year: 2025
   order: 4
-  venue: ACL (Short Papers)
+  venue: ACL Main
   status: Published
   summary: By examining attention patterns in state space models, LAMB guides token filtering to preserve critical information, strengthening long-context understanding in pure and hybrid models without training.
   image:
@@ -306,7 +307,7 @@
     corresponding: true
   author_note: '* Equal contribution. † Corresponding author.'
   year: 2025
-  order: 1
+  order: 7
   venue: NeurIPS
   status: Published
   summary: D²GS turns predicted depth into dense geometric supervision for LiDAR-free urban reconstruction. Diffusion priors refine depth rendered from Gaussians, which in turn constrains geometry, alongside progressive pruning and road-specific constraints.
@@ -344,7 +345,7 @@
   - name: Juan Zhai
   - name: Shiqing Ma
   year: 2025
-  order: 2
+  order: 8
   venue: arXiv
   status: Preprint
   summary: EDITOR starts from an image caption, optimizes contextual text embeddings with image-reconstruction feedback, and converts them into readable prompts. This improves visual reconstruction while retaining interpretable text.

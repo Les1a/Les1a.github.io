@@ -12,14 +12,14 @@ research:
   institution: EIC Lab, Georgia Tech
   role: Undergraduate to Ph.D. student
   dates: May 2024 – Dec. 2025
-  description: Projects study efficient diffusion decoding and long-context memory retention in state space models, including redundancy-aware decoding, soft token interpolation, and token filtering.
+  description: Projects study efficient diffusion decoding and long-context modeling in state space models, including redundancy-aware decoding, soft token interpolation, and token filtering.
   works:
   - longmamba
   - r2-dllm
   - lamb
 - id: wuhan-research
   institution: Signal Processing Lab, Wuhan University
-  role: Undergraduate student
+  role: Undergraduate Researcher
   dates: Oct. 2023 – Apr. 2024
   description: BRS-E²NeRF uses an event-and-RGB pipeline to jointly address rolling-shutter distortion and motion blur for sharp 3D reconstruction and novel-view synthesis.
   works:
@@ -36,6 +36,6 @@ industry:
   institution: Bosch Research & Innovation Software Development
   role: Research Intern
   dates: Jul. 2024 – May 2025
-  description: D²GS co-optimizes diffusion-based depth generation and 3D Gaussian Splatting for LiDAR-free urban reconstruction, with road-specific geometric constraints and benchmarking on Waymo.
+  description: D²GS iteratively refines depth estimates with diffusion priors and uses them to optimize 3D Gaussian geometry for LiDAR-free urban reconstruction, with road-specific geometric constraints and benchmarking on Waymo.
   works:
   - d2gs

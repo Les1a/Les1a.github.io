@@ -4,11 +4,12 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const { execFileSync } = require('node:child_process');
-const publications = JSON.parse(execFileSync('ruby', ['-rjson', '-ryaml', '-e', 'puts JSON.generate(YAML.load_file("_data/publications.yml"))'], { encoding: 'utf8' })).filter(pub => pub.listed !== false);
+const allPublications = JSON.parse(execFileSync('ruby', ['-rjson', '-ryaml', '-e', 'puts JSON.generate(YAML.load_file("_data/publications.yml"))'], { encoding: 'utf8' }));
+const publications = allPublications.filter(pub => pub.listed !== false);
 const paperCount = publications.length;
 const news = JSON.parse(execFileSync('ruby', ['-rjson', '-ryaml', '-e', 'puts JSON.generate(YAML.load_file("_data/news.yml"))'], { encoding: 'utf8' }));
 const recentNewsData = news.filter(item => item.archived !== true);
-for (const id of ['metastate','r2-dllm','longmamba','lamb','d2gs','editor']) assert.ok(publications.some(p => p.id === id), 'Preserve original work: ' + id);
+for (const id of ['metastate','r2-dllm','longmamba','lamb','d2gs','editor']) assert.ok(allPublications.some(p => p.id === id), 'Preserve original work: ' + id);
 const base = process.env.HOMEPAGE_URL || 'http://127.0.0.1:4000';
 const out = path.resolve('tmp/homepage-review');
 fs.mkdirSync(out, { recursive: true });
@@ -67,7 +68,8 @@ async function anchorVisible(page, id) {
         h1: [...document.querySelectorAll('h1')].map(e => e.textContent),
         papers: document.querySelectorAll('.publication').length,
         authorRows: document.querySelectorAll('.publication-authors, .author-note').length,
-        unexpectedEmptyLinks: [...document.querySelectorAll('a')].filter(e => (!e.getAttribute('href') || e.getAttribute('href') === '#') && !e.matches('.publication-resources > a[href=""]')).length,
+        unexpectedEmptyLinks: [...document.querySelectorAll('a')].filter(e => !e.getAttribute('href') || e.getAttribute('href') === '#').length,
+        missingAnchors: [...document.querySelectorAll('a[href^="#"]')].map(e => e.getAttribute('href').slice(1)).filter(id => !document.getElementById(id)),
         overflow: document.documentElement.scrollWidth > innerWidth,
         overflowElements, images, layoutShift: window.__layoutShift,
         fonts: [...document.fonts].map(f => ({family: f.family, status: f.status})).filter(f => f.status === 'loaded')
@@ -75,8 +77,9 @@ async function anchorVisible(page, id) {
     });
     check('viewport ' + width, !audit.overflow && !audit.overflowElements.length, audit.overflowElements);
     check('one H1 ' + width, audit.h1.length === 1 && audit.h1[0].trim() === 'Kejing Xia 夏可敬');
-    check('all papers without author rows ' + width, audit.papers === paperCount && audit.authorRows === 0);
-    check('empty links limited to configured publication resources ' + width, audit.unexpectedEmptyLinks === 0);
+    check('original compact publication cards ' + width, audit.papers === paperCount && audit.authorRows === 0);
+    check('no empty resource links ' + width, audit.unexpectedEmptyLinks === 0);
+    check('all internal anchors resolve ' + width, audit.missingAnchors.length === 0, audit.missingAnchors);
     check('images ' + width, audit.images.length === 1 + publications.filter(p => p.image).length && audit.images.every(i => i.naturalWidth > 0 && i.width > 60));
     check('both local fonts loaded ' + width, audit.fonts.some(f => f.family === 'Literata' || f.family === '"Literata"') && audit.fonts.some(f => f.family === '"Hanken Grotesk"' || f.family === 'Hanken Grotesk'));
     check('portrait ratio ' + width, Math.abs(audit.images[0].width / audit.images[0].height - audit.images[0].naturalWidth / audit.images[0].naturalHeight) < .01);
@@ -115,7 +118,7 @@ async function anchorVisible(page, id) {
   await page.goto(base + '/#longmamba', { waitUntil: 'networkidle' });
   anchor = await anchorVisible(page, 'longmamba');
   check('direct paper hash', anchor.hash === '#longmamba' && anchor.top >= anchor.headerBottom, anchor);
-  for (const id of ['research-interests', 'research-experience', 'professional-experience', 'competition', 'awards']) {
+  for (const id of ['research-interests', 'research-experience', 'professional-experience', 'under-review', 'competition', 'awards']) {
     await page.goto(base + '/#' + id, { waitUntil: 'domcontentloaded' });
     const a = await anchorVisible(page, id);
     check('legacy anchor ' + id, a.top >= a.headerBottom, a);
@@ -134,7 +137,8 @@ async function anchorVisible(page, id) {
     check('keyboard earlier content', await detail.getAttribute('open') !== null);
   }
   const contentAudit = await page.evaluate(() => ({
-    papers2025: [...[...document.querySelectorAll('.publication-year-group')].find(g => g.querySelector('.publication-year').textContent.trim() === '2025').querySelectorAll('.publication')].map(e => e.id),
+    paperOrder: [...document.querySelectorAll('#publications .publication')].map(e => e.id),
+    experienceOrder: [...document.querySelectorAll('#experience .experience-item')].map(e => e.id),
     selectedLabels: document.querySelectorAll('.selected-label').length,
     eyebrow: document.querySelector('.eyebrow').textContent.trim(),
     recentNews: [...document.querySelectorAll('#news > .news-list > li')].map(e => e.textContent.trim()),
@@ -144,15 +148,17 @@ async function anchorVisible(page, id) {
     wuhanLink: document.querySelector('#wuhan-research .experience-works a').getAttribute('href'),
     visibleIcons: document.querySelectorAll('svg.home-icon[aria-hidden="true"][focusable="false"]').length
   }));
-  check('2025 editorial order', contentAudit.papers2025.join(',') === 'd2gs,editor,longmamba,lamb', contentAudit.papers2025);
+  check('selected work order', contentAudit.paperOrder.join(',') === 'lookagain-cua,rot,gevol,metastate,sourcelearn,r2-dllm,d2gs,editor,longmamba', contentAudit.paperOrder);
+  check('industry research precedes academic experience', contentAudit.experienceOrder.join(',') === 'zoom,bosch,gtisc,eic,wuhan-research', contentAudit.experienceOrder);
   check('no Selected labels', contentAudit.selectedLabels === 0);
   check('institutional eyebrow', contentAudit.eyebrow === 'Georgia Institute of Technology · GTISC Lab · Atlanta');
   // News is rendered from the data file, with archived items in a disclosure.
-  check('recent news through LongMamba', contentAudit.recentNews.length === recentNewsData.length && contentAudit.recentNews[0].includes(String(recentNewsData[0].date).replace('-', '.')) && contentAudit.recentNews.some(t => t.includes('2026.07') && t.includes('was accepted at COLM 2026')) && contentAudit.recentNews[contentAudit.recentNews.length - 1].includes('LongMamba') && contentAudit.archivedNews === news.length - recentNewsData.length, contentAudit.recentNews);
+  check('recent news stays concise', contentAudit.recentNews.length === recentNewsData.length && contentAudit.recentNews.length >= 3 && contentAudit.recentNews.length <= 5 && contentAudit.recentNews[0].includes(String(recentNewsData[0].date).replace('-', '.')) && contentAudit.recentNews.some(t => t.includes('2026.07') && t.includes('was accepted at COLM 2026')) && !contentAudit.recentNews.some(t => t.includes('2026.03')) && contentAudit.archivedNews === news.length - recentNewsData.length, contentAudit.recentNews);
   check('EDITOR removed from GTISC', !contentAudit.gtisc.includes('EDITOR') && !contentAudit.gtisc.includes('prompt inversion'));
   check('industry roles', contentAudit.industryRoles.every(role => role === 'Research Intern'));
   check('BRS linked directly from Wuhan', contentAudit.wuhanLink === 'https://www.sciencedirect.com/science/article/abs/pii/S0031320326016109');
   check('BRS omitted from publication list', await page.locator('.publication#brs-e2nerf').count() === 0);
+  check('LAMB retained as a direct experience link', await page.locator('.publication#lamb').count() === 0 && await page.locator('#eic .experience-works').getByRole('link', { name: 'LAMB', exact: true }).getAttribute('href') === 'https://aclanthology.org/2025.acl-short.96/');
   check('decorative icons hidden from assistive technology', contentAudit.visibleIcons > 0);
   report.content = contentAudit;
   const metadata = await page.evaluate(() => ({
@@ -166,18 +172,18 @@ async function anchorVisible(page, id) {
   report.metadata = metadata;
   for (const pub of publications) {
     if (pub.status === 'Under review') {
-      // Submissions without a public version sit in their own section, with no resource links.
-      check('under review placement ' + pub.id, await page.locator('#under-review #' + pub.id).count() === 1 && await page.locator('#' + pub.id + ' .publication-resources').count() === 0);
-      check('venue and year without status ' + pub.id, (await page.locator('#' + pub.id + ' .publication-meta').textContent()).trim() === pub.venue + ' · ' + pub.year);
+      // Every selected manuscript carries its own status, even outside a separate review section.
+      check('under review placement ' + pub.id, await page.locator('#publications #' + pub.id).count() === 1 && await page.locator('#' + pub.id + ' .publication-resources').count() === 0);
+      check('explicit review status ' + pub.id, (await page.locator('#' + pub.id + ' .publication-meta').textContent()).trim() === 'Manuscript under review · ' + pub.year);
       continue;
     }
     for (const [label, field] of [['Paper','paper_url'],['Code','code_url'],['Project','project_url']]) {
       const resource = page.locator('#' + pub.id + ' .publication-resources').getByRole('link', { name: label + ' : ' + pub.short_title, exact: true });
-      check('resource entry ' + pub.id + ' / ' + label, await resource.count() === 1 && await resource.getAttribute('href') === (pub[field] || ''));
+      check('only available resources ' + pub.id + ' / ' + label, pub[field] ? await resource.count() === 1 && await resource.getAttribute('href') === pub[field] : await resource.count() === 0);
     }
     // BibTeX entries retain the full author list.
     if (pub.bibtex) check('citation retains author information ' + pub.id, /author\s*=/i.test(await page.locator('#' + pub.id + ' code').textContent()));
-    check('venue and year without status ' + pub.id, (await page.locator('#' + pub.id + ' .publication-meta').textContent()).trim() === pub.venue + ' · ' + pub.year);
+    check('publication venue or explicit preprint status ' + pub.id, (await page.locator('#' + pub.id + ' .publication-meta').textContent()).trim() === pub.venue + ' · ' + pub.year);
   }
   const resources = await page.evaluate(() => [...new Set([
     ...[...document.querySelectorAll('a[href]')].map(e => e.href),
@@ -192,7 +198,7 @@ async function anchorVisible(page, id) {
   const noJS = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const nj = await noJS.newPage();
   await nj.goto(base, { waitUntil: 'networkidle' });
-  check('no JS content', await nj.locator('.publication').count() === paperCount && await nj.locator('.publication-authors, .author-note').count() === 0);
+  check('no JS compact content', await nj.locator('.publication').count() === paperCount && await nj.locator('.publication-authors').count() === 0);
   await nj.locator('.home-nav').getByRole('link', {name:'Publications',exact:true}).click();
   check('no JS navigation', new URL(nj.url()).hash === '#publications');
   await nj.locator('#metastate summary').click();
@@ -228,6 +234,10 @@ async function anchorVisible(page, id) {
   await ip.waitForFunction(() => document.querySelector('#metastate').classList.contains('publication-text-only'));
   check('failed image degrades to text', await ip.locator('#metastate-title').isVisible() && !(await ip.locator('#metastate .publication-image').isVisible()));
   await imageFailure.close();
+  await page.goto(base, {waitUntil:'networkidle'});
+  await page.emulateMedia({media:'print', colorScheme:'light'});
+  await page.pdf({path:path.join(out,'homepage-print.pdf'),format:'A4',printBackground:true,margin:{top:'12mm',bottom:'12mm',left:'12mm',right:'12mm'}});
+  await page.emulateMedia({media:'screen', colorScheme:'light'});
   for (const project of ['/projects/metastate/', '/projects/d2gs/', '/404.html']) {
     for (const width of [1440,390]) {
       await page.setViewportSize({width,height:900});

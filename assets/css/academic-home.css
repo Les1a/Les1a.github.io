@@ -249,14 +249,14 @@
 .academic-home .section-heading p { margin: 8px 0 0; font: 500 14px/1.4 var(--sans); color: var(--ink-3); }
 .academic-home .research-section { margin-top: 60px; }
 
-/* Subsection rules (publication years, experience groups) */
-.academic-home :is(.publication-year, .subsection-heading) {
+/* Subsection rules (experience groups) */
+.academic-home .subsection-heading {
   display: flex; align-items: center; gap: 14px;
   margin: 0;
   font: 600 13.5px/1.2 var(--sans); letter-spacing: .01em; color: var(--ink-3);
   font-variant-numeric: tabular-nums;
 }
-.academic-home :is(.publication-year, .subsection-heading)::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+.academic-home .subsection-heading::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
 .academic-home .home-section > .subsection-heading:not(:nth-child(2)) { margin-top: 40px; }
 
 /* Work tokens: named papers and projects rendered as unmasked tokens */
@@ -289,15 +289,12 @@
 }
 
 /* ---------- Publications ---------- */
-.academic-home .publication-year-group + .publication-year-group { margin-top: 36px; }
 .academic-home .publication {
   display: grid;
   grid-template-columns: minmax(0, 1fr) var(--rail-w);
   column-gap: var(--gap);
   padding: 22px 0 26px;
 }
-.academic-home .publication-year + .publication { padding-top: 16px; }
-.academic-home .publication-year-group > .publication:first-child { padding-top: 2px; }
 .academic-home .publication + .publication { border-top: 1px solid var(--rule); }
 .academic-home .publication-content { grid-column: 1; grid-row: 1; min-width: 0; }
 .academic-home .publication-image {
